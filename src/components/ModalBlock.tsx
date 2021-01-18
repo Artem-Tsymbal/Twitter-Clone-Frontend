@@ -12,7 +12,7 @@ interface IModalBlockProps {
   classes?: ReturnType<typeof useStylesSignIn>,
   visible?: boolean;
   onClose: () => void;
-}
+};
 
 export const ModalBlock: React.FC<IModalBlockProps> = ({
   title,

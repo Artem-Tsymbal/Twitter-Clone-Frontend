@@ -4,7 +4,7 @@ import { Home } from './pages/Home';
 import { SignIn } from './pages/SignIn';
 
 function App() {
-  console.log('This shows errors')
+  console.log('This shows errors');
   return (
     <div className="App">
       <Switch>

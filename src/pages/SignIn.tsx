@@ -1,4 +1,5 @@
 import React from 'react';
+import { ModalBlock } from '../components/ModalBlock';
 import { makeStyles, Typography, Button } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
@@ -7,7 +8,6 @@ import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
-import { ModalBlock } from '../components/ModalBlock';
 
 export const useStylesSignIn = makeStyles((theme) => ({
   wrapper: {
@@ -210,5 +210,5 @@ export const SignIn: React.FC = (): React.ReactElement => {
         </div>
       </section>
     </div>
-  )
+  );
 };
