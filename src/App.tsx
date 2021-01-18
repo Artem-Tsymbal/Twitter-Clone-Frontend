@@ -1,11 +1,16 @@
 import React from 'react';
-import SignIn from './pages/SignIn';
+import { Route, Switch } from 'react-router-dom';
+import { Home } from './pages/Home';
+import { SignIn } from './pages/SignIn';
 
 function App() {
   console.log('This shows errors')
   return (
     <div className="App">
-      <SignIn />
+      <Switch>
+        <Route path="/signin" component={SignIn} />
+        <Route path="/" component={Home} />
+      </Switch>
     </div>
   );
 }
