@@ -1,4 +1,7 @@
 import React from 'react';
+import { useHomeStyles } from '../pages/Home/theme';
+import { ModalBlock } from './ModalBlock';
+import { AddTweetForm } from './AddTweetForm';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationIcon from '@material-ui/icons/NotificationsNoneOutlined';
@@ -11,13 +14,24 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
-import { useHomeStyles } from '../pages/Home';
 
 interface ISideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
 }
 
-export const SideMenu: React.FC<ISideMenuProps> = ({ classes }: ISideMenuProps): React.ReactElement => {
+export const SideMenu: React.FC<ISideMenuProps> = ({
+  classes,
+}: ISideMenuProps): React.ReactElement => {
+  const [visibleAddTweet, setVisibleAddTweet] = React.useState<boolean>(false);
+
+  const handleClickOpenAddTweet = () => {
+    setVisibleAddTweet(true);
+  };
+
+  const onCloseAddTweet = () => {
+    setVisibleAddTweet(false);
+  };
+
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuListItem}>
@@ -91,6 +105,7 @@ export const SideMenu: React.FC<ISideMenuProps> = ({ classes }: ISideMenuProps):
       </li>
       <li className={classes.sideMenuListItem}>
         <Button
+          onClick={handleClickOpenAddTweet}
           className={classes.sideMenuTweetButton}
           variant="contained"
           color="primary"
@@ -100,6 +115,11 @@ export const SideMenu: React.FC<ISideMenuProps> = ({ classes }: ISideMenuProps):
             <CreateIcon />
           </Hidden>
         </Button>
+        <ModalBlock onClose={onCloseAddTweet} visible={visibleAddTweet} title=''>
+          <div style={{ width: 550 }}>
+            <AddTweetForm maxRows={15} classes={classes} />
+          </div>
+        </ModalBlock>
       </li>
     </ul>
   );

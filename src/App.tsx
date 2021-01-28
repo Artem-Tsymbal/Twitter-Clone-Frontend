@@ -1,10 +1,8 @@
-import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import { Home } from './pages/Home';
+import { Home } from './pages/Home/index';
 import { SignIn } from './pages/SignIn';
 
 function App() {
-  console.log('This shows errors');
   return (
     <div className="App">
       <Switch>

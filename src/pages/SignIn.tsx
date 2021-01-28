@@ -119,7 +119,14 @@ export const SignIn: React.FC = (): React.ReactElement => {
           <Typography variant="h4" className={classes.loginSideTitle}>Узнайте, что происходит в мире прямо сейчас.</Typography>
           <Typography><b>Присоединяйтесь к Твиттеру прямо сейчас!</b></Typography>
           <br />
-          <Button onClick={handleClickOpenSignUp} style={{ marginBottom: 15 }} variant="contained" color="primary" fullWidth>Зарегистрироваться</Button>
+          <Button
+            onClick={handleClickOpenSignUp}
+            style={{ marginBottom: 15 }}
+            variant="contained"
+            color="primary"
+            fullWidth>
+            Зарегистрироваться
+          </Button>
           <ModalBlock
             visible={visibleModal === 'signUp'}
             onClose={handleCloseModal}

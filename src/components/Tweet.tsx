@@ -1,5 +1,6 @@
 import React from 'react';
 import classNames from 'classnames';
+import { useHomeStyles } from '../pages/Home/theme';
 import CommentIcon from '@material-ui/icons/ChatBubbleOutlineOutlined';
 import RepostIcon from '@material-ui/icons/RepeatOutlined';
 import LikeIcon from '@material-ui/icons/FavoriteBorderOutlined';
@@ -9,16 +10,14 @@ import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 
-import { useHomeStyles } from '../pages/Home';
-
 interface ITweetProps {
   text: string;
-  classes: ReturnType<typeof useHomeStyles>,
+  classes: ReturnType<typeof useHomeStyles>;
   user: {
     fullName: string;
     username: string;
     avatarUrl: string;
-  }
+  };
 }
 
 export const Tweet: React.FC<ITweetProps> = ({ text, user, classes }: ITweetProps): React.ReactElement => {

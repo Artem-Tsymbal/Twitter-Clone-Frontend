@@ -1,13 +1,13 @@
 import React from 'react';
+import { useStylesSignIn } from '../pages/SignIn';
 import Dialog from '@material-ui/core/Dialog';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import IconButton from '@material-ui/core/IconButton';
 import CloseIcon from '@material-ui/icons/Close';
-import { useStylesSignIn } from '../pages/SignIn';
 
 interface IModalBlockProps {
-  title: string,
+  title?: string,
   children: React.ReactNode,
   classes?: ReturnType<typeof useStylesSignIn>,
   visible?: boolean;
