@@ -14,6 +14,7 @@ import Hidden from '@material-ui/core/Hidden';
 import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
+import { Link } from 'react-router-dom';
 
 interface ISideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -35,9 +36,11 @@ export const SideMenu: React.FC<ISideMenuProps> = ({
   return (
     <ul className={classes.sideMenuList}>
       <li className={classes.sideMenuListItem}>
-        <IconButton className={classes.logo} aria-label="" color="primary">
-          <TwitterIcon className={classes.logoIcon} />
-        </IconButton>
+        <Link to="/home">
+          <IconButton className={classes.logo} aria-label="" color="primary">
+            <TwitterIcon className={classes.logoIcon} />
+          </IconButton>
+        </Link>
       </li>
       <li className={classes.sideMenuListItem}>
         <div>

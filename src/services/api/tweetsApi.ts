@@ -1,8 +1,11 @@
 import axios from "axios";
-import { ITweetsState } from "../../store/ducks/tweets/contracts/state";
+import { ITweet, ITweetsState } from "../../store/ducks/tweets/contracts/state";
 
 export const TweetsApi = {
   fetchTweets(): Promise<ITweetsState['items']> {
-    return axios.get('https://trycode.pw/c/5MJC7.json').then(({ data }) => data);
+    return axios.get('/tweets').then(({ data }) => data);
   },
+  fetchTweetData(id: string): Promise<ITweet[]> {
+    return axios.get('/tweets?_id=' + id).then(({ data }) => data);
+  }
 };

@@ -2,9 +2,9 @@ import { Action } from 'redux';
 import { LoadingState, ITweetsState } from './contracts/state';
 
 export enum TweetsActionsType {
-  SET_TWEETS = 'tweets/SET_TWEETS',
   FETCH_TWEETS = 'tweets/FETCH_TWEETS',
   SET_LOADING_STATE = 'tweets/SET_LOADING_STATE',
+  SET_TWEETS = 'tweets/SET_TWEETS',
 }
 
 export interface IFetchTweetsActionInteface extends Action<TweetsActionsType> {
@@ -35,4 +35,4 @@ export const setTweets = (payload: ITweetsState['items']): SetTweetsActionInterf
   payload,
 });
 
-export type TweetsActions = SetTweetsActionInterface | IFetchTweetsActionInteface | ISetTweetsLoadingStateInterface;
+export type TweetsActions = IFetchTweetsActionInteface | ISetTweetsLoadingStateInterface | SetTweetsActionInterface;

@@ -71,7 +71,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                   value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
                   style={text.length >= MAX_LENGTH ? { color: 'rgb(178,34,34)' } : undefined}
                 />
-                {(text.length <= 100) && (
+                {(text.length) && (
                   <CircularProgress
                     style={{ color: 'rgba(0, 0, 0, 0.1)' }}
                     variant="static"
