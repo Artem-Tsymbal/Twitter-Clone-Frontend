@@ -30,9 +30,3 @@ export const setTweets = (payload: ITweetsState['items']): SetTweetsActionInterf
   payload,
 });
 
-export type TweetsActions =
-  | IFetchTweetsActionInteface
-  | ISetTweetsLoadingStateInterface
-  | SetTweetsActionInterface
-  | IFetchAddTweetActionInterface
-  | IAddTweetActionInterface;

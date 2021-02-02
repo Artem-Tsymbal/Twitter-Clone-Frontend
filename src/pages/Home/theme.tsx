@@ -78,6 +78,10 @@ export const useHomeStyles = makeStyles((theme) => ({
       fontWeight: 800,
     },
   },
+  tweetsHeaderUser: {
+    display: 'flex',
+    alignItems: 'center',
+  },
   tweetWrapper: {
     color: 'inherit',
     textDecoration: 'none',
@@ -106,6 +110,15 @@ export const useHomeStyles = makeStyles((theme) => ({
   },
   tweetUserName: {
     color: grey[500],
+  },
+  fullTweet: {
+    padding: 22,
+  },
+  fullTweetText: {
+    fontSize: 22,
+    marginTop: 20,
+    lineHeight: 1.3125,
+    wordBreak: 'break-word',
   },
   rightSide: {
     paddingTop: 20,
