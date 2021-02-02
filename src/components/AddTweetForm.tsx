@@ -8,6 +8,11 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
+import Alert from '@material-ui/lab/Alert';
+import { useDispatch, useSelector } from 'react-redux';
+import { addTweet, fetchAddTweet } from '../store/ducks/tweets/actionCreators';
+import { selectAddTweetFormState } from '../store/ducks/tweets/selectors';
+import { AddTweetFormState } from '../store/ducks/tweets/contracts/state';
 
 interface IAddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -20,7 +25,10 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
   classes,
   maxRows,
 }: IAddTweetFormProps): React.ReactElement => {
+  const dispatch = useDispatch();
+
   const [text, setText] = React.useState<string>('');
+  const addFormState = useSelector(selectAddTweetFormState);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = -text.length + MAX_LENGTH;
 
@@ -30,8 +38,9 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
     }
   };
 
-  const handleClickAddTweet = (): void => {
-    setText('');
+  const handleClickAddTweet = () => {
+    console.log(text);
+    dispatch(fetchAddTweet(text));
   };
 
   return (
@@ -85,13 +94,18 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
           )}
           <Button
             onClick={handleClickAddTweet}
-            disabled={textLimitPercent >= 100}
+            disabled={addFormState === AddTweetFormState.LOADING || !text || textLimitPercent >= 100}
             color="primary"
             variant="contained">
-            Твитнуть
+            {addFormState === AddTweetFormState.LOADING ? <CircularProgress color='secondary' size={20} /> : 'Твитнуть'}
           </Button>
         </div>
       </div>
+      {
+        addFormState === AddTweetFormState.ERROR && (
+          <Alert severity="error">Произошла ошибка при добавлении твита!</Alert>
+        )
+      }
     </>
   );
 };

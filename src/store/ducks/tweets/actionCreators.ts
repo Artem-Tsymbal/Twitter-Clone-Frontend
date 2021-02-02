@@ -1,25 +1,5 @@
-import { Action } from 'redux';
-import { LoadingState, ITweetsState } from './contracts/state';
-
-export enum TweetsActionsType {
-  FETCH_TWEETS = 'tweets/FETCH_TWEETS',
-  SET_LOADING_STATE = 'tweets/SET_LOADING_STATE',
-  SET_TWEETS = 'tweets/SET_TWEETS',
-}
-
-export interface IFetchTweetsActionInteface extends Action<TweetsActionsType> {
-  type: TweetsActionsType.FETCH_TWEETS;
-}
-
-export interface ISetTweetsLoadingStateInterface extends Action<TweetsActionsType> {
-  type: TweetsActionsType.SET_LOADING_STATE;
-  payload: LoadingState;
-}
-
-export interface SetTweetsActionInterface extends Action<TweetsActionsType> {
-  type: TweetsActionsType.SET_TWEETS;
-  payload: ITweetsState['items'];
-}
+import { IFetchTweetsActionInteface, ISetTweetsLoadingStateInterface, ISetAddTweetFormStateInterface, IFetchAddTweetActionInterface, IAddTweetActionInterface, SetTweetsActionInterface, TweetsActionsType } from './contracts/actionTypes';
+import { LoadingState, ITweetsState, ITweet, AddTweetFormState } from './contracts/state';
 
 export const fetchTweets = (): IFetchTweetsActionInteface => ({
   type: TweetsActionsType.FETCH_TWEETS,
@@ -30,9 +10,29 @@ export const setTweetsLoadingState = (payload: LoadingState): ISetTweetsLoadingS
   payload,
 });
 
+export const setAddTweetFormState = (payload: AddTweetFormState): ISetAddTweetFormStateInterface => ({
+  type: TweetsActionsType.SET_ADD_FORM_STATE,
+  payload,
+});
+
+export const fetchAddTweet = (payload: string): IFetchAddTweetActionInterface => ({
+  type: TweetsActionsType.FETCH_ADD_TWEET,
+  payload,
+});
+
+export const addTweet = (payload: ITweet): IAddTweetActionInterface => ({
+  type: TweetsActionsType.ADD_TWEET,
+  payload,
+});
+
 export const setTweets = (payload: ITweetsState['items']): SetTweetsActionInterface => ({
   type: TweetsActionsType.SET_TWEETS,
   payload,
 });
 
-export type TweetsActions = IFetchTweetsActionInteface | ISetTweetsLoadingStateInterface | SetTweetsActionInterface;
+export type TweetsActions =
+  | IFetchTweetsActionInteface
+  | ISetTweetsLoadingStateInterface
+  | SetTweetsActionInterface
+  | IFetchAddTweetActionInterface
+  | IAddTweetActionInterface;
