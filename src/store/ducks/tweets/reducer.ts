@@ -30,7 +30,7 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
     case TweetsActionsType.ADD_TWEET:
       draft.items.push(action.payload);
       // TODO: think which status to choose if tweet was added
-      draft.addTweetFormState = AddTweetFormState.LOADING;
+      draft.addTweetFormState = AddTweetFormState.NEVER;
       break;
 
     default:

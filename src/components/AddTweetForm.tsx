@@ -1,5 +1,5 @@
 import React from 'react';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useDispatch, useSelector } from 'react-redux';
 import classNames from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
@@ -9,15 +9,15 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import Alert from '@material-ui/lab/Alert';
-import { useDispatch, useSelector } from 'react-redux';
-import { addTweet, fetchAddTweet } from '../store/ducks/tweets/actionCreators';
+import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
 import { selectAddTweetFormState } from '../store/ducks/tweets/selectors';
 import { AddTweetFormState } from '../store/ducks/tweets/contracts/state';
+import { useHomeStyles } from '../pages/Home/theme';
 
 interface IAddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;
   maxRows?: number;
-};
+}
 
 const MAX_LENGTH = 280;
 
@@ -26,18 +26,15 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
   maxRows,
 }: IAddTweetFormProps): React.ReactElement => {
   const dispatch = useDispatch();
-
   const [text, setText] = React.useState<string>('');
   const addFormState = useSelector(selectAddTweetFormState);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = -text.length + MAX_LENGTH;
-
   const handleChangeTextarea = (e: React.FormEvent<HTMLTextAreaElement>): void => {
     if (e.currentTarget) {
       setText(e.currentTarget.value);
     }
   };
-
   const handleClickAddTweet = () => {
     console.log(text);
     dispatch(fetchAddTweet(text));
@@ -48,8 +45,9 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
       <div className={classes.addFormBody}>
         <Avatar
           className={classes.tweetAvatar}
-          alt={`Аватарка пользователя User'sAvatar`}
-          src="https://media-exp1.licdn.com/dms/image/C4D03AQHn5bIACKYJhg/profile-displayphoto-shrink_100_100/0/1595353821718?e=1616630400&v=beta&t=2VC5m-EE02kz-pQMvb-TnNKVO9jcndpar4mGSVRnQpc"
+          alt={'Аватарка пользователя'}
+          src='https://media-exp1.licdn.com/dms/image/C4D03AQHn5bIACKYJhg/profile-displayphoto-shrink_100_100/
+          0/1595353821718?e=1616630400&v=beta&t=2VC5m-EE02kz-pQMvb-TnNKVO9jcndpar4mGSVRnQpc'
         />
         <TextareaAutosize
           onChange={handleChangeTextarea}

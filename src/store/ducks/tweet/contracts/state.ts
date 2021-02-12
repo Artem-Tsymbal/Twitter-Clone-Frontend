@@ -1,4 +1,4 @@
-import { ITweet } from "../../tweets/contracts/state";
+import { ITweet } from '../../tweets/contracts/state';
 
 export enum LoadingState {
   LOADING = 'LOADING',

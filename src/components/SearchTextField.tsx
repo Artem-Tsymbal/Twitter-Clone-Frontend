@@ -1,6 +1,6 @@
-import { withStyles } from "@material-ui/core/styles";
-import { Theme } from "@material-ui/core/styles/createMuiTheme";
-import TextField from "@material-ui/core/TextField";
+import { withStyles } from '@material-ui/core/styles';
+import { Theme } from '@material-ui/core/styles/createMuiTheme';
+import TextField from '@material-ui/core/TextField';
 
 export const SearchTextField = withStyles((theme: Theme) => ({
   root: {

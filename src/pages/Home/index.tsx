@@ -1,13 +1,5 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
-import { selectAreTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
-import { useHomeStyles } from './theme';
-import { Tweet } from '../../components/Tweet';
-import { Tags } from '../../components/Tags';
-import { SideMenu } from '../../components/SideMenu';
-import { AddTweetForm } from '../../components/AddTweetForm';
-import { SearchTextField } from '../../components/SearchTextField';
 import Grid from '@material-ui/core/Grid';
 import Container from '@material-ui/core/Container';
 import Divider from '@material-ui/core/Divider/Divider';
@@ -23,11 +15,19 @@ import InputAdornment from '@material-ui/core/InputAdornment';
 import SearchIcon from '@material-ui/icons/SearchOutlined';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { fetchTags } from '../../store/ducks/tags/actionCreators';
-import { ITweetsState } from '../../store/ducks/tweets/contracts/state';
 import { Route } from 'react-router-dom';
 import { BackButton } from '../../components/BackButton';
 import { FullTweet } from './components/FullTweet';
+import { fetchTags } from '../../store/ducks/tags/actionCreators';
+import { ITweetsState } from '../../store/ducks/tweets/contracts/state';
+import { useHomeStyles } from './theme';
+import { Tweet } from '../../components/Tweet';
+import { Tags } from '../../components/Tags';
+import { SideMenu } from '../../components/SideMenu';
+import { AddTweetForm } from '../../components/AddTweetForm';
+import { SearchTextField } from '../../components/SearchTextField';
+import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
+import { selectAreTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
 
 export const Home: React.FC = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -72,11 +72,9 @@ export const Home: React.FC = (): React.ReactElement => {
                 <div className={classes.tweetsCentred}>
                   <CircularProgress />
                 </div>
-              ) : (
-                  tweets.map((tweet) => (
-                    <Tweet key={tweet._id} classes={classes} {...tweet} />
-                  ))
-                )}
+              ) : (tweets.map((tweet) => (
+                <Tweet key={tweet._id} classes={classes} {...tweet} />
+              )))}
             </Route>
             <Route path="/home/tweet/:id" component={FullTweet} exact />
           </Paper>

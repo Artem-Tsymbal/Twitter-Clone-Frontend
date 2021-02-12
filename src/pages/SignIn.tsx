@@ -1,5 +1,4 @@
 import React from 'react';
-import { ModalBlock } from '../components/ModalBlock';
 import { makeStyles, Typography, Button } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
@@ -8,6 +7,7 @@ import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControl from '@material-ui/core/FormControl';
 import TextField from '@material-ui/core/TextField';
+import { ModalBlock } from '../components/ModalBlock';
 
 export const useStylesSignIn = makeStyles((theme) => ({
   wrapper: {
@@ -24,7 +24,7 @@ export const useStylesSignIn = makeStyles((theme) => ({
     position: 'relative',
   },
   blueSideBigIcon: {
-    position: "absolute",
+    position: 'absolute',
     left: '68%',
     top: '50%',
     transform: 'translate(-50%, -50%)',
@@ -103,21 +103,33 @@ export const SignIn: React.FC = (): React.ReactElement => {
         <TwitterIcon color="primary" className={classes.blueSideBigIcon} />
         <ul className={classes.blueSideListInfo}>
           <li className={classes.blueSideListInfoItem}>
-            <Typography variant="h6"><SearchIcon className={classes.blueSideListInfoIcon} />Читайте о том, что вам интересно.</Typography>
+            <Typography variant="h6">
+              <SearchIcon className={classes.blueSideListInfoIcon} />
+              Читайте о том, что вам интересно.
+              </Typography>
           </li>
           <li className={classes.blueSideListInfoItem}>
-            <Typography variant="h6"><PeopleIcon className={classes.blueSideListInfoIcon} />Узнайте, о чем говорят в мире.</Typography>
+            <Typography variant="h6"><PeopleIcon className={classes.blueSideListInfoIcon} />
+            Узнайте, о чем говорят в мире.
+            </Typography>
           </li>
           <li className={classes.blueSideListInfoItem}>
-            <Typography variant="h6"><MessageIcon className={classes.blueSideListInfoIcon} />Присоединяйтесь к общению.</Typography>
+            <Typography variant="h6">
+              <MessageIcon className={classes.blueSideListInfoIcon} />
+              Присоединяйтесь к общению.
+              </Typography>
           </li>
         </ul>
       </section>
       <section className={classes.loginSide}>
         <div className={classes.loginSideWrapper}>
           <TwitterIcon color="primary" className={classes.loginSideTwitterIcon} />
-          <Typography variant="h4" className={classes.loginSideTitle}>Узнайте, что происходит в мире прямо сейчас.</Typography>
-          <Typography><b>Присоединяйтесь к Твиттеру прямо сейчас!</b></Typography>
+          <Typography variant="h4" className={classes.loginSideTitle}>
+            Узнайте, что происходит в мире прямо сейчас.
+            </Typography>
+          <Typography>
+            <b>Присоединяйтесь к Твиттеру прямо сейчас!</b>
+          </Typography>
           <br />
           <Button
             onClick={handleClickOpenSignUp}

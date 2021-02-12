@@ -90,6 +90,26 @@
         "username": "edwards",
         "avatarUrl": "https://source.unsplash.com/random/100x100?3"
       }
+    },
+    {
+      "_id": "dm45nk7v716",
+      "text": "Привет",
+      "user": {
+        "fullName": "Test user",
+        "username": "ivan",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": "K6MvFSr"
+    },
+    {
+      "_id": "r3nax5h5ch",
+      "text": "ты гд\n",
+      "user": {
+        "fullName": "Test user",
+        "username": "ivan",
+        "avatarUrl": "https://source.unsplash.com/random/100x100?2"
+      },
+      "id": "pfxyYo1"
     }
   ],
   "tags": [

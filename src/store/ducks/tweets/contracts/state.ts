@@ -5,7 +5,6 @@ export enum LoadingState {
   NEVER = 'NEVER',
 }
 
-
 export enum AddTweetFormState {
   LOADING = 'LOADING',
   ERROR = 'ERROR',
@@ -15,6 +14,7 @@ export enum AddTweetFormState {
 export interface ITweet {
   _id: string;
   text: string;
+  createdAt: string;
   user: {
     fullName: string;
     username: string;

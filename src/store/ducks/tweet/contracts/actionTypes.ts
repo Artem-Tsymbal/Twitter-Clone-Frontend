@@ -1,6 +1,5 @@
 import { Action } from 'redux';
-import { ITweet } from '../../tweets/contracts/state';
-import { ITweetState, LoadingState } from '../contracts/state';
+import { ITweetState, LoadingState } from './state';
 
 export enum TweetActionsType {
   FETCH_TWEET_DATA = 'tweet/FETCH_TWEET_DATA',

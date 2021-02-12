@@ -1,7 +1,4 @@
 import React from 'react';
-import { useHomeStyles } from '../pages/Home/theme';
-import { ModalBlock } from './ModalBlock';
-import { AddTweetForm } from './AddTweetForm';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import NotificationIcon from '@material-ui/icons/NotificationsNoneOutlined';
@@ -15,6 +12,9 @@ import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { Link } from 'react-router-dom';
+import { ModalBlock } from './ModalBlock';
+import { AddTweetForm } from './AddTweetForm';
+import { useHomeStyles } from '../pages/Home/theme';
 
 interface ISideMenuProps {
   classes: ReturnType<typeof useHomeStyles>;
@@ -24,11 +24,9 @@ export const SideMenu: React.FC<ISideMenuProps> = ({
   classes,
 }: ISideMenuProps): React.ReactElement => {
   const [visibleAddTweet, setVisibleAddTweet] = React.useState<boolean>(false);
-
   const handleClickOpenAddTweet = () => {
     setVisibleAddTweet(true);
   };
-
   const onCloseAddTweet = () => {
     setVisibleAddTweet(false);
   };

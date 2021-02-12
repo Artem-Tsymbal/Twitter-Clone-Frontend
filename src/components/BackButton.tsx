@@ -5,7 +5,6 @@ import { IconButton } from '@material-ui/core';
 
 export const BackButton: React.FC = (): React.ReactElement => {
   const history = useHistory();
-
   const handleClickButton = () => {
     history.goBack();
   };

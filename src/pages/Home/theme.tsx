@@ -1,5 +1,5 @@
-import makeStyles from "@material-ui/core/styles/makeStyles";
-import grey from "@material-ui/core/colors/grey";
+import makeStyles from '@material-ui/core/styles/makeStyles';
+import grey from '@material-ui/core/colors/grey';
 
 export const useHomeStyles = makeStyles((theme) => ({
   wrapper: {
@@ -82,10 +82,6 @@ export const useHomeStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
-  tweetWrapper: {
-    color: 'inherit',
-    textDecoration: 'none',
-  },
   tweet: {
     display: 'flex',
     cursor: 'pointer',
@@ -96,10 +92,22 @@ export const useHomeStyles = makeStyles((theme) => ({
       backgroundColor: 'rgb(245, 248, 250)',
     },
   },
+  tweetWrapper: {
+    color: 'inherit',
+    textDecoration: 'none',
+  },
   tweetAvatar: {
     width: theme.spacing(6.5),
     height: theme.spacing(6.5),
     marginRight: 15,
+  },
+  tweetHeader: {
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+  tweetContent: {
+    flex: 1,
   },
   tweetFooter: {
     display: 'flex',
@@ -113,13 +121,25 @@ export const useHomeStyles = makeStyles((theme) => ({
   },
   fullTweet: {
     padding: 22,
+    paddingBottom: 0,
   },
   fullTweetText: {
-    fontSize: 22,
+    fontSize: 24,
     marginTop: 20,
+    marginBottom: 20,
     lineHeight: 1.3125,
     wordBreak: 'break-word',
   },
+  fullTweetFooter: {
+    margin: '0 auto',
+    borderTop: '1px solid #E6ECF0',
+    left: 0,
+    maxWidth: '100%',
+    justifyContent: 'space-around',
+    padding: '2px 0',
+    marginTop: 20,
+  },
+
   rightSide: {
     paddingTop: 20,
     position: 'sticky',
@@ -161,7 +181,7 @@ export const useHomeStyles = makeStyles((theme) => ({
     '& a': {
       color: 'inherit',
       textDecoration: 'none',
-    }
+    },
   },
   addForm: {
     padding: 20,

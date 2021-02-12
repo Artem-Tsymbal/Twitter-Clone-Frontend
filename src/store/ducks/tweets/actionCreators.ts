@@ -1,4 +1,12 @@
-import { IFetchTweetsActionInteface, ISetTweetsLoadingStateInterface, ISetAddTweetFormStateInterface, IFetchAddTweetActionInterface, IAddTweetActionInterface, SetTweetsActionInterface, TweetsActionsType } from './contracts/actionTypes';
+import {
+  IFetchTweetsActionInteface,
+  ISetTweetsLoadingStateInterface,
+  ISetAddTweetFormStateInterface,
+  IFetchAddTweetActionInterface,
+  IAddTweetActionInterface,
+  SetTweetsActionInterface,
+  TweetsActionsType,
+} from './contracts/actionTypes';
 import { LoadingState, ITweetsState, ITweet, AddTweetFormState } from './contracts/state';
 
 export const fetchTweets = (): IFetchTweetsActionInteface => ({
@@ -29,4 +37,3 @@ export const setTweets = (payload: ITweetsState['items']): SetTweetsActionInterf
   type: TweetsActionsType.SET_TWEETS,
   payload,
 });
-

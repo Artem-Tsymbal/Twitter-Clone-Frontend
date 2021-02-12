@@ -4,7 +4,7 @@ import { LoadingState, ITagsState } from './contracts/state';
 export enum TagsActionsType {
   FETCH_TAGS = 'tags/FETCH_TAGS',
   SET_TAGS = 'tags/SET_TAGS',
-  SET_LOADING_STATE = 'tags/SET_LOADING_STATE'
+  SET_LOADING_STATE = 'tags/SET_LOADING_STATE',
 }
 
 export interface IFetchTagsActionInterface extends Action<TagsActionsType> {
