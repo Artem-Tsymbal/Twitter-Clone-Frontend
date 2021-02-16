@@ -1,22 +1,23 @@
 import produce, { Draft } from 'immer';
 import { TweetActions } from './actionCreators';
 import { TweetActionsType } from './contracts/actionTypes';
-import { LoadingState, ITweetState } from './contracts/state';
+import { ITweetState } from './contracts/state';
+import { LoadingStatus } from '../types';
 
 const initialTweetState: ITweetState = {
   data: undefined,
-  loadingState: LoadingState.NEVER,
+  loadingState: LoadingStatus.NEVER,
 };
 
 export const tweetReducer = produce((draft: Draft<ITweetState>, action: TweetActions) => {
   switch (action.type) {
     case TweetActionsType.FETCH_TWEET_DATA:
       draft.data = undefined;
-      draft.loadingState = LoadingState.LOADING;
+      draft.loadingState = LoadingStatus.LOADING;
       break;
     case TweetActionsType.SET_TWEET_DATA:
       draft.data = action.payload;
-      draft.loadingState = LoadingState.LOADED;
+      draft.loadingState = LoadingStatus.LOADED;
       break;
     case TweetActionsType.SET_LOADING_STATE:
       draft.loadingState = action.payload;

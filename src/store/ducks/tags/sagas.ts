@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { TagsApi } from '../../../services/api/tagsApi';
-import { LoadingState } from './contracts/state';
+import { LoadingStatus } from '../types';
 import { setTags, setTagsLoadingState, TagsActionsType } from './actionCreators';
 
 export function* fetchTagsRequest(): SagaIterator {
@@ -9,7 +9,7 @@ export function* fetchTagsRequest(): SagaIterator {
     const items = yield call(TagsApi.fetchTags);
     yield put(setTags(items));
   } catch (error) {
-    yield put(setTagsLoadingState(LoadingState.ERROR));
+    yield put(setTagsLoadingState(LoadingStatus.ERROR));
   }
 }
 

@@ -36,7 +36,6 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
     }
   };
   const handleClickAddTweet = () => {
-    console.log(text);
     dispatch(fetchAddTweet(text));
   };
 

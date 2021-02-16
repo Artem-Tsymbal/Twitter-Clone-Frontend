@@ -1,9 +1,4 @@
-export enum LoadingState {
-  LOADING = 'LOADING',
-  LOADED = 'LOADED',
-  ERROR = 'ERROR',
-  NEVER = 'NEVER',
-}
+import { LoadingStatus } from '../../types';
 
 export interface ITag {
   _id: string;
@@ -13,5 +8,5 @@ export interface ITag {
 
 export interface ITagsState {
   items: ITag[];
-  loadingState: LoadingState;
+  loadingState: LoadingStatus;
 }
