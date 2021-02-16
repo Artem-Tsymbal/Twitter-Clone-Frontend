@@ -6,6 +6,7 @@ import { rootReducer } from './rootReducer';
 import rootSaga from './saga';
 import { ITweetState } from './ducks/tweet/contracts/state';
 import { IUserState } from './ducks/user/contracts/state';
+import { IConnectPeopleState } from './ducks/connectedPeople/contracts/state';
 
 declare global {
   interface Window {
@@ -24,6 +25,7 @@ export interface RootState {
   tweet: ITweetState;
   tags: ITagsState;
   user: IUserState;
+  connectProple: IConnectPeopleState;
 }
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));

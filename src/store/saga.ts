@@ -3,9 +3,10 @@ import { tweetsSaga } from './ducks/tweets/sagas';
 import { tweetSaga } from './ducks/tweet/sagas';
 import { tagsSaga } from './ducks/tags/sagas';
 import { userSaga } from './ducks/user/sagas';
+import { connectPeopleSaga } from './ducks/connectedPeople/sagas';
 
 
 // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
 export default function* rootSaga() {
-  yield all([tweetsSaga(), tweetSaga(), tagsSaga(), userSaga()]);
+  yield all([tweetsSaga(), tweetSaga(), tagsSaga(), userSaga(), connectPeopleSaga()]);
 }
