@@ -6,7 +6,7 @@ import { rootReducer } from './rootReducer';
 import rootSaga from './saga';
 import { ITweetState } from './ducks/tweet/contracts/state';
 import { IUserState } from './ducks/user/contracts/state';
-import { IConnectPeopleState } from './ducks/connectedPeople/contracts/state';
+import { IConnectPeopleState } from './ducks/connectPeople/contracts/state';
 
 declare global {
   interface Window {

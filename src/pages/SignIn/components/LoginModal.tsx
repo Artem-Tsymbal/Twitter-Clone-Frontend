@@ -2,14 +2,14 @@ import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
+import { yupResolver } from '@hookform/resolvers/yup';
 import { Color } from '@material-ui/lab/Alert';
-import { Notification } from '../../../components/Notification';
 import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
 import { selectUserStatus } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/ducks/types';
 import { ModalBlock } from '../../../components/ModalBlock';
+import { Notification } from '../../../components/Notification';
 import { useStylesSignIn } from '../../SignIn';
 
 interface ILoginModalProps {
@@ -36,9 +36,11 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   const openNotificationRef = React.useRef<(text: string, type: Color) => void>(() => { });
   const loadingStatus = useSelector(selectUserStatus);
+
   const { control, handleSubmit, errors } = useForm<ILoginFormProps>({
     resolver: yupResolver(LoginFormSchema),
   });
+
   const onSubmit = async (data: ILoginFormProps) => {
     dispatch(fetchSignIn(data));
   };

@@ -11,9 +11,9 @@ import {
   Divider
 } from '@material-ui/core';
 import { useHomeStyles } from '../pages/Home/theme';
-import { IConnectPeopleState } from '../store/ducks/connectedPeople/contracts/state';
+import { IConnectPeopleState } from '../store/ducks/connectPeople/contracts/state';
 import { useSelector } from 'react-redux';
-import { selectConnectPeopleItems } from '../store/ducks/connectedPeople/selectors';
+import { selectConnectPeopleItems } from '../store/ducks/connectPeople/selectors';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 
 interface IWhoToFollowProps {
@@ -21,7 +21,7 @@ interface IWhoToFollowProps {
 }
 
 export const WhoToFollow: React.FC<IWhoToFollowProps> = ({ classes }: IWhoToFollowProps): React.ReactElement => {
-  const items: IConnectPeopleState['items'] = useSelector(selectConnectPeopleItems);
+  //const items: IConnectPeopleState['items'] = useSelector(selectConnectPeopleItems);
 
 
   return (

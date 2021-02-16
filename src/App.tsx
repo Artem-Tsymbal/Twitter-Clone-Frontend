@@ -14,7 +14,7 @@ export const App: React.FC = (): React.ReactElement => {
     try {
       const { data } = await AuthApi.getMe();
       dispatch(setUserData(data));
-      history.replace('/home');
+      // history.replace('/home');
     } catch (error) {
       console.log(error);
     }
