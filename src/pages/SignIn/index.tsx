@@ -1,83 +1,12 @@
 import React from 'react';
-import { makeStyles, Typography, Button } from '@material-ui/core';
+import { Typography, Button } from '@material-ui/core';
 import TwitterIcon from '@material-ui/icons/Twitter';
 import SearchIcon from '@material-ui/icons/Search';
 import PeopleIcon from '@material-ui/icons/PeopleOutline';
 import MessageIcon from '@material-ui/icons/ModeCommentOutlined';
 import { LoginModal } from './components/LoginModal';
 import { RegisterModal } from './components/RegisterModal';
-
-export const useStylesSignIn = makeStyles((theme) => ({
-  wrapper: {
-    display: 'flex',
-    height: 'calc(100vh - 84px)',
-  },
-  blueSide: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#71C9F8',
-    flex: '0 0 50%',
-    overflow: 'hidden',
-    position: 'relative',
-  },
-  blueSideBigIcon: {
-    position: 'absolute',
-    left: '68%',
-    top: '50%',
-    transform: 'translate(-50%, -50%)',
-    width: '200%',
-    height: '200%',
-  },
-  blueSideListInfo: {
-    position: 'relative',
-    listStyle: 'none',
-    padding: 0,
-    margin: 0,
-    width: 380,
-    '& h6': {
-      display: 'flex',
-      alignItems: 'center',
-      color: 'white',
-      fontWeight: 700,
-      fontSize: 20,
-    },
-  },
-  blueSideListInfoItem: {
-    marginBottom: 40,
-  },
-  blueSideListInfoIcon: {
-    fontSize: 32,
-    marginRight: 15,
-  },
-  loginSide: {
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flex: '0 0 50%',
-  },
-  loginSideTwitterIcon: {
-    fontSize: 45,
-  },
-  loginSideWrapper: {
-    width: 380,
-  },
-  loginSideTitle: {
-    fontWeight: 700,
-    fontSize: 32,
-    marginBottom: 60,
-    marginTop: 20,
-  },
-  loginSideField: {
-    marginBottom: 18,
-  },
-  registerField: {
-    marginBottom: theme.spacing(5),
-  },
-  loginFormControl: {
-    marginBottom: theme.spacing(2),
-  },
-}));
+import { useStylesSignIn } from './theme';
 
 export const SignIn: React.FC = (): React.ReactElement => {
   const classes = useStylesSignIn();
@@ -137,10 +66,14 @@ export const SignIn: React.FC = (): React.ReactElement => {
             fullWidth>
             Зарегистрироваться
           </Button>
-          <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal} />
-          <Button onClick={handleClickOpenSignIn} variant="outlined" color="primary" fullWidth>
+          <Button
+            onClick={handleClickOpenSignIn}
+            variant="outlined"
+            color="primary"
+            fullWidth>
             Войти
           </Button>
+          <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal} />
           <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal} />
         </div>
       </section>

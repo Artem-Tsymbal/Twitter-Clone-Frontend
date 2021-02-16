@@ -7,6 +7,7 @@ import { IRegisterFormProps } from '../../../../pages/SignIn/components/Register
 export enum UserActionsType {
   FETCH_SIGN_IN = 'user/FETCH_SIGN_IN',
   FETCH_SIGN_UP = 'user/FETCH_SIGN_UP',
+  FETCH_USER_DATA = 'user/FETCH_USER_DATA',
   SET_LOADING_STATUS = 'tweet/SET_LOADING_STATUS',
   SET_USER_DATA = 'user/SET_USER_DATA',
 }
@@ -19,6 +20,10 @@ export interface IFetchSignInAction extends Action<UserActionsType> {
 export interface IFetchSignUpAction extends Action<UserActionsType> {
   type: UserActionsType.FETCH_SIGN_UP,
   payload: IRegisterFormProps,
+}
+
+export interface IFetchUserDataAction extends Action<UserActionsType> {
+  type: UserActionsType.FETCH_USER_DATA,
 }
 
 export interface ISetLoadingStatusAction extends Action<UserActionsType> {

@@ -1,6 +1,7 @@
 import {
   IFetchSignInAction,
   IFetchSignUpAction,
+  IFetchUserDataAction,
   ISetLoadingStatusAction,
   ISetUserAction,
   UserActionsType,
@@ -19,6 +20,10 @@ export const fetchSignUp = (payload: IRegisterFormProps): IFetchSignUpAction => 
   payload,
 });
 
+export const fetchUserData = (): IFetchUserDataAction => ({
+  type: UserActionsType.FETCH_USER_DATA,
+});
+
 export const setLoadingStatus = (payload: IUserState['status']): ISetLoadingStatusAction => ({
   type: UserActionsType.SET_LOADING_STATUS,
   payload,
@@ -29,4 +34,9 @@ export const setUserData = (payload: IUserState['data']): ISetUserAction => ({
   payload,
 });
 
-export type UserActions = IFetchSignInAction | IFetchSignUpAction | ISetLoadingStatusAction | ISetUserAction;
+export type UserActions =
+  IFetchSignInAction |
+  IFetchSignUpAction |
+  IFetchUserDataAction |
+  ISetLoadingStatusAction |
+  ISetUserAction;

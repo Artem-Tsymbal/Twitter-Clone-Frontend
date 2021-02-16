@@ -224,4 +224,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
   },
+  centered: {
+    posotion: 'absolute',
+    left: '50%',
+    top: '50%',
+    transform: 'translate(-50%, -50%',
+  },
 }));
