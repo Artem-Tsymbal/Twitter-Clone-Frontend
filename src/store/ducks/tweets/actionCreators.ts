@@ -23,7 +23,7 @@ export const setAddTweetFormState = (payload: AddTweetFormState): ISetAddTweetFo
   payload,
 });
 
-export const fetchAddTweet = (payload: string): IFetchAddTweetActionInterface => ({
+export const fetchAddTweet = (payload: { text: string, images: string[] }): IFetchAddTweetActionInterface => ({
   type: TweetsActionsType.FETCH_ADD_TWEET,
   payload,
 });

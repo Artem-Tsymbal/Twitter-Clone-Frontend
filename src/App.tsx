@@ -24,8 +24,8 @@ export const App: React.FC = (): React.ReactElement => {
   React.useEffect(() => {
     if (!isAuth && isReady) {
       history.push('/signin');
-    } else {
-      //  history.push('/home');
+    } else if (history.location.pathname === '/') {
+      history.push('/home');
     }
   }, [isAuth, isReady]);
 
