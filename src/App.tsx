@@ -8,11 +8,12 @@ import { SignIn } from './pages/SignIn';
 import { LoadingStatus } from './store/ducks/types';
 import { fetchUserData } from './store/ducks/user/actionCreators';
 import { selectIsAuth, selectUserStatus } from './store/ducks/user/selectors';
+import { Layout } from './pages/Layout';
 
 export const App: React.FC = (): React.ReactElement => {
+  const classes = useHomeStyles();
   const history = useHistory();
   const dispatch = useDispatch();
-  const classes = useHomeStyles();
   const isAuth = useSelector(selectIsAuth);
   const loadingStatus = useSelector(selectUserStatus);
   const isReady = loadingStatus !== LoadingStatus.NEVER && loadingStatus !== LoadingStatus.LOADING;
@@ -22,6 +23,7 @@ export const App: React.FC = (): React.ReactElement => {
   }, [dispatch]);
 
   React.useEffect(() => {
+    console.log({ isAuth, isReady });
     if (!isAuth && isReady) {
       history.push('/signin');
     } else if (history.location.pathname === '/') {
@@ -30,16 +32,20 @@ export const App: React.FC = (): React.ReactElement => {
   }, [isAuth, isReady]);
 
   if (!isReady) {
-    <div className={classes.centered}>
-      <TwitterIcon color="primary" style={{ width: 80, height: 80 }} />
-    </div>;
+    return (
+      <div className={classes.centered}>
+        <TwitterIcon color="primary" style={{ width: 80, height: 80 }} />
+      </div>
+    );
   }
 
   return (
     <div className="App">
       <Switch>
         <Route path="/signin" component={SignIn} />
-        <Route path="/" component={Home} />
+        <Layout>
+          <Route path="/home" component={Home} />
+        </Layout>
       </Switch>
     </div>
   );

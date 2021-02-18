@@ -21,6 +21,10 @@ export const useHomeStyles = makeStyles((theme) => ({
     maxWidth: 230,
   },
   sideMenuListItem: {
+    '& a': {
+      color: 'inherit',
+      textDecoration: 'none',
+    },
     cursor: 'pointer',
     '&:hover': {
       '& div': {

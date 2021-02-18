@@ -1,17 +1,15 @@
 import React from 'react';
 import { Container, Grid, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/SearchOutlined';
-
 import { SideMenu } from '../components/SideMenu';
 import { useHomeStyles } from '../pages/Home/theme';
 import { SearchTextField } from '../components/SearchTextField';
 import { Tags } from '../components/Tags';
-//import { Users } from '../components/Users';
-interface Layout {
+interface ILayout {
   children: React.ReactNode;
 }
 
-export const Layout: React.FC<Layout> = ({ children }): React.ReactElement => {
+export const Layout: React.FC<ILayout> = ({ children }: ILayout): React.ReactElement => {
   const classes = useHomeStyles();
 
   return (
