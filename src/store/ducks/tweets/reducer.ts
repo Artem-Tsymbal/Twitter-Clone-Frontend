@@ -1,22 +1,23 @@
 import produce, { Draft } from 'immer';
+import { LoadingStatus } from '../types';
 import { TweetsActions, TweetsActionsType } from './contracts/actionTypes';
-import { LoadingState, ITweetsState, AddTweetFormState } from './contracts/state';
+import { ITweetsState, AddTweetFormState } from './contracts/state';
 
 const initialTweetsState: ITweetsState = {
   items: [],
   addTweetFormState: AddTweetFormState.NEVER,
-  loadingState: LoadingState.NEVER,
+  loadingState: LoadingStatus.NEVER,
 };
 
 export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: TweetsActions) => {
   switch (action.type) {
     case TweetsActionsType.FETCH_TWEETS:
       draft.items = [];
-      draft.loadingState = LoadingState.LOADING;
+      draft.loadingState = LoadingStatus.LOADING;
       break;
     case TweetsActionsType.SET_TWEETS:
       draft.items = action.payload;
-      draft.loadingState = LoadingState.LOADED;
+      draft.loadingState = LoadingStatus.LOADED;
       break;
     case TweetsActionsType.SET_LOADING_STATE:
       draft.loadingState = action.payload;
@@ -29,8 +30,10 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
       break;
     case TweetsActionsType.ADD_TWEET:
       draft.items.push(action.payload);
-      // TODO: think which status to choose if tweet was added
       draft.addTweetFormState = AddTweetFormState.NEVER;
+      break;
+    case TweetsActionsType.REMOVE_TWEET:
+      draft.items = draft.items.filter(item => item._id !== action.payload);
       break;
 
     default:

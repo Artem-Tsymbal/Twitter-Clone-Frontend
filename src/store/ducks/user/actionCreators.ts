@@ -4,6 +4,7 @@ import {
   IFetchUserDataAction,
   ISetLoadingStatusAction,
   ISetUserAction,
+  ISignOutAction,
   UserActionsType,
 } from './contracts/actionTypes';
 import { ILoginFormProps } from '../../../pages/SignIn/components/LoginModal';
@@ -18,6 +19,10 @@ export const fetchSignIn = (payload: ILoginFormProps): IFetchSignInAction => ({
 export const fetchSignUp = (payload: IRegisterFormProps): IFetchSignUpAction => ({
   type: UserActionsType.FETCH_SIGN_UP,
   payload,
+});
+
+export const signOut = (): ISignOutAction => ({
+  type: UserActionsType.SIGN_OUT,
 });
 
 export const fetchUserData = (): IFetchUserDataAction => ({
@@ -39,4 +44,5 @@ export type UserActions =
   IFetchSignUpAction |
   IFetchUserDataAction |
   ISetLoadingStatusAction |
+  ISignOutAction |
   ISetUserAction;

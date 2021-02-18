@@ -19,7 +19,7 @@ export const App: React.FC = (): React.ReactElement => {
 
   React.useEffect(() => {
     dispatch(fetchUserData());
-  }, []);
+  }, [dispatch]);
 
   React.useEffect(() => {
     if (!isAuth && isReady) {

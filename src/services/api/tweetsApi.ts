@@ -21,4 +21,6 @@ export const TweetsApi = {
     const { data } = await axios.post<Response<ITweet>>('/tweets/', payload);
     return data.data;
   },
+
+  removeTweet: (id: string): Promise<void> => axios.delete('tweets/' + id),
 };

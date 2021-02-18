@@ -1,5 +1,6 @@
 import { Action } from 'redux';
-import { LoadingState, AddTweetFormState, ITweetsState, ITweet } from './state';
+import { LoadingStatus } from '../../types';
+import { AddTweetFormState, ITweetsState, ITweet } from './state';
 
 export enum TweetsActionsType {
   FETCH_TWEETS = 'tweets/FETCH_TWEETS',
@@ -8,42 +9,49 @@ export enum TweetsActionsType {
   FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
   SET_ADD_FORM_STATE = 'tweets/SET_ADD_FORM_STATE',
   ADD_TWEET = 'tweets/ADD_TWEET',
+  REMOVE_TWEET = 'tweets/REMOVE_TWEET',
 }
 
-export interface IFetchTweetsActionInteface extends Action<TweetsActionsType> {
+export interface IFetchTweetsAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.FETCH_TWEETS;
 }
 
-export interface ISetTweetsLoadingStateInterface extends Action<TweetsActionsType> {
+export interface ISetTweetsLoadingState extends Action<TweetsActionsType> {
   type: TweetsActionsType.SET_LOADING_STATE;
-  payload: LoadingState;
+  payload: LoadingStatus;
 }
 
-export interface ISetAddTweetFormStateInterface extends Action<TweetsActionsType> {
+export interface ISetAddTweetFormState extends Action<TweetsActionsType> {
   type: TweetsActionsType.SET_ADD_FORM_STATE;
   payload: AddTweetFormState;
 }
 
-export interface SetTweetsActionInterface extends Action<TweetsActionsType> {
+export interface SetTweetsAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.SET_TWEETS;
   payload: ITweetsState['items'];
 }
 
-export interface IFetchAddTweetActionInterface extends Action<TweetsActionsType> {
+export interface IFetchAddTweetAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.FETCH_ADD_TWEET;
   payload: { text: string, images: string[] };
 }
 
-export interface IAddTweetActionInterface extends Action<TweetsActionsType> {
+export interface IAddTweetAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.ADD_TWEET;
   payload: ITweet;
 }
 
+export interface IRemoveTweetAction extends Action<TweetsActionsType> {
+  type: TweetsActionsType.REMOVE_TWEET;
+  payload: string;
+}
+
 export type TweetsActions =
-  | IFetchTweetsActionInteface
-  | ISetTweetsLoadingStateInterface
-  | SetTweetsActionInterface
-  | IFetchAddTweetActionInterface
-  | IAddTweetActionInterface
-  | ISetAddTweetFormStateInterface;
+  | IFetchTweetsAction
+  | ISetTweetsLoadingState
+  | SetTweetsAction
+  | IFetchAddTweetAction
+  | IAddTweetAction
+  | IRemoveTweetAction
+  | ISetAddTweetFormState;
 

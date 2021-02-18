@@ -14,6 +14,10 @@ import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { formatDate } from '../utils/formatDate';
 import { useHomeStyles } from '../pages/Home/theme';
 import { ImageList } from './ImageList';
+import { useDispatch } from 'react-redux';
+import { TweetsActionsType } from '../store/ducks/tweets/contracts/actionTypes';
+import { removeTweet } from '../store/ducks/tweets/actionCreators';
+import { id } from 'date-fns/locale';
 
 interface ITweetProps {
   _id: string;
@@ -36,6 +40,7 @@ export const Tweet: React.FC<ITweetProps> = ({
   images,
   createdAt,
 }: ITweetProps): React.ReactElement => {
+  const dispatch = useDispatch();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const history = useHistory();
@@ -47,11 +52,21 @@ export const Tweet: React.FC<ITweetProps> = ({
 
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
+    event.preventDefault();
     setAnchorEl(event.currentTarget);
   };
 
-  const handleClose = () => {
+  const handleClose = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
     setAnchorEl(null);
+  };
+
+  const handleRemove = (event: React.MouseEvent<HTMLElement>): void => {
+    handleClose(event);
+    if (window.confirm('Вы уверены?')) {
+      dispatch(removeTweet(_id));
+    }
   };
 
   return (
@@ -81,7 +96,7 @@ export const Tweet: React.FC<ITweetProps> = ({
               </IconButton>
               <Menu id="long-menu" anchorEl={anchorEl} open={open} onClose={handleClose} >
                 <MenuItem onClick={handleClose}>Редактировать</MenuItem>
-                <MenuItem onClick={handleClose}>Удалить твит</MenuItem>
+                <MenuItem onClick={handleRemove}>Удалить твит</MenuItem>
               </Menu>
             </div>
           </div>

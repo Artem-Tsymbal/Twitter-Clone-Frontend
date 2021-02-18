@@ -18,6 +18,10 @@ export const userReducer = produce((draft: Draft<IUserState>, action: UserAction
     case UserActionsType.SET_LOADING_STATUS:
       draft.status = action.payload;
       break;
+    case UserActionsType.SIGN_OUT:
+      draft.data = undefined;
+      draft.status = LoadingStatus.NEVER;
+      break;
 
     default:
       break;

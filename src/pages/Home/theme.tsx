@@ -1,5 +1,6 @@
 import makeStyles from '@material-ui/core/styles/makeStyles';
 import grey from '@material-ui/core/colors/grey';
+import { colors } from '@material-ui/core';
 
 export const useHomeStyles = makeStyles((theme) => ({
   wrapper: {
@@ -257,6 +258,26 @@ export const useHomeStyles = makeStyles((theme) => ({
     '& a': {
       color: 'black',
       textDecoration: 'none',
+    },
+  },
+  sideProfile: {
+    display: 'flex',
+    alignItems: 'center',
+    position: 'fixed',
+    bottom: 30,
+    padding: '10px 15px',
+    width: 260,
+    borderRadius: 50,
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: colors.lightBlue[50],
+    },
+  },
+  sideProfileInfo: {
+    flex: 1,
+    marginLeft: 10,
+    '& b': {
+      fontSize: 16,
     },
   },
   imagesListItemRemove: {
