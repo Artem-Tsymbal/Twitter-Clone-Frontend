@@ -20,8 +20,8 @@ export const ImageList: React.FC<IImageListProps> = ({
 
   return (
     <div className={classes.imagesList}>
-      {images.map((url, index) => (
-        <div key={index} className={classes.imagesListItem}>
+      {images.map((url) => (
+        <div key={url} className={classes.imagesListItem}>
           {removeImage && (
             <IconButton
               className={classes.imagesListItemRemove}

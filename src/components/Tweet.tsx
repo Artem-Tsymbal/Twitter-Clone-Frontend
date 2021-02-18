@@ -13,12 +13,14 @@ import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
 import { formatDate } from '../utils/formatDate';
 import { useHomeStyles } from '../pages/Home/theme';
+import { ImageList } from './ImageList';
 
 interface ITweetProps {
   _id: string;
   text: string;
   classes: ReturnType<typeof useHomeStyles>;
   createdAt: string;
+  images?: string[];
   user: {
     fullName: string;
     username: string;
@@ -31,6 +33,7 @@ export const Tweet: React.FC<ITweetProps> = ({
   text,
   user,
   classes,
+  images,
   createdAt,
 }: ITweetProps): React.ReactElement => {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -50,6 +53,7 @@ export const Tweet: React.FC<ITweetProps> = ({
   const handleClose = () => {
     setAnchorEl(null);
   };
+
   return (
     <a onClick={handleClickTweet} className={classes.tweetWrapper} href={`/home/tweet/${_id}`}>
       <Paper className={classNames(classes.tweet, classes.tweetsHeader)} variant="outlined">
@@ -75,24 +79,15 @@ export const Tweet: React.FC<ITweetProps> = ({
               >
                 <MoreVertIcon />
               </IconButton>
-              <Menu
-                id="long-menu"
-                anchorEl={anchorEl}
-                keepMounted
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>
-                  Редактировать
-                </MenuItem>
-                <MenuItem onClick={handleClose}>
-                  Удалить твит
-                </MenuItem>
+              <Menu id="long-menu" anchorEl={anchorEl} open={open} onClose={handleClose} >
+                <MenuItem onClick={handleClose}>Редактировать</MenuItem>
+                <MenuItem onClick={handleClose}>Удалить твит</MenuItem>
               </Menu>
             </div>
           </div>
           <Typography variant="body1" gutterBottom>
             {text}
+            {images && <ImageList classes={classes} images={images} />}
           </Typography>
           <div className={classes.tweetFooter}>
             <div>

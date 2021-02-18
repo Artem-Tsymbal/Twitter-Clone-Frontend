@@ -15,6 +15,7 @@ export interface ITweet {
   _id: string;
   text: string;
   createdAt: string;
+  images?: [];
   user: {
     fullName: string;
     username: string;

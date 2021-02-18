@@ -66,7 +66,7 @@ export const Home: React.FC = (): React.ReactElement => {
                   <CircularProgress />
                 </div>
               ) : (tweets.map((tweet) => (
-                <Tweet key={tweet._id} classes={classes} {...tweet} />
+                <Tweet key={tweet._id} classes={classes} images={tweet.images} {...tweet} />
               )))}
             </Route>
             <Route path="/home/tweet/:id" component={FullTweet} exact />
