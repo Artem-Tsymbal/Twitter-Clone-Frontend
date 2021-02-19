@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectUserData } from '../store/ducks/user/selectors';
 import { Link } from 'react-router-dom';
 import { signOut } from '../store/ducks/user/actionCreators';
-//import { signOut } from '../store/ducks/user/actionCreators';
 
 interface UserSideProfileProps {
   classes: ReturnType<typeof useHomeStyles>;

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { verify } from 'crypto';
 import { ILoginFormProps } from '../../pages/SignIn/components/LoginModal';
 import { IRegisterFormProps } from '../../pages/SignIn/components/RegisterModal';
 
@@ -31,4 +32,14 @@ export const AuthApi = {
     const { data } = await axios.get<ResponseApi>('/users/me');
     return data;
   },
+
+  async getUserInfo(userId: string): Promise<ResponseApi> {
+    const { data } = await axios.get<ResponseApi>('/users/me' + userId);
+    return data;
+  },
+
+  async verify(hash: string): Promise<ResponseApi> {
+    const { data } = await axios.get('auth/verify?hash=' + hash);
+    return data;
+  }
 };

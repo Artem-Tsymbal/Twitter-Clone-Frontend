@@ -9,6 +9,8 @@ import { LoadingStatus } from './store/ducks/types';
 import { fetchUserData } from './store/ducks/user/actionCreators';
 import { selectIsAuth, selectUserStatus } from './store/ducks/user/selectors';
 import { Layout } from './pages/Layout';
+import { ActivatePage } from './pages/ActivatePage';
+import { UserPage } from './pages/User';
 
 export const App: React.FC = (): React.ReactElement => {
   const classes = useHomeStyles();
@@ -45,6 +47,9 @@ export const App: React.FC = (): React.ReactElement => {
         <Route path="/signin" component={SignIn} />
         <Layout>
           <Route path="/home" component={Home} />
+          <Route path="/user/:id" component={UserPage} exact />
+          <Route path="/user/activate/:hash" component={ActivatePage} exact />
+
         </Layout>
       </Switch>
     </div>
