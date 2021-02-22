@@ -1,0 +1,154 @@
+.tweet {
+  &__wrapper {
+    padding-top: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    transition-duration: 0.2s;
+    transition-property: background-color, box-shadow;
+    border-bottom: 1px solid rgb(235, 238, 240);
+    cursor: pointer;
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.07);
+      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    }
+  }
+  &__avatar-container {
+    margin-right: 10px;
+  }
+  &__avatar {
+    width: 49px;
+    height: 49px;
+    border-radius: 9999px;
+    background-color: grey;
+    box-shadow: rgb(0 0 0 / 2%) 0px 0px 2px inset;
+    transition-duration: 0.2s;
+    transition-property: background-color;
+    &:hover {
+      background-color: rgba(51, 51, 51, 0.15);
+    }
+  }
+  &__body {
+    display: flex;
+    flex-direction: column;
+  }
+  &-header {
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(15, 20, 25);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    &__fullName {
+      font-weight: 700;
+    }
+    &__username {
+      margin-left: 5px;
+      color: rgb(91, 112, 131);
+    }
+    &__time {
+      color: rgb(91, 112, 131);
+      &-dot {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+    }
+    &__button {
+      width: 18.75px;
+      height: 18.75px;
+      padding: 10px;
+      color: rgb(91, 112, 131);
+      border-radius: 9999px;
+      transition-duration: 0.2s;
+      transition-property: background-color;
+      &:hover {
+        color: rgb(29, 161, 242);
+        background-color: rgba(29, 161, 242, 0.2);
+      }
+    }
+  }
+  &-content {
+    &__text {
+      color: rgb(15, 20, 25);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+  &-footer {
+    max-width: 425px;
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    &__container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    &__action-wrapper {
+      width: 35px;
+      height: 35px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border-radius: 9999px;
+    }
+    &__icon {
+      width: 18.75px;
+      height: 18.75px;
+    }
+    &__quantity {
+      padding-right: 10px;
+      font-size: 13px;
+    }
+  }
+}
+
+.container {
+  &-reply {
+    &:hover {
+      color: rgb(29, 161, 242);
+    }
+  }
+  &-retweet {
+    &:hover {
+      color: rgb(23, 191, 99);
+    }
+  }
+  &-like {
+    &:hover {
+      color: rgb(224, 36, 94);
+    }
+  }
+}
+
+.wrapper {
+  transition-duration: 0.2s;
+  transition-property: background-color;
+  &--blue {
+    &:hover {
+      background-color: rgba(29, 161, 242, 0.1);
+    }
+    &:active {
+      background-color: rgba(29, 161, 242, 0.2);
+    }
+  }
+  &--red {
+    &:hover {
+      background-color: rgba(23, 191, 99, 0.1);
+    }
+    &:active {
+      background-color: rgba(23, 191, 99, 0.2);
+    }
+  }
+  &--green {
+    &:hover {
+      background-color: rgba(224, 36, 94, 0.1);
+    }
+    &:active {
+      background-color: rgba(224, 36, 94, 0.2);
+    }
+  }
+}
