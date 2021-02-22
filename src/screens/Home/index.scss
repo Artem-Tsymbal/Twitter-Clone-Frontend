@@ -1,0 +1,33 @@
+.home {
+  &-header {
+    position: relative;
+    height: 53px;
+    padding-left: 15px;
+    padding-right: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgb(235, 238, 240);
+    &__title {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 25px;
+      color: #0f1419;
+    }
+    &__icon {
+      width: 39px;
+      height: 39px;
+      color: rgb(29, 161, 242);
+      &:hover {
+        color: gold;
+        transform: rotate(360deg);
+      }
+    }
+  }
+  &-divider {
+    height: 10px;
+    background-color: rgb(247, 249, 250);
+    border-top: 1px solid rgb(235, 238, 240);
+    border-bottom: 1px solid rgb(235, 238, 240);
+  }
+}

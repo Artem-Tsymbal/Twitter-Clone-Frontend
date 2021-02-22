@@ -6,6 +6,7 @@ import SearchBox from '../../common/SearchBox/SearchBox';
 import TrendsForYou from '../../common/TrendsForYou/TrendsForYou';
 import WhoToFollow from '../../common/WhoToFollow/WhoToFollow';
 import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
+import { Home } from '../../../screens/Home';
 export const DefaultLayout: React.FC = () => {
 
   return (
@@ -21,7 +22,7 @@ export const DefaultLayout: React.FC = () => {
       <main className="main-side">
         <div className="content-container">
           <div className="primary-column">
-            <div className="aaa">Main</div>
+            <Home />
           </div>
           <div className="sidebar-column">
             <SearchBox />
