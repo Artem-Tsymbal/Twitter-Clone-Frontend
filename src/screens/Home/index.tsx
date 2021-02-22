@@ -2,6 +2,7 @@ import React from 'react';
 import './index.scss';
 import { WiStars } from 'react-icons/wi';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
+import ModalWindow from '../../components/common/ModalWindow/ModalWindow';
 
 export const Home: React.FC = () => {
 
@@ -12,6 +13,7 @@ export const Home: React.FC = () => {
         <WiStars className="home-header__icon" />
       </div>
       <AddTweetForm />
+      <ModalWindow />
       <div className="home-divider" />
     </div>
   );
