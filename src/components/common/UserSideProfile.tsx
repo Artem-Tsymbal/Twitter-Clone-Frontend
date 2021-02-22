@@ -4,11 +4,11 @@ import Popover from '@material-ui/core/Popover';
 import ArrowBottomIcon from '@material-ui/icons/KeyboardArrowDown';
 import Typography from '@material-ui/core/Typography';
 import React from 'react';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../../pages/Home/theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserData } from '../store/ducks/user/selectors';
+import { selectUserData } from '../../store/ducks/user/selectors';
 import { Link } from 'react-router-dom';
-import { signOut } from '../store/ducks/user/actionCreators';
+import { signOut } from '../../store/ducks/user/actionCreators';
 
 interface UserSideProfileProps {
   classes: ReturnType<typeof useHomeStyles>;

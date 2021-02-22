@@ -5,7 +5,7 @@ import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useStylesSignIn } from '../theme';
-import { ModalBlock } from '../../../components/ModalBlock';
+import { ModalBlock } from '../../../components/common/ModalBlock';
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
 import { selectUserStatus } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/ducks/types';

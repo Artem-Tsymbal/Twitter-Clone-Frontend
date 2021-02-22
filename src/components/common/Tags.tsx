@@ -7,9 +7,9 @@ import Paper from '@material-ui/core/Paper';
 import List from '@material-ui/core/List/List';
 import ListItem from '@material-ui/core/ListItem/ListItem';
 import ListItemText from '@material-ui/core/ListItemText/ListItemText';
-import { ITagsState } from '../store/ducks/tags/contracts/state';
-import { selectAreTagsLoaded, selectTagsItems } from '../store/ducks/tags/selectors';
-import { useHomeStyles } from '../pages/Home/theme';
+import { ITagsState } from '../../store/ducks/tags/contracts/state';
+import { selectAreTagsLoaded, selectTagsItems } from '../../store/ducks/tags/selectors';
+import { useHomeStyles } from '../../pages/Home/theme';
 
 interface ITagProps {
   classes: ReturnType<typeof useHomeStyles>;

@@ -11,12 +11,12 @@ import Paper from '@material-ui/core/Paper';
 import { Menu, MenuItem } from '@material-ui/core';
 import Typography from '@material-ui/core/Typography';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
-import { formatDate } from '../utils/formatDate';
-import { useHomeStyles } from '../pages/Home/theme';
+import { formatDate } from '../../utils/formatDate';
+import { useHomeStyles } from '../../pages/Home/theme';
 import { ImageList } from './ImageList';
 import { useDispatch } from 'react-redux';
-import { TweetsActionsType } from '../store/ducks/tweets/contracts/actionTypes';
-import { removeTweet } from '../store/ducks/tweets/actionCreators';
+import { TweetsActionsType } from '../../store/ducks/tweets/contracts/actionTypes';
+import { removeTweet } from '../../store/ducks/tweets/actionCreators';
 import { id } from 'date-fns/locale';
 
 interface ITweetProps {

@@ -1,7 +1,7 @@
 import { IconButton } from '@material-ui/core';
 import React from 'react';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../../pages/Home/theme';
 import { IImageObj } from './AddTweetForm';
 import { ImageList } from './ImageList';
 

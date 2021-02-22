@@ -8,14 +8,14 @@ import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import Alert from '@material-ui/lab/Alert';
-import { fetchAddTweet } from '../store/ducks/tweets/actionCreators';
-import { selectAddTweetFormState } from '../store/ducks/tweets/selectors';
-import { AddTweetFormState } from '../store/ducks/tweets/contracts/state';
-import { useHomeStyles } from '../pages/Home/theme';
+import { fetchAddTweet } from '../../store/ducks/tweets/actionCreators';
+import { selectAddTweetFormState } from '../../store/ducks/tweets/selectors';
+import { AddTweetFormState } from '../../store/ducks/tweets/contracts/state';
+import { useHomeStyles } from '../../pages/Home/theme';
 import { UploadImages } from './UploadImages';
-import { uploadImage } from '../utils/uploadImage';
-import { setTweetLoadingState } from '../store/ducks/tweet/actionCreators';
-import { LoadingStatus } from '../store/ducks/types';
+import { uploadImage } from '../../utils/uploadImage';
+import { setTweetLoadingState } from '../../store/ducks/tweet/actionCreators';
+import { LoadingStatus } from '../../store/ducks/types';
 
 interface IAddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;

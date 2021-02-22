@@ -15,8 +15,8 @@ import { fetchTweetData, setTweetData } from '../../../store/ducks/tweet/actionC
 import { selectTweetData } from '../../../store/ducks/tweet/selectors';
 import { selectAreTweetsLoading } from '../../../store/ducks/tweets/selectors';
 import { useHomeStyles } from '../theme';
-import { Tweet } from '../../../components/Tweet';
-import { ImageList } from '../../../components/ImageList';
+import { Tweet } from '../../../components/common/Tweet';
+import { ImageList } from '../../../components/common/ImageList';
 import mediumZoom from 'medium-zoom';
 
 export const FullTweet: React.FC = (): React.ReactElement | null => {

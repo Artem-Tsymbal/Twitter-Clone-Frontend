@@ -16,8 +16,8 @@ import { UserSideProfile } from './UserSideProfile';
 import { Link } from 'react-router-dom';
 import { ModalBlock } from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm';
-import { useHomeStyles } from '../pages/Home/theme';
-import { selectUserData } from '../store/ducks/user/selectors';
+import { useHomeStyles } from '../../pages/Home/theme';
+import { selectUserData } from '../../store/ducks/user/selectors';
 import { useSelector } from 'react-redux';
 
 interface ISideMenuProps {

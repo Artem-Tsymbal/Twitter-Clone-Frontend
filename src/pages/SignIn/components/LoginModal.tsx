@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
 import { selectUserStatus } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/ducks/types';
-import { ModalBlock } from '../../../components/ModalBlock';
+import { ModalBlock } from '../../../components/common/ModalBlock';
 import { useStylesSignIn } from '../theme';
 
 interface ILoginModalProps {

@@ -1,7 +1,7 @@
 import { IconButton } from '@material-ui/core';
 import React from 'react';
 import ClearIcon from '@material-ui/icons/Clear';
-import { useHomeStyles } from '../pages/Home/theme';
+import { useHomeStyles } from '../../pages/Home/theme';
 
 interface IImageListProps {
   images: string[];

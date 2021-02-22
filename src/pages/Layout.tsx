@@ -1,10 +1,10 @@
 import React from 'react';
 import { Container, Grid, InputAdornment } from '@material-ui/core';
 import SearchIcon from '@material-ui/icons/SearchOutlined';
-import { SideMenu } from '../components/SideMenu';
+import { SideMenu } from '../components/common/SideMenu';
 import { useHomeStyles } from '../pages/Home/theme';
-import { SearchTextField } from '../components/SearchTextField';
-import { Tags } from '../components/Tags';
+import { SearchTextField } from '../components/common/SearchTextField';
+import { Tags } from '../components/common/Tags';
 interface ILayout {
   children: React.ReactNode;
 }

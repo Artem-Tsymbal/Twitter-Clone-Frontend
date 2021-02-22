@@ -10,10 +10,10 @@ import {
   Button,
   Divider
 } from '@material-ui/core';
-import { useHomeStyles } from '../pages/Home/theme';
-import { IConnectPeopleState } from '../store/ducks/connectPeople/contracts/state';
+import { useHomeStyles } from '../../pages/Home/theme';
+import { IConnectPeopleState } from '../../store/ducks/connectPeople/contracts/state';
 import { useSelector } from 'react-redux';
-import { selectConnectPeopleItems } from '../store/ducks/connectPeople/selectors';
+import { selectConnectPeopleItems } from '../../store/ducks/connectPeople/selectors';
 import PersonAddIcon from '@material-ui/icons/PersonAddOutlined';
 
 interface IWhoToFollowProps {
