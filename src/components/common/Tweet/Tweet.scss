@@ -152,3 +152,9 @@
     }
   }
 }
+
+@media screen and (max-width: 499px) {
+  .tweet-header__username {
+    display: none;
+  }
+}

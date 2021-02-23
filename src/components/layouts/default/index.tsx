@@ -33,7 +33,7 @@ export const DefaultLayout: React.FC = () => {
         </div>
       </main >
       <nav className="bottom-bar">
-        sd
+        bottom-bar
       </nav>
     </div>
   );
