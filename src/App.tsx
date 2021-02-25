@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { BrowserRouter, Route, Switch, useHistory } from 'react-router-dom';
 import TwitterIcon from '@material-ui/icons/Twitter';
 //import { Home } from './pages/Home/index';
 import { useHomeStyles } from './pages/Home/theme';
@@ -13,6 +13,7 @@ import { ActivatePage } from './pages/ActivatePage';
 import { UserPage } from './pages/User';
 import { Home } from './screens/Home';
 import { DefaultLayout } from './components/layouts/default';
+import { RouterConfig } from './navigation/RouterConfig';
 
 export const App: React.FC = (): React.ReactElement => {
   // const classes = useHomeStyles();
@@ -44,18 +45,22 @@ export const App: React.FC = (): React.ReactElement => {
   // }
 
   return (
-    <div className="App">
+    <>
+      <RouterConfig />
+      {/* <div className="App">
       <Switch>
         <Route path="/signin" component={SignIn} />
         <DefaultLayout />
-        {/* <Layout>
+       <Layout>
           <Route path="/home" component={Home} />
           <Route path="/user/:id" component={UserPage} exact />
           <Route path="/user/activate/:hash" component={ActivatePage} exact />
 
-        </Layout> */}
+        </Layout>
       </Switch>
-    </div>
+    </div> */}
+    </>
+
   );
 };
 

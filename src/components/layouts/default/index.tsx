@@ -7,7 +7,18 @@ import TrendsForYou from '../../common/TrendsForYou/TrendsForYou';
 import WhoToFollow from '../../common/WhoToFollow/WhoToFollow';
 import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
 import { Home } from '../../../screens/Home';
-export const DefaultLayout: React.FC = () => {
+
+interface IDefaultLayout {
+  children: React.ReactNode,
+  IsVisibleTrendsForYou: boolean,
+  IsVisibleWhoToFollow: boolean,
+}
+
+export const DefaultLayout: React.FC<IDefaultLayout> = ({
+  children,
+  IsVisibleTrendsForYou,
+  IsVisibleWhoToFollow,
+}: IDefaultLayout) => {
 
   return (
     <div className="wrapper">
@@ -22,12 +33,12 @@ export const DefaultLayout: React.FC = () => {
       <main className="main-side">
         <div className="content-container">
           <div className="primary-column">
-            <Home />
+            {children}
           </div>
           <div className="sidebar-column">
             <SearchBox />
-            <TrendsForYou />
-            <WhoToFollow />
+            {IsVisibleTrendsForYou && <TrendsForYou />}
+            {IsVisibleWhoToFollow && <WhoToFollow />}
             <ServiceUsage />
           </div>
         </div>
