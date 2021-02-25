@@ -39,7 +39,7 @@ export const DefaultLayout: React.FC<IDefaultLayout> = ({
             <SearchBox />
             {IsVisibleTrendsForYou && <TrendsForYou />}
             {IsVisibleWhoToFollow && <WhoToFollow />}
-            <ServiceUsage />
+            <ServiceUsage isFullContent={false} />
           </div>
         </div>
       </main >

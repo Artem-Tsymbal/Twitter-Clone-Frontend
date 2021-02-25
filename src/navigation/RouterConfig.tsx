@@ -2,14 +2,15 @@ import React from "react";
 import { Switch, Route } from "react-router-dom";
 import PrivateRoute from "./Auth/PrivateRoute";
 import { Home } from "../screens/Home";
-import { DefaultLayout } from "../components/layouts/default";
+import { DefaultLayout } from "../components/layouts/default/";
 import { SignIn } from "../pages/SignIn";
+import Login from "../screens/Login";
 
 export const RouterConfig: React.FC = () => {
   return (
     <Switch>
       <Route path="/login">
-        <SignIn />
+        <Login />
       </Route>
       <PrivateRoute path="/">
         <DefaultLayout
