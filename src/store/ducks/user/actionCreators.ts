@@ -1,3 +1,5 @@
+import { ILoginFormProps } from '../../../screens/Login/components/LoginModal';
+import { IRegisterFormProps } from '../../../screens/Login/components/RegisterModal';
 import {
   IFetchSignInAction,
   IFetchSignUpAction,
@@ -8,8 +10,6 @@ import {
   UserActionsType,
 } from './contracts/actionTypes';
 import { IUserState } from './contracts/state';
-import { ILoginFormProps } from '../../../pages/SignIn/components/LoginModal';
-import { IRegisterFormProps } from '../../../pages/SignIn/components/RegisterModal';
 
 export const setLoadingStatusOfUser = (payload: IUserState['status']): ISetLoadingStatusAction => ({
   type: UserActionsType.SET_LOADING_STATUS_OF_USER,

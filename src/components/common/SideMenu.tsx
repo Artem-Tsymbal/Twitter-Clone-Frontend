@@ -14,7 +14,6 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import { UserSideProfile } from './UserSideProfile';
 import { Link } from 'react-router-dom';
-import { ModalBlock } from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { selectDataOfUser } from '../../store/ducks/user/selectors';
@@ -138,11 +137,11 @@ export const SideMenu: React.FC<ISideMenuProps> = ({
               <CreateIcon />
             </Hidden>
           </Button>
-          <ModalBlock onClose={onCloseAddTweet} visible={visibleAddTweet}>
+          {/* <ModalBlock onClose={onCloseAddTweet} visible={visibleAddTweet}>
             <div style={{ width: 550 }}>
               <AddTweetForm maxRows={15} classes={classes} />
             </div>
-          </ModalBlock>
+          </ModalBlock> */}
         </li>
       </ul>
       <UserSideProfile classes={classes} />

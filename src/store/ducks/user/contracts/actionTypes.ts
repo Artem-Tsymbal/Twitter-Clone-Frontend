@@ -1,8 +1,8 @@
 import { Action } from 'redux';
 import { IUser } from './state';
 import { LoadingStatus } from '../../../types';
-import { ILoginFormProps } from '../../../../pages/SignIn/components/LoginModal';
-import { IRegisterFormProps } from '../../../../pages/SignIn/components/RegisterModal';
+import { IRegisterFormProps } from '../../../../screens/Login/components/RegisterModal';
+import { ILoginFormProps } from '../../../../screens/Login/components/LoginModal';
 
 export enum UserActionsType {
   SET_LOADING_STATUS_OF_USER = 'tweet/SET_LOADING_STATUS_OF_USER',

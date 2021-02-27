@@ -1,7 +1,6 @@
 import axios from 'axios';
-import { verify } from 'crypto';
-import { ILoginFormProps } from '../../pages/SignIn/components/LoginModal';
-import { IRegisterFormProps } from '../../pages/SignIn/components/RegisterModal';
+import { ILoginFormProps } from '../../screens/Login/components/LoginModal';
+import { IRegisterFormProps } from '../../screens/Login/components/RegisterModal';
 
 interface ResponseApi {
   status: string;
