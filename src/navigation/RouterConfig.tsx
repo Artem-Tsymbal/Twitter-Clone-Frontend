@@ -26,3 +26,8 @@ export const RouterConfig: React.FC = () => (
     </Route>
   </Switch >
 );
+
+
+//           <Route path = "/home" component = { Home } />
+//           <Route path="/user/:id" component={UserPage} exact />
+//           <Route path="/user/activate/:hash" component={ActivatePage} exact />
