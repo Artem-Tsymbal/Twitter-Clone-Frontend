@@ -12,6 +12,7 @@
       padding-top: 5px;
     }
     &__image {
+      display: block;
       width: 49px;
       height: 49px;
       border-radius: 9999px;
@@ -78,6 +79,16 @@
       height: 22.5px;
       color: #1da1f2;
     }
+    &__circular-progress {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin: 0 10px;
+
+      .MuiCircularProgress-root {
+        position: absolute !important;
+      }
+    }
     &__button {
       width: 74px;
       height: 39px;
@@ -101,6 +112,9 @@
       &:active {
         background-color: rgb(23, 129, 194);
         box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+      }
+      &:disabled {
+        opacity: 0.5;
       }
     }
   }

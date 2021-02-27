@@ -8,6 +8,7 @@ import { selectTweetsItems, selectAreTweetsLoading } from '../../store/ducks/twe
 
 import { WiStars } from 'react-icons/wi';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
+import Tweet from '../../components/common/Tweet/Tweet';
 
 export const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -27,6 +28,7 @@ export const Home: React.FC = () => {
       </div>
       <AddTweetForm />
       <div className="home-divider" />
+      <Tweet />
     </div>
   );
 };
