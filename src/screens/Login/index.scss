@@ -76,7 +76,7 @@
   }
   &__title {
     &--main {
-      margin-top: 20px;
+      margin-top: 0px;
       font-size: 30px;
       font-weight: 700;
       line-height: 25px;
@@ -90,12 +90,19 @@
   }
 }
 .form {
-  &__control {
-    margin-bottom: 16px;
+  &-control {
+    margin-bottom: 25px !important;
   }
-  &__field-login {
+  &__field {
+    margin-bottom: 25px !important;
   }
-  &__field-register {
+  &__button-wrapper {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+  &__button {
+    max-width: 360px !important;
   }
 }
 

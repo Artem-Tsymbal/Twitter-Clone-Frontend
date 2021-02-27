@@ -8,10 +8,13 @@ import { BsPeople } from 'react-icons/bs';
 import ServiceUsage from '../../components/common/ServiceUsage/ServiceUsage';
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
+import { useAuth } from '../../navigation/Auth/ProvideAuth';
 
 
 const Login: React.FC = () => {
   const [visibleModal, setVisibleModal] = React.useState<'signUp' | 'signIn'>();
+
+  useAuth()?.isAuthenticated();
 
   const handleClickOpenSignUp = (): void => {
     setVisibleModal('signUp');
@@ -24,6 +27,8 @@ const Login: React.FC = () => {
   const handleCloseModal = (): void => {
     setVisibleModal(undefined);
   };
+
+
 
   return (
     <div className="login__wrapper">
@@ -67,7 +72,7 @@ const Login: React.FC = () => {
               variant="outlined"
               color="primary"
               fullWidth>
-              Sign In
+              Log in
           </Button>
             <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal} />
             <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal} />

@@ -1,5 +1,5 @@
 import { RootState } from '../../store';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 import { ITweetsState, AddTweetFormState, ITweet } from './contracts/state';
 
 export const selectTweetsState = (state: RootState): ITweetsState => state.tweets;

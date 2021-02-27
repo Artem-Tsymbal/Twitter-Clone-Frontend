@@ -5,8 +5,8 @@ import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
-import { selectUserStatus } from '../../../store/ducks/user/selectors';
-import { LoadingStatus } from '../../../store/ducks/types';
+import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
+import { LoadingStatus } from '../../../store/types';
 import { ModalBlock } from '../../../components/common/ModalBlock';
 import { useStylesSignIn } from '../theme';
 
@@ -31,7 +31,7 @@ export const LoginModal: React.FC<ILoginModalProps> = ({
 }: ILoginModalProps): React.ReactElement => {
   const classes = useStylesSignIn();
   const dispatch = useDispatch();
-  const loadingStatus = useSelector(selectUserStatus);
+  const loadingStatus = useSelector(selectStatusOfUser);
 
   const { control, handleSubmit, errors } = useForm<ILoginFormProps>({
     resolver: yupResolver(LoginFormSchema),

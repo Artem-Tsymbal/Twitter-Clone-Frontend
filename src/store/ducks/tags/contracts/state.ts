@@ -1,4 +1,4 @@
-import { LoadingStatus } from '../../types';
+import { LoadingStatus } from '../../../types';
 
 export interface ITag {
   _id: string;

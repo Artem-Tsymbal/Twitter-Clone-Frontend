@@ -1,21 +1,21 @@
 import { Action } from 'redux';
 import { IUser } from './state';
-import { LoadingStatus } from '../../types';
+import { LoadingStatus } from '../../../types';
 import { ILoginFormProps } from '../../../../pages/SignIn/components/LoginModal';
 import { IRegisterFormProps } from '../../../../pages/SignIn/components/RegisterModal';
 
 export enum UserActionsType {
-  FETCH_SIGN_IN = 'user/FETCH_SIGN_IN',
+  SET_LOADING_STATUS_OF_USER = 'tweet/SET_LOADING_STATUS_OF_USER',
   FETCH_SIGN_UP = 'user/FETCH_SIGN_UP',
+  FETCH_SIGN_IN = 'user/FETCH_SIGN_IN',
   SIGN_OUT = 'user/SIGN_OUT',
-  FETCH_USER_DATA = 'user/FETCH_USER_DATA',
-  SET_LOADING_STATUS = 'tweet/SET_LOADING_STATUS',
-  SET_USER_DATA = 'user/SET_USER_DATA',
+  FETCH_DATA_OF_USER = 'user/FETCH_DATA_OF_USER',
+  SET_DATA_OF_USER = 'user/SET_DATA_OF_USER',
 }
 
-export interface IFetchSignInAction extends Action<UserActionsType> {
-  type: UserActionsType.FETCH_SIGN_IN,
-  payload: ILoginFormProps,
+export interface ISetLoadingStatusAction extends Action<UserActionsType> {
+  type: UserActionsType.SET_LOADING_STATUS_OF_USER;
+  payload: LoadingStatus;
 }
 
 export interface IFetchSignUpAction extends Action<UserActionsType> {
@@ -23,21 +23,20 @@ export interface IFetchSignUpAction extends Action<UserActionsType> {
   payload: IRegisterFormProps,
 }
 
+export interface IFetchSignInAction extends Action<UserActionsType> {
+  type: UserActionsType.FETCH_SIGN_IN,
+  payload: ILoginFormProps,
+}
+
 export interface ISignOutAction extends Action<UserActionsType> {
   type: UserActionsType.SIGN_OUT,
 }
 
-
-export interface IFetchUserDataAction extends Action<UserActionsType> {
-  type: UserActionsType.FETCH_USER_DATA,
+export interface IFetchDataOfUserAction extends Action<UserActionsType> {
+  type: UserActionsType.FETCH_DATA_OF_USER,
 }
 
-export interface ISetLoadingStatusAction extends Action<UserActionsType> {
-  type: UserActionsType.SET_LOADING_STATUS;
-  payload: LoadingStatus;
-}
-
-export interface ISetUserAction extends Action<UserActionsType> {
-  type: UserActionsType.SET_USER_DATA;
+export interface ISetDataOfUserAction extends Action<UserActionsType> {
+  type: UserActionsType.SET_DATA_OF_USER;
   payload: IUser | undefined;
 }

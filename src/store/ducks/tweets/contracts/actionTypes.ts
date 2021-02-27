@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { LoadingStatus } from '../../types';
+import { LoadingStatus } from '../../../types';
 import { AddTweetFormState, ITweetsState, ITweet } from './state';
 
 export enum TweetsActionsType {

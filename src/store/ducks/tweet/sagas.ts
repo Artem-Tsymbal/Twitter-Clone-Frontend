@@ -4,7 +4,7 @@ import { TweetsApi } from '../../../services/api/tweetsApi';
 import { setTweetData, setTweetLoadingState } from './actionCreators';
 import { IFetchTweetActionInteface, TweetActionsType } from './contracts/actionTypes';
 import { ITweet } from '../tweets/contracts/state';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 
 export function* fetchTweetDataRequest({ payload: tweetId }: IFetchTweetActionInteface): SagaIterator {

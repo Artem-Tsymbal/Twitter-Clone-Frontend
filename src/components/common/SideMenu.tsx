@@ -17,7 +17,7 @@ import { Link } from 'react-router-dom';
 import { ModalBlock } from './ModalBlock';
 import { AddTweetForm } from './AddTweetForm';
 import { useHomeStyles } from '../../pages/Home/theme';
-import { selectUserData } from '../../store/ducks/user/selectors';
+import { selectDataOfUser } from '../../store/ducks/user/selectors';
 import { useSelector } from 'react-redux';
 
 interface ISideMenuProps {
@@ -28,7 +28,7 @@ export const SideMenu: React.FC<ISideMenuProps> = ({
   classes,
 }: ISideMenuProps): React.ReactElement => {
   const [visibleAddTweet, setVisibleAddTweet] = React.useState<boolean>(false);
-  const userData = useSelector(selectUserData);
+  const userData = useSelector(selectDataOfUser);
 
   const handleClickOpenAddTweet = () => {
     setVisibleAddTweet(true);

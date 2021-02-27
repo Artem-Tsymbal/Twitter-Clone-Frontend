@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { ITweetState } from './state';
-import { LoadingStatus } from '../../types';
+import { LoadingStatus } from '../../../types';
 
 export enum TweetActionsType {
   FETCH_TWEET_DATA = 'tweet/FETCH_TWEET_DATA',

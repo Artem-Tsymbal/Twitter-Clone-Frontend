@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { RootState } from '../../store';
 import { ITagsState } from './contracts/state';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 export const selectTags = (state: RootState): ITagsState => state.tags;
 

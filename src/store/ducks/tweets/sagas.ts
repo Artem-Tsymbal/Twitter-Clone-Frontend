@@ -4,7 +4,7 @@ import { TweetsApi } from '../../../services/api/tweetsApi';
 import { AddTweetFormState } from './contracts/state';
 import { addTweet, setAddTweetFormState, setTweets, setTweetsLoadingState } from './actionCreators';
 import { IFetchAddTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 export function* fetchTweetsRequest(): SagaIterator {
   try {

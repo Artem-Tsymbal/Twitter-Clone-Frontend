@@ -1,6 +1,6 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 export function* fetchConnectPeopleRequest(): SagaIterator {
   // try {

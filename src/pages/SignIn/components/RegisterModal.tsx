@@ -7,8 +7,8 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useStylesSignIn } from '../theme';
 import { ModalBlock } from '../../../components/common/ModalBlock';
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
-import { selectUserStatus } from '../../../store/ducks/user/selectors';
-import { LoadingStatus } from '../../../store/ducks/types';
+import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
+import { LoadingStatus } from '../../../store/types';
 
 interface IRegisterModalProps {
   open: boolean;
@@ -37,7 +37,7 @@ export const RegisterModal: React.FC<IRegisterModalProps> = ({
 }: IRegisterModalProps): React.ReactElement => {
   const classes = useStylesSignIn();
   const dispatch = useDispatch();
-  const loadingStatus = useSelector(selectUserStatus);
+  const loadingStatus = useSelector(selectStatusOfUser);
 
   const { control, handleSubmit, errors } = useForm<IRegisterFormProps>({
     resolver: yupResolver(RegisterFormSchema),

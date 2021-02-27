@@ -1,7 +1,7 @@
 import produce, { Draft } from 'immer';
 import { TagsActions, TagsActionsType } from './actionCreators';
 import { ITagsState } from './contracts/state';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 const initialTagsState: ITagsState = {
   items: [],

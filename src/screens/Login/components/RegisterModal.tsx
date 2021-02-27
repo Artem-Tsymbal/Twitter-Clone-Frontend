@@ -1,13 +1,15 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { ModalBlock } from '../../../components/common/ModalBlock';
+
+import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
+
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
-import { selectUserStatus } from '../../../store/ducks/user/selectors';
-import { LoadingStatus } from '../../../store/ducks/types';
+import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
+import { LoadingStatus } from '../../../store/types';
 
 interface IRegisterModalProps {
   open: boolean;
@@ -35,7 +37,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
   onClose,
 }: IRegisterModalProps): React.ReactElement => {
   const dispatch = useDispatch();
-  const loadingStatus = useSelector(selectUserStatus);
+  const loadingStatus = useSelector(selectStatusOfUser);
 
   const { control, handleSubmit, errors } = useForm<IRegisterFormProps>({
     resolver: yupResolver(RegisterFormSchema),
@@ -43,21 +45,19 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
 
   const onSubmit = async (data: IRegisterFormProps) => {
     dispatch(fetchSignUp(data));
+    onClose();
   };
 
   return (
-    <ModalBlock
-      visible={open}
-      onClose={onClose}
-      title="Войти в аккаунт">
+    <ModalWindow visible={open} onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl className="form__control" component="fieldset" fullWidth>
+        <FormControl className="form-control" component="fieldset" fullWidth>
           <FormGroup aria-label="position" row>
             <Controller
               as={TextField}
               control={control}
               name="email"
-              className="form__register-field"
+              className="form__field"
               id="email"
               label="E-Mail"
               InputLabelProps={{
@@ -75,7 +75,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="username"
-              className="form__register-field"
+              className="form__field"
               id="username"
               label="Логин"
               InputLabelProps={{
@@ -92,7 +92,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="fullName"
-              className="form__register-field"
+              className="form__field"
               id="fullName"
               label="Ваше имя"
               InputLabelProps={{
@@ -109,7 +109,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="password"
-              className="form__register-field"
+              className="form__field"
               id="password"
               label="Пароль"
               InputLabelProps={{
@@ -126,7 +126,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="password2"
-              className="form__register-field"
+              className="form__field"
               id="password2"
               label="Пароль"
               InputLabelProps={{
@@ -139,18 +139,21 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               error={!!errors.password2}
               fullWidth
             />
-            <Button
-              disabled={loadingStatus === LoadingStatus.LOADING}
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth>
-              Регистрация
-            </Button>
+            <div className="form__button-wrapper">
+              <Button
+                className="form__button"
+                disabled={loadingStatus === LoadingStatus.LOADING}
+                type="submit"
+                variant="contained"
+                color="primary"
+                fullWidth>
+                Регистрация
+              </Button>
+            </div>
           </FormGroup>
         </FormControl>
       </form>
-    </ModalBlock>
+    </ModalWindow>
   );
 };
 

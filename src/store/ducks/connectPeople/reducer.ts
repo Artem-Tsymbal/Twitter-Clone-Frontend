@@ -1,5 +1,5 @@
 import produce, { Draft } from 'immer';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 import { ConnectPeopleActions } from './actionCreators';
 import { ConnectPeopleActionsTypes } from './contracts/actionTypes';
 import { IConnectPeopleState } from './contracts/state';

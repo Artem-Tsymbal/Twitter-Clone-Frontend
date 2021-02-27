@@ -1,18 +1,18 @@
 import {
   IFetchSignInAction,
   IFetchSignUpAction,
-  IFetchUserDataAction,
+  IFetchDataOfUserAction,
   ISetLoadingStatusAction,
-  ISetUserAction,
+  ISetDataOfUserAction,
   ISignOutAction,
   UserActionsType,
 } from './contracts/actionTypes';
-import { ILoginFormProps } from '../../../pages/SignIn/components/LoginModal';
 import { IUserState } from './contracts/state';
+import { ILoginFormProps } from '../../../pages/SignIn/components/LoginModal';
 import { IRegisterFormProps } from '../../../pages/SignIn/components/RegisterModal';
 
-export const fetchSignIn = (payload: ILoginFormProps): IFetchSignInAction => ({
-  type: UserActionsType.FETCH_SIGN_IN,
+export const setLoadingStatusOfUser = (payload: IUserState['status']): ISetLoadingStatusAction => ({
+  type: UserActionsType.SET_LOADING_STATUS_OF_USER,
   payload,
 });
 
@@ -21,28 +21,28 @@ export const fetchSignUp = (payload: IRegisterFormProps): IFetchSignUpAction => 
   payload,
 });
 
+export const fetchSignIn = (payload: ILoginFormProps): IFetchSignInAction => ({
+  type: UserActionsType.FETCH_SIGN_IN,
+  payload,
+});
+
 export const signOut = (): ISignOutAction => ({
   type: UserActionsType.SIGN_OUT,
 });
 
-export const fetchUserData = (): IFetchUserDataAction => ({
-  type: UserActionsType.FETCH_USER_DATA,
+export const fetchDataOfUser = (): IFetchDataOfUserAction => ({
+  type: UserActionsType.FETCH_DATA_OF_USER,
 });
 
-export const setLoadingStatus = (payload: IUserState['status']): ISetLoadingStatusAction => ({
-  type: UserActionsType.SET_LOADING_STATUS,
-  payload,
-});
-
-export const setUserData = (payload: IUserState['data']): ISetUserAction => ({
-  type: UserActionsType.SET_USER_DATA,
+export const setDataOfUser = (payload: IUserState['data']): ISetDataOfUserAction => ({
+  type: UserActionsType.SET_DATA_OF_USER,
   payload,
 });
 
 export type UserActions =
   IFetchSignInAction |
   IFetchSignUpAction |
-  IFetchUserDataAction |
+  IFetchDataOfUserAction |
   ISetLoadingStatusAction |
   ISignOutAction |
-  ISetUserAction;
+  ISetDataOfUserAction;

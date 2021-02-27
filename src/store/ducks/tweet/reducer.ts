@@ -2,7 +2,7 @@ import produce, { Draft } from 'immer';
 import { TweetActions } from './actionCreators';
 import { TweetActionsType } from './contracts/actionTypes';
 import { ITweetState } from './contracts/state';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 const initialTweetState: ITweetState = {
   data: undefined,

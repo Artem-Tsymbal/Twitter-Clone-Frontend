@@ -6,7 +6,7 @@ import Typography from '@material-ui/core/Typography';
 import React from 'react';
 import { useHomeStyles } from '../../pages/Home/theme';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectUserData } from '../../store/ducks/user/selectors';
+import { selectDataOfUser } from '../../store/ducks/user/selectors';
 import { Link } from 'react-router-dom';
 import { signOut } from '../../store/ducks/user/actionCreators';
 
@@ -18,7 +18,7 @@ export const UserSideProfile: React.FC<UserSideProfileProps> = ({
   classes,
 }: UserSideProfileProps) => {
   const dispatch = useDispatch();
-  const userData = useSelector(selectUserData);
+  const userData = useSelector(selectDataOfUser);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
 
   const handleOpenPopup = (event: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {

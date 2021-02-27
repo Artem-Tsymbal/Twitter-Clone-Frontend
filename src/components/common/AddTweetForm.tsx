@@ -15,7 +15,7 @@ import { useHomeStyles } from '../../pages/Home/theme';
 import { UploadImages } from './UploadImages';
 import { uploadImage } from '../../utils/uploadImage';
 import { setTweetLoadingState } from '../../store/ducks/tweet/actionCreators';
-import { LoadingStatus } from '../../store/ducks/types';
+import { LoadingStatus } from '../../store/types';
 
 interface IAddTweetFormProps {
   classes: ReturnType<typeof useHomeStyles>;

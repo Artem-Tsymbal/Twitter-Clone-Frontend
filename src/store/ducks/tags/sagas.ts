@@ -1,7 +1,7 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { TagsApi } from '../../../services/api/tagsApi';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 import { setTags, setTagsLoadingState, TagsActionsType } from './actionCreators';
 
 export function* fetchTagsRequest(): SagaIterator {

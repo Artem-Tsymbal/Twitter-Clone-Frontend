@@ -1,6 +1,6 @@
 import { Action } from 'redux';
 import { ITagsState } from './contracts/state';
-import { LoadingStatus } from '../types';
+import { LoadingStatus } from '../../types';
 
 export enum TagsActionsType {
   FETCH_TAGS = 'tags/FETCH_TAGS',
