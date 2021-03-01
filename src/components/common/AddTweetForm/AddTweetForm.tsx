@@ -2,10 +2,10 @@ import React from 'react';
 import './AddTweetForm.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAddTweetFormState } from '../../../store/ducks/tweets/selectors';
-import { setTweetLoadingState } from '../../../store/ducks/tweet/actionCreators';
+import { selectAddTweetFormStatus } from '../../../store/ducks/tweets/selectors';
+import { setLoadingStatusOfTweet } from '../../../store/ducks/tweet/actionCreators';
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
-import { AddTweetFormState } from '../../../store/ducks/tweets/contracts/state';
+import { AddTweetFormStatus } from '../../../store/ducks/tweets/contracts/state';
 import { LoadingStatus } from '../../../store/types';
 
 import { HiOutlineCalendar } from 'react-icons/hi';
@@ -28,7 +28,7 @@ const AddTweetForm: React.FC = () => {
   const [text, setText] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageObj[]>([]);
 
-  const addFormState = useSelector(selectAddTweetFormState);
+  const addFormState = useSelector(selectAddTweetFormStatus);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = MAX_LENGTH - text.length;
 
@@ -45,7 +45,7 @@ const AddTweetForm: React.FC = () => {
 
   const handleClickAddTweet = async (): Promise<void> => {
     const imagesList = [];
-    dispatch(setTweetLoadingState(LoadingStatus.LOADING));
+    dispatch(setLoadingStatusOfTweet(LoadingStatus.LOADING));
     for (let i = 0; i < images.length; i += 1) {
       const { file } = images[i];
       const { url } = await uploadImage(file);
@@ -117,10 +117,10 @@ const AddTweetForm: React.FC = () => {
               </div>
               <button
                 onClick={handleClickAddTweet}
-                disabled={addFormState === AddTweetFormState.LOADING || !text || text.length >= MAX_LENGTH}
+                disabled={addFormState === AddTweetFormStatus.LOADING || !text || text.length >= MAX_LENGTH}
                 className="add-tweet-actions__button"
               >
-                {addFormState === AddTweetFormState.LOADING ? (
+                {addFormState === AddTweetFormStatus.LOADING ? (
                   <CircularProgress color="inherit" size={16} />
                 ) : (
                     'Tweet'

@@ -6,18 +6,18 @@ import { IConnectPeopleState } from './contracts/state';
 
 const initialConnectPeopleState: IConnectPeopleState = {
   items: [],
-  loadingState: LoadingStatus.NEVER,
+  loadingStatus: LoadingStatus.NEVER,
 };
 
 export const connectPeopleReducer = produce((draft: Draft<IConnectPeopleState>, action: ConnectPeopleActions) => {
   switch (action.type) {
     case ConnectPeopleActionsTypes.FETCH_CONNECT_PEOPLE:
       draft.items = [];
-      draft.loadingState = LoadingStatus.LOADING;
+      draft.loadingStatus = LoadingStatus.LOADING;
       break;
     case ConnectPeopleActionsTypes.SET_CONNECT_PEOPLE:
       draft.items = action.payload;
-      draft.loadingState = LoadingStatus.LOADED;
+      draft.loadingStatus = LoadingStatus.LOADED;
       break;
 
     default:

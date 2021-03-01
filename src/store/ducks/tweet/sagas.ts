@@ -1,21 +1,21 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { TweetsApi } from '../../../services/api/tweetsApi';
-import { setTweetData, setTweetLoadingState } from './actionCreators';
-import { IFetchTweetActionInteface, TweetActionsType } from './contracts/actionTypes';
+import { setDataOfTweet, setLoadingStatusOfTweet } from './actionCreators';
+import { IFetchDataOfTweetAction, TweetActionsType } from './contracts/actionTypes';
 import { ITweet } from '../tweets/contracts/state';
 import { LoadingStatus } from '../../types';
 
 
-export function* fetchTweetDataRequest({ payload: tweetId }: IFetchTweetActionInteface): SagaIterator {
+export function* fetchDataOfTweetRequest({ payload: tweetId }: IFetchDataOfTweetAction): SagaIterator {
   try {
-    const data: ITweet = yield call(TweetsApi.fetchTweetData, tweetId);
-    yield put(setTweetData(data));
+    const data: ITweet = yield call(TweetsApi.fetchDataOfTweet, tweetId);
+    yield put(setDataOfTweet(data));
   } catch (error) {
-    yield put(setTweetLoadingState(LoadingStatus.ERROR));
+    yield put(setLoadingStatusOfTweet(LoadingStatus.ERROR));
   }
 }
 
 export function* tweetSaga(): SagaIterator {
-  yield takeEvery(TweetActionsType.FETCH_TWEET_DATA, fetchTweetDataRequest);
+  yield takeEvery(TweetActionsType.FETCH_DATA_OF_TWEET, fetchDataOfTweetRequest);
 }

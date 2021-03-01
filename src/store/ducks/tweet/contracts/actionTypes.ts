@@ -3,22 +3,27 @@ import { ITweetState } from './state';
 import { LoadingStatus } from '../../../types';
 
 export enum TweetActionsType {
-  FETCH_TWEET_DATA = 'tweet/FETCH_TWEET_DATA',
-  SET_LOADING_STATE = 'tweet/SET_LOADING_STATE',
-  SET_TWEET_DATA = 'tweet/SET_TWEET_DATA',
+  FETCH_DATA_OF_TWEET = 'tweet/FETCH_DATA_OF_TWEET',
+  SET_LOADING_STATUS_OF_TWEET = 'tweet/SET_LOADING_STATUS_OF_TWEET',
+  SET_DATA_OF_TWEET = 'tweet/SET_DATA_OF_TWEET',
 }
 
-export interface IFetchTweetActionInteface extends Action<TweetActionsType> {
-  type: TweetActionsType.FETCH_TWEET_DATA;
+export interface IFetchDataOfTweetAction extends Action<TweetActionsType> {
+  type: TweetActionsType.FETCH_DATA_OF_TWEET;
   payload: string;
 }
 
-export interface ISetTweetLoadingStateInterface extends Action<TweetActionsType> {
-  type: TweetActionsType.SET_LOADING_STATE;
+export interface ISetLoadingStatusOfTweetAction extends Action<TweetActionsType> {
+  type: TweetActionsType.SET_LOADING_STATUS_OF_TWEET;
   payload: LoadingStatus;
 }
 
-export interface ISetTweetActionInterface extends Action<TweetActionsType> {
-  type: TweetActionsType.SET_TWEET_DATA;
+export interface ISetDataOfTweetAction extends Action<TweetActionsType> {
+  type: TweetActionsType.SET_DATA_OF_TWEET;
   payload: ITweetState['data'];
 }
+
+export type TweetActions =
+  | IFetchDataOfTweetAction
+  | ISetLoadingStatusOfTweetAction
+  | ISetDataOfTweetAction;

@@ -3,32 +3,52 @@ import './index.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchTags } from '../../store/ducks/tags/actionCreators';
-import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
-import { selectTweetsItems, selectAreTweetsLoading } from '../../store/ducks/tweets/selectors';
+import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
+import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
 
+import { BackButton } from '../../components/common/BackButton';
 import { WiStars } from 'react-icons/wi';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
 import Tweet from '../../components/common/Tweet/Tweet';
+import { CircularProgress } from '@material-ui/core';
+import { Route } from 'react-router-dom';
+import FullTweet from '../../components/common/FullTweet/FullTweet';
 
 export const Home: React.FC = () => {
   const dispatch = useDispatch();
-  const tweets = useSelector(selectTweetsItems);
-  const isLoading = useSelector(selectAreTweetsLoading);
+  const tweets = useSelector(selectItemsOfTweets);
+  const isLoading = useSelector(selectStatusOfTweetsIsLoading);
 
   React.useEffect(() => {
-    dispatch(fetchTweets());
+    dispatch(fetchDataOfTweets());
     dispatch(fetchTags());
   }, [dispatch]);
 
   return (
     <div className="home-wrapper">
       <div className="home-header">
-        <span className="home-header__title">Home</span>
+        <Route path="/home" exact>
+          <span className="home-header__title">Home</span>
+        </Route>
+        <Route path="/home/:any">
+          <span className="home-header__title"><BackButton />Tweet</span>
+        </Route>
         <WiStars className="home-header__icon" />
       </div>
-      <AddTweetForm />
-      <div className="home-divider" />
-      <Tweet />
+      <Route path="/home" exact>
+        <AddTweetForm />
+        <div className="home-divider" />
+        {isLoading ? (
+          <CircularProgress />
+        ) : (
+            tweets.map(tweet => (
+              <Tweet key={tweet._id} images={tweet.images} {...tweet} />
+            ))
+          )}
+      </Route>
+      <Route path="/home/tweet/:id" exact>
+        <FullTweet></FullTweet>
+      </Route>
     </div>
   );
 };

@@ -1,6 +1,7 @@
 import { LoadingStatus } from "../../../types";
 
-export enum AddTweetFormState {
+export enum AddTweetFormStatus {
+  ADDED = 'ADDED',
   LOADING = 'LOADING',
   ERROR = 'ERROR',
   NEVER = 'NEVER',
@@ -20,6 +21,6 @@ export interface ITweet {
 
 export interface ITweetsState {
   items: ITweet[];
-  loadingState: LoadingStatus;
-  addTweetFormState: AddTweetFormState;
+  loadingStatus: LoadingStatus;
+  addTweetFormStatus: AddTweetFormStatus;
 }

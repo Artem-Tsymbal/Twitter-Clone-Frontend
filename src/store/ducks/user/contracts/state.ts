@@ -15,5 +15,5 @@ export interface IUser {
 
 export interface IUserState {
   data: IUser | undefined;
-  status: LoadingStatus;
+  loadingStatus: LoadingStatus;
 }

@@ -1,27 +1,32 @@
 import { LoadingStatus } from '../../types';
 import {
-  IFetchTweetsAction,
-  ISetTweetsLoadingState,
-  ISetAddTweetFormState,
+  IFetchDataOfTweetsAction,
+  ISetLoadingStatusOfTweetsAction,
+  ISetAddTweetFormStatusAction,
   IFetchAddTweetAction,
   IAddTweetAction,
-  SetTweetsAction,
+  ISetDataOfTweetsAction,
   TweetsActionsType,
   IRemoveTweetAction,
 } from './contracts/actionTypes';
-import { ITweetsState, ITweet, AddTweetFormState } from './contracts/state';
+import { ITweetsState, ITweet, AddTweetFormStatus } from './contracts/state';
 
-export const fetchTweets = (): IFetchTweetsAction => ({
-  type: TweetsActionsType.FETCH_TWEETS,
-});
-
-export const setTweetsLoadingState = (payload: LoadingStatus): ISetTweetsLoadingState => ({
-  type: TweetsActionsType.SET_LOADING_STATE,
+export const setLoadingStatusOfTweets = (payload: LoadingStatus): ISetLoadingStatusOfTweetsAction => ({
+  type: TweetsActionsType.SET_LOADING_STATUS_OF_TWEETS,
   payload,
 });
 
-export const setAddTweetFormState = (payload: AddTweetFormState): ISetAddTweetFormState => ({
-  type: TweetsActionsType.SET_ADD_FORM_STATE,
+export const fetchDataOfTweets = (): IFetchDataOfTweetsAction => ({
+  type: TweetsActionsType.FETCH_DATA_OF_TWEETS,
+});
+
+export const setDataOfTweets = (payload: ITweetsState['items']): ISetDataOfTweetsAction => ({
+  type: TweetsActionsType.SET_DATA_OF_TWEETS,
+  payload,
+});
+
+export const setAddTweetFormStatus = (payload: AddTweetFormStatus): ISetAddTweetFormStatusAction => ({
+  type: TweetsActionsType.SET_ADD_TWEET_FORM_STATUS,
   payload,
 });
 
@@ -37,10 +42,5 @@ export const addTweet = (payload: ITweet): IAddTweetAction => ({
 
 export const removeTweet = (payload: string): IRemoveTweetAction => ({
   type: TweetsActionsType.REMOVE_TWEET,
-  payload,
-});
-
-export const setTweets = (payload: ITweetsState['items']): SetTweetsAction => ({
-  type: TweetsActionsType.SET_TWEETS,
   payload,
 });

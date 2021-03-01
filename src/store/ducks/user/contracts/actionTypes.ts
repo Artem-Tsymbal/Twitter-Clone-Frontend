@@ -5,7 +5,7 @@ import { IRegisterFormProps } from '../../../../screens/Login/components/Registe
 import { ILoginFormProps } from '../../../../screens/Login/components/LoginModal';
 
 export enum UserActionsType {
-  SET_LOADING_STATUS_OF_USER = 'tweet/SET_LOADING_STATUS_OF_USER',
+  SET_LOADING_STATUS_OF_USER = 'user/SET_LOADING_STATUS_OF_USER',
   FETCH_SIGN_UP = 'user/FETCH_SIGN_UP',
   FETCH_SIGN_IN = 'user/FETCH_SIGN_IN',
   SIGN_OUT = 'user/SIGN_OUT',
@@ -13,7 +13,7 @@ export enum UserActionsType {
   SET_DATA_OF_USER = 'user/SET_DATA_OF_USER',
 }
 
-export interface ISetLoadingStatusAction extends Action<UserActionsType> {
+export interface ISetLoadingStatusOfUserAction extends Action<UserActionsType> {
   type: UserActionsType.SET_LOADING_STATUS_OF_USER;
   payload: LoadingStatus;
 }
@@ -40,3 +40,11 @@ export interface ISetDataOfUserAction extends Action<UserActionsType> {
   type: UserActionsType.SET_DATA_OF_USER;
   payload: IUser | undefined;
 }
+
+export type UserActions =
+  | IFetchSignInAction
+  | IFetchSignUpAction
+  | IFetchDataOfUserAction
+  | ISetLoadingStatusOfUserAction
+  | ISignOutAction
+  | ISetDataOfUserAction;

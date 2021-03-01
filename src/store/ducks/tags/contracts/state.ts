@@ -8,5 +8,5 @@ export interface ITag {
 
 export interface ITagsState {
   items: ITag[];
-  loadingState: LoadingStatus;
+  loadingStatus: LoadingStatus;
 }

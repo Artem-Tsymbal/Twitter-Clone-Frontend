@@ -7,6 +7,8 @@
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
     border-bottom: 1px solid rgb(235, 238, 240);
+    text-decoration: none;
+    color: initial;
     cursor: pointer;
     &:hover {
       background-color: rgba(0, 0, 0, 0.07);
@@ -15,8 +17,10 @@
   }
   &__avatar-container {
     margin-right: 10px;
+    padding-top: 10px;
   }
   &__avatar {
+    display: block;
     width: 49px;
     height: 49px;
     border-radius: 9999px;
@@ -31,6 +35,8 @@
   &__body {
     display: flex;
     flex-direction: column;
+    flex-grow: 1;
+    padding-bottom: 8px;
   }
   &-header {
     margin-bottom: 2px;
@@ -51,8 +57,8 @@
     &__time {
       color: rgb(91, 112, 131);
       &-dot {
-        padding-left: 5px;
-        padding-right: 5px;
+        padding-left: 3px;
+        padding-right: 3px;
       }
     }
     &__button {
@@ -82,6 +88,8 @@
     margin-top: 10px;
     display: flex;
     justify-content: space-between;
+    color: rgb(91, 112, 131);
+    font-weight: 400;
     &__container {
       display: flex;
       justify-content: space-between;

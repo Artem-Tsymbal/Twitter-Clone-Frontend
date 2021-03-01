@@ -1,7 +1,5 @@
 import { IconButton } from '@material-ui/core';
 import React from 'react';
-import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import { useHomeStyles } from '../../pages/Home/theme';
 import { IImageObj } from './AddTweetForm';
 import { ImageList } from './ImageList';
 
@@ -14,7 +12,6 @@ export const UploadImages: React.FC<IUploadImageProps> = ({
   images,
   onChangeImages,
 }: IUploadImageProps) => {
-  const classes = useHomeStyles();
   const inputRef = React.useRef<HTMLInputElement>(null);
 
   const handleClickImage = () => {
@@ -58,14 +55,14 @@ export const UploadImages: React.FC<IUploadImageProps> = ({
 
   return (
     <div>
-      <ImageList
+      {/* <ImageList
         images={images.map((obj) => obj.blobUrl)}
-        classes={classes}
+        classes={'sd'}
         removeImage={removeImage}
       />
       <IconButton onClick={handleClickImage} color="primary">
         <ImageOutlinedIcon style={{ fontSize: 26 }} />
-      </IconButton>
+      </IconButton> */}
       <input ref={inputRef} type="file" id="upload-input" style={{ display: 'none' }} />
     </div>
   );

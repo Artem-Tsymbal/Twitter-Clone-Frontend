@@ -5,21 +5,21 @@ import { LoadingStatus } from '../../types';
 
 const initialTagsState: ITagsState = {
   items: [],
-  loadingState: LoadingStatus.NEVER,
+  loadingStatus: LoadingStatus.NEVER,
 };
 
 export const tagsReducer = produce((draft: Draft<ITagsState>, action: TagsActions) => {
   switch (action.type) {
     case TagsActionsType.FETCH_TAGS:
       draft.items = [];
-      draft.loadingState = LoadingStatus.LOADING;
+      draft.loadingStatus = LoadingStatus.LOADING;
       break;
     case TagsActionsType.SET_TAGS:
       draft.items = action.payload;
-      draft.loadingState = LoadingStatus.LOADED;
+      draft.loadingStatus = LoadingStatus.LOADED;
       break;
     case TagsActionsType.SET_LOADING_STATE:
-      draft.loadingState = action.payload;
+      draft.loadingStatus = action.payload;
       break;
 
     default:

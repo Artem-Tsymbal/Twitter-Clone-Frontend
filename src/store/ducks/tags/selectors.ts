@@ -5,12 +5,12 @@ import { LoadingStatus } from '../../types';
 
 export const selectTags = (state: RootState): ITagsState => state.tags;
 
-export const selectLoadingState = (state: RootState): LoadingStatus => selectTags(state).loadingState;
+export const selectLoadingStatus = (state: RootState): LoadingStatus => selectTags(state).loadingStatus;
 
 export const selectAreTagsLoading = (state: RootState): boolean =>
-  selectLoadingState(state) === LoadingStatus.LOADING;
+  selectLoadingStatus(state) === LoadingStatus.LOADING;
 
 export const selectAreTagsLoaded = (state: RootState): boolean =>
-  selectLoadingState(state) === LoadingStatus.LOADED;
+  selectLoadingStatus(state) === LoadingStatus.LOADED;
 
 export const selectTagsItems = createSelector(selectTags, tags => tags.items);

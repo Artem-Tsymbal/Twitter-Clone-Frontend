@@ -15,12 +15,11 @@ import Typography from '@material-ui/core/Typography';
 import { UserSideProfile } from './UserSideProfile';
 import { Link } from 'react-router-dom';
 import { AddTweetForm } from './AddTweetForm';
-import { useHomeStyles } from '../../pages/Home/theme';
 import { selectDataOfUser } from '../../store/ducks/user/selectors';
 import { useSelector } from 'react-redux';
 
 interface ISideMenuProps {
-  classes: ReturnType<typeof useHomeStyles>;
+  classes: any;
 }
 
 export const SideMenu: React.FC<ISideMenuProps> = ({

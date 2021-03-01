@@ -4,14 +4,14 @@ import {
   IFetchSignInAction,
   IFetchSignUpAction,
   IFetchDataOfUserAction,
-  ISetLoadingStatusAction,
+  ISetLoadingStatusOfUserAction,
   ISetDataOfUserAction,
   ISignOutAction,
   UserActionsType,
 } from './contracts/actionTypes';
 import { IUserState } from './contracts/state';
 
-export const setLoadingStatusOfUser = (payload: IUserState['status']): ISetLoadingStatusAction => ({
+export const setLoadingStatusOfUser = (payload: IUserState['loadingStatus']): ISetLoadingStatusOfUserAction => ({
   type: UserActionsType.SET_LOADING_STATUS_OF_USER,
   payload,
 });
@@ -38,11 +38,3 @@ export const setDataOfUser = (payload: IUserState['data']): ISetDataOfUserAction
   type: UserActionsType.SET_DATA_OF_USER,
   payload,
 });
-
-export type UserActions =
-  IFetchSignInAction |
-  IFetchSignUpAction |
-  IFetchDataOfUserAction |
-  ISetLoadingStatusAction |
-  ISignOutAction |
-  ISetDataOfUserAction;

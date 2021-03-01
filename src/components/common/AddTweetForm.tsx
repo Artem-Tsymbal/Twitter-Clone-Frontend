@@ -9,16 +9,15 @@ import TextareaAutosize from '@material-ui/core/TextareaAutosize';
 import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import Alert from '@material-ui/lab/Alert';
 import { fetchAddTweet } from '../../store/ducks/tweets/actionCreators';
-import { selectAddTweetFormState } from '../../store/ducks/tweets/selectors';
-import { AddTweetFormState } from '../../store/ducks/tweets/contracts/state';
-import { useHomeStyles } from '../../pages/Home/theme';
+import { selectAddTweetFormStatus } from '../../store/ducks/tweets/selectors';
+import { AddTweetFormStatus } from '../../store/ducks/tweets/contracts/state';
 import { UploadImages } from './UploadImages';
 import { uploadImage } from '../../utils/uploadImage';
-import { setTweetLoadingState } from '../../store/ducks/tweet/actionCreators';
+import { setLoadingStatusOfTweet } from '../../store/ducks/tweet/actionCreators';
 import { LoadingStatus } from '../../store/types';
 
 interface IAddTweetFormProps {
-  classes: ReturnType<typeof useHomeStyles>;
+  classes: any;
   maxRows?: number;
 }
 
@@ -37,7 +36,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
   const [text, setText] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageObj[]>([]);
 
-  const addFormState = useSelector(selectAddTweetFormState);
+  const addFormState = useSelector(selectAddTweetFormStatus);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = MAX_LENGTH - text.length;
 
@@ -49,7 +48,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
   const handleClickAddTweet = async (): Promise<void> => {
     const result = [];
-    dispatch(setTweetLoadingState(LoadingStatus.LOADING));
+    dispatch(setLoadingStatusOfTweet(LoadingStatus.LOADING));
     for (let i = 0; i < images.length; i += 1) {
       const { file } = images[i];
       const { url } = await uploadImage(file);
@@ -102,10 +101,10 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
           )}
           <Button
             onClick={handleClickAddTweet}
-            disabled={addFormState === AddTweetFormState.LOADING || !text || text.length >= MAX_LENGTH}
+            disabled={addFormState === AddTweetFormStatus.LOADING || !text || text.length >= MAX_LENGTH}
             color="primary"
             variant="contained">
-            {addFormState === AddTweetFormState.LOADING ? (
+            {addFormState === AddTweetFormStatus.LOADING ? (
               <CircularProgress color="inherit" size={16} />
             ) : (
                 'Твитнуть'
@@ -114,7 +113,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
         </div>
       </div>
       {
-        addFormState === AddTweetFormState.ERROR && (
+        addFormState === AddTweetFormStatus.ERROR && (
           <Alert severity="error">Произошла ошибка при добавлении твита!</Alert>
         )
       }

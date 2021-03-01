@@ -11,24 +11,23 @@ import Skeleton from '@material-ui/lab/Skeleton';
 
 import './User.scss';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectAreTweetsLoading, selectTweetsItems } from '../../store/ducks/tweets/selectors';
-import { Tweet } from '../../components/common/Tweet';
-import { fetchTweets } from '../../store/ducks/tweets/actionCreators';
+import { selectStatusOfTweetsIsLoading, selectItemsOfTweets } from '../../store/ducks/tweets/selectors';
+import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { IUser } from '../../store/ducks/user/contracts/state';
 import { AuthApi } from '../../services/api/authApi';
 import { RouteComponentProps } from 'react-router-dom';
 
 export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match }: any) => {
   const classes = useHomeStyles();
-  const tweets = useSelector(selectTweetsItems);
+  const tweets = useSelector(selectItemsOfTweets);
   const dispatch = useDispatch();
-  const isLoading = useSelector(selectAreTweetsLoading);
+  const isLoading = useSelector(selectStatusOfTweetsIsLoading);
   const [activeTab, setActiveTab] = React.useState<number>(0);
   const [userData, setUserData] = React.useState<IUser | undefined>();
 
   React.useEffect(() => {
     const userId = match.params.id;
-    dispatch(fetchTweets());
+    dispatch(fetchDataOfTweets());
     if (userId) {
       AuthApi.getUserInfo(userId).then(({ data }) => {
         setUserData(data);
@@ -94,15 +93,7 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
         <Tab label="Нравится" />
       </Tabs>
       <div className="user__tweets">
-        {isLoading ? (
-          <div className={classes.tweetsCentred}>
-            <CircularProgress />
-          </div>
-        ) : (
-            tweets.map((tweet) => (
-              <Tweet key={tweet._id} classes={classes} images={tweet.images} {...tweet} />
-            ))
-          )}
+
       </div>
     </Paper>
   );

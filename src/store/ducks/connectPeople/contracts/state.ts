@@ -3,5 +3,5 @@ import { IUser } from '../../user/contracts/state';
 
 export interface IConnectPeopleState {
   items: IUser[];
-  loadingState: LoadingStatus;
+  loadingStatus: LoadingStatus;
 }

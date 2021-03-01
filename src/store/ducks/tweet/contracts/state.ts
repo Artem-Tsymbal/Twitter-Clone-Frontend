@@ -3,5 +3,5 @@ import { LoadingStatus } from '../../../types';
 
 export interface ITweetState {
   data?: ITweet;
-  loadingState: LoadingStatus;
+  loadingStatus: LoadingStatus;
 }

@@ -1,36 +1,36 @@
 import produce, { Draft } from 'immer';
 import { LoadingStatus } from '../../types';
 import { TweetsActions, TweetsActionsType } from './contracts/actionTypes';
-import { ITweetsState, AddTweetFormState } from './contracts/state';
+import { ITweetsState, AddTweetFormStatus } from './contracts/state';
 
 const initialTweetsState: ITweetsState = {
   items: [],
-  addTweetFormState: AddTweetFormState.NEVER,
-  loadingState: LoadingStatus.NEVER,
+  addTweetFormStatus: AddTweetFormStatus.NEVER,
+  loadingStatus: LoadingStatus.NEVER,
 };
 
 export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: TweetsActions) => {
   switch (action.type) {
-    case TweetsActionsType.FETCH_TWEETS:
+    case TweetsActionsType.SET_LOADING_STATUS_OF_TWEETS:
+      draft.loadingStatus = action.payload;
+      break;
+    case TweetsActionsType.FETCH_DATA_OF_TWEETS:
       draft.items = [];
-      draft.loadingState = LoadingStatus.LOADING;
+      draft.loadingStatus = LoadingStatus.LOADING;
       break;
-    case TweetsActionsType.SET_TWEETS:
+    case TweetsActionsType.SET_DATA_OF_TWEETS:
       draft.items = action.payload;
-      draft.loadingState = LoadingStatus.LOADED;
+      draft.loadingStatus = LoadingStatus.LOADED;
       break;
-    case TweetsActionsType.SET_LOADING_STATE:
-      draft.loadingState = action.payload;
+    case TweetsActionsType.SET_ADD_TWEET_FORM_STATUS:
+      draft.addTweetFormStatus = action.payload;
       break;
     case TweetsActionsType.FETCH_ADD_TWEET:
-      draft.addTweetFormState = AddTweetFormState.LOADING;
-      break;
-    case TweetsActionsType.SET_ADD_FORM_STATE:
-      draft.addTweetFormState = action.payload;
+      draft.addTweetFormStatus = AddTweetFormStatus.LOADING;
       break;
     case TweetsActionsType.ADD_TWEET:
-      draft.items.push(action.payload);
-      draft.addTweetFormState = AddTweetFormState.NEVER;
+      draft.items.unshift(action.payload);
+      draft.addTweetFormStatus = AddTweetFormStatus.ADDED;
       break;
     case TweetsActionsType.REMOVE_TWEET:
       draft.items = draft.items.filter(item => item._id !== action.payload);
