@@ -7,24 +7,30 @@ import { setLoadingStatusOfTweet } from '../../../store/ducks/tweet/actionCreato
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
 import { AddTweetFormStatus } from '../../../store/ducks/tweets/contracts/state';
 import { LoadingStatus } from '../../../store/types';
+import { uploadImage } from '../../../utils/uploadImage';
 
 import { HiOutlineCalendar } from 'react-icons/hi';
 import { CgPoll } from 'react-icons/cg';
 import { FiSmile } from 'react-icons/fi';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { uploadImage } from '../../../utils/uploadImage';
 
+
+interface IAddTweetFormProps {
+  defaultDraftRowsValue: number;
+}
 
 export interface IImageObj {
   blobUrl: string;
   file: File;
 }
 
-const AddTweetForm: React.FC = () => {
+const AddTweetForm: React.FC<IAddTweetFormProps> = ({
+  defaultDraftRowsValue
+}: IAddTweetFormProps) => {
   const MAX_LENGTH = 280;
   const dispatch = useDispatch();
-  const [draftRows, setDraftRows] = React.useState(1);
+  const [draftRows, setDraftRows] = React.useState(defaultDraftRowsValue);
   const [text, setText] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageObj[]>([]);
 
@@ -33,7 +39,7 @@ const AddTweetForm: React.FC = () => {
   const textCounter = MAX_LENGTH - text.length;
 
   const handleChangeTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    event.target['rows'] = 1;
+    event.target['rows'] = defaultDraftRowsValue;
     const textareaLineHeight = 25;
     const currentRows = Math.floor(event.target.scrollHeight / textareaLineHeight);
     event.target.rows = currentRows;

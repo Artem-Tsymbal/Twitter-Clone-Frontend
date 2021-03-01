@@ -36,7 +36,7 @@ export const Home: React.FC = () => {
         <WiStars className="home-header__icon" />
       </div>
       <Route path="/home" exact>
-        <AddTweetForm />
+        <AddTweetForm defaultDraftRowsValue={1} />
         <div className="home-divider" />
         {isLoading ? (
           <CircularProgress />
