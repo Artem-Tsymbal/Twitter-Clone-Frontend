@@ -1,8 +1,7 @@
 import React from 'react';
-import './index.scss';
-
 import { useAuth } from '../../navigation/Auth/ProvideAuth';
 
+import './index.scss';
 import { Button } from '@material-ui/core';
 import { FiSearch, FiMessageSquare } from 'react-icons/fi';
 import { IoLogoTwitter } from 'react-icons/io';

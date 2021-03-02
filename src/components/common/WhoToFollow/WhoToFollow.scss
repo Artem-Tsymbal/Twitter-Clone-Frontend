@@ -83,6 +83,9 @@
       color: rgb(91, 112, 131);
     }
   }
+  &__link {
+    text-decoration: none;
+  }
 }
 
 @media screen and (max-width: 1077px) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import './WhoToFollow.scss';
 import ShowMoreButton from '../ShowMoreButton/ShowMoreButton';
+import { Link } from 'react-router-dom';
 
 const WhoToFollow: React.FC = () => (
   <div className="follow-block">
@@ -28,7 +29,9 @@ const WhoToFollow: React.FC = () => (
         </div>
         <button className="follow-block-item__button">Follow</button>
       </div>
-      <ShowMoreButton />
+      <Link to="/connect_people" className="trends-block__link">
+        <ShowMoreButton />
+      </ Link>
     </div>
   </div>
 );

@@ -45,6 +45,12 @@ const AppTapBar: React.FC = () => {
             <span className="tap-bar-item__text">Trends</span>
           </div>
         </ Link>
+        <Link to="/connect_people" className="tap-bar-list__link list">
+          <div className="tap-bar-item">
+            <RiFileList2Line className="tap-bar-item__icon" />
+            <span className="tap-bar-item__text">Connect</span>
+          </div>
+        </ Link >
         <Link to="/notifications" className="tap-bar-list__link">
           <div className="tap-bar-item">
             <IoMdNotificationsOutline
@@ -64,12 +70,6 @@ const AppTapBar: React.FC = () => {
           <div className="tap-bar-item">
             <MdBookmarkBorder className="tap-bar-item__icon" />
             <span className="tap-bar-item__text">Bookmarks</span>
-          </div>
-        </ Link >
-        <Link to="/lists" className="tap-bar-list__link list">
-          <div className="tap-bar-item">
-            <RiFileList2Line className="tap-bar-item__icon" />
-            <span className="tap-bar-item__text">Lists</span>
           </div>
         </ Link >
         <Link to={`/user/${userData?._id}`} className="tap-bar-list__link">

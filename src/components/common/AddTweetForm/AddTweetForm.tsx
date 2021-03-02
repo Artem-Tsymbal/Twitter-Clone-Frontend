@@ -66,8 +66,8 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
     <div className="add-tweet-form__wrapper">
       <div className="add-tweet-form__container">
 
-        <div className="add-tweet-form__block-image">
-          <img className="add-tweet-form__image" alt={"Avatar"}></img>
+        <div className="add-tweet-form-image">
+          <img alt={"Avatar"}></img>
         </div>
 
         <div className="add-tweet-form__block-content">

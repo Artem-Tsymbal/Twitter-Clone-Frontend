@@ -3,9 +3,10 @@ import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './Auth/PrivateRoute';
 
 import { DefaultLayout } from '../components/layouts/default';
-import { Home } from '../screens/Home';
-import { Trends } from '../screens/Trends';
+import Home from '../screens/Home';
+import Trends from '../screens/Trends';
 import Login from '../screens/Login';
+import ConnectPeople from '../screens/ConnectPeople';
 
 export const RouterConfig: React.FC = () => (
   <Switch>
@@ -17,6 +18,13 @@ export const RouterConfig: React.FC = () => (
         IsVisibleTrendsForYou={false}
         IsVisibleWhoToFollow={true}>
         <Trends />
+      </DefaultLayout>
+    </PrivateRoute>
+    <PrivateRoute path="/connect_people">
+      <DefaultLayout
+        IsVisibleTrendsForYou={true}
+        IsVisibleWhoToFollow={false}>
+        <ConnectPeople />
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/">
