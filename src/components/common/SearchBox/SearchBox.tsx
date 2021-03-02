@@ -4,22 +4,47 @@ import { FiSearch } from 'react-icons/fi';
 import { MdCancel } from 'react-icons/md';
 
 const SearchBox: React.FC = () => {
+  const [visibleModal, setVisibleModal] = React.useState<boolean>(false);
+  const [text, setText] = React.useState<string>('');
+
+  const onFocusInput = (): void => {
+    setVisibleModal(true);
+  };
+
+  const onBlurInput = (): void => {
+    setVisibleModal(false);
+  };
+
+  const handleChangeInput = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    if (event.currentTarget) {
+      setText(event.currentTarget.value);
+    }
+  };
+
+  const handleClickCleanInput = (event: any): void => {
+    setText('');
+  };
+
   return (
     <div className="search-box">
       <FiSearch className="search-box__icon" />
-      <input type="text" className="search-box__input" placeholder="Search Twitter" />
-      <MdCancel className="search-box__cancel" />
-      <div className="search-box-modal">
-        <span className="search-box-modal__text"></span>
-      </div>
-      <div className="search-box-modal">
-        <p className="search-box-modal__text">
-          Try searching for people, topics, or keywords
-        </p>
-      </div>
+      <input
+        onFocus={onFocusInput}
+        onBlur={onBlurInput}
+        onChange={handleChangeInput}
+        value={text}
+        type="text"
+        className="search-box__input"
+        placeholder="Search Twitter" />
+      <MdCancel onClick={handleClickCleanInput} className="search-box__cancel" />
+      {visibleModal && (
+        <div className="search-box-modal">
+          <p className="search-box-modal__text">
+            Try searching for people, topics, or keywords
+          </p>
+        </div>
+      )}
     </div>
-
-
   );
 };
 

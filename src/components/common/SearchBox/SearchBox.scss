@@ -8,6 +8,8 @@
   box-sizing: border-box;
   background-color: rgb(235, 238, 240);
   border: 1px solid rgb(235, 238, 240);
+  transition-property: border;
+  transition-duration: 0.2s;
   &:focus-within {
     background-color: rgb(255, 255, 255);
     border: 1px solid rgb(29, 161, 242);
@@ -16,7 +18,7 @@
         color: rgb(29, 161, 242);
       }
       &__cancel {
-        display: block;
+        visibility: visible;
       }
     }
   }
@@ -42,14 +44,16 @@
     }
   }
   &__cancel {
-    display: none;
     width: 23px;
     height: 23px;
     margin-right: 10px;
+    visibility: hidden;
+    transition-property: visibility;
+    transition-duration: 0.1s;
     color: rgb(29, 161, 242);
   }
   &-modal {
-    display: none;
+    display: block;
     position: absolute;
     top: 41px;
     left: -2px;
