@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './SearchBox.scss';
 import { FiSearch } from 'react-icons/fi';
 import { MdCancel } from 'react-icons/md';
@@ -21,7 +22,7 @@ const SearchBox: React.FC = () => {
     }
   };
 
-  const handleClickCleanInput = (event: any): void => {
+  const handleClickCleanInput = (): void => {
     setText('');
   };
 
@@ -47,6 +48,5 @@ const SearchBox: React.FC = () => {
     </div>
   );
 };
-
 
 export default SearchBox;

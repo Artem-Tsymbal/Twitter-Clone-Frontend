@@ -1,4 +1,5 @@
 import React from 'react';
+
 import './index.scss';
 import AppTapBar from '../../common/AppTapBar/AppTapBar';
 import AccountMenu from '../../common/AccountMenu/AccountMenu';
@@ -6,7 +7,6 @@ import SearchBox from '../../common/SearchBox/SearchBox';
 import TrendsForYou from '../../common/TrendsForYou/TrendsForYou';
 import WhoToFollow from '../../common/WhoToFollow/WhoToFollow';
 import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
-import { Home } from '../../../screens/Home';
 
 interface IDefaultLayout {
   children: React.ReactNode,

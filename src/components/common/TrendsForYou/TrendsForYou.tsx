@@ -1,8 +1,11 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import './TrendsForYou.scss';
 import { FiSettings } from 'react-icons/fi';
-import { BsThreeDots } from 'react-icons/bs';
 import ShowMoreButton from '../ShowMoreButton/ShowMoreButton';
+import Trend from '../Trend/Trend';
+
 
 const TrendsForYou: React.FC = () => {
   return (
@@ -14,40 +17,14 @@ const TrendsForYou: React.FC = () => {
         </div>
       </div>
       <div className="trends-block-list">
-        <div className="trends-block-item">
-          <div className="trends-block-item__wrapper">
-            <span className="trends-block-item__header">Trending in Ukraine</span>
-            <span className="trends-block-item__trend">Тренд 1</span>
-            <span className="trends-block-item__quantity">3,5414 Tweets</span>
-          </div>
-          <BsThreeDots className="trends-block-item__dots" />
-        </div>
-
-        <div className="trends-block-item">
-          <div className="trends-block-item__wrapper">
-            <span className="trends-block-item__header">Trending in Ukraine</span>
-            <span className="trends-block-item__trend">Тренд 2</span>
-            <span className="trends-block-item__quantity">33,514 Tweets</span>
-          </div>
-          <BsThreeDots className="trends-block-item__dots" />
-        </div>
-        <div className="trends-block-item">
-          <div className="trends-block-item__wrapper">
-            <span className="trends-block-item__header">Trending in Ukraine</span>
-            <span className="trends-block-item__trend">Тренд 3</span>
-            <span className="trends-block-item__quantity">3,2514 Tweets</span>
-          </div>
-          <BsThreeDots className="trends-block-item__dots" />
-        </div>
-        <div className="trends-block-item">
-          <div className="trends-block-item__wrapper">
-            <span className="trends-block-item__header">Trending in Ukraine</span>
-            <span className="trends-block-item__trend">Тренд 4</span>
-            <span className="trends-block-item__quantity">3,5142 Tweets</span>
-          </div>
-          <BsThreeDots className="trends-block-item__dots" />
-        </div>
-        <ShowMoreButton />
+        <Trend />
+        <Trend />
+        <Trend />
+        <Trend />
+        <Trend />
+        <Link to="/trends" className="trends-block__link">
+          <ShowMoreButton />
+        </ Link>
       </div>
     </div>
   );

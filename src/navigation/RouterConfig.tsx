@@ -1,8 +1,10 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './Auth/PrivateRoute';
+
 import { DefaultLayout } from '../components/layouts/default';
 import { Home } from '../screens/Home';
+import { Trends } from '../screens/Trends';
 import Login from '../screens/Login';
 
 export const RouterConfig: React.FC = () => (
@@ -10,6 +12,13 @@ export const RouterConfig: React.FC = () => (
     <Route path="/login">
       <Login />
     </Route>
+    <PrivateRoute path="/trends">
+      <DefaultLayout
+        IsVisibleTrendsForYou={false}
+        IsVisibleWhoToFollow={true}>
+        <Trends />
+      </DefaultLayout>
+    </PrivateRoute>
     <PrivateRoute path="/">
       <DefaultLayout
         IsVisibleTrendsForYou={true}
@@ -20,7 +29,6 @@ export const RouterConfig: React.FC = () => (
     <PrivateRoute exact path="/user/:id">
       <div>USER PAGE</div>
     </PrivateRoute>
-
     <Route>
       <div>Sorry, that page doesn’t exist!</div>
     </Route>

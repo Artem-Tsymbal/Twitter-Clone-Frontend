@@ -1,10 +1,9 @@
 import React from 'react';
-import './AppTapBar.scss';
-
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 
+import './AppTapBar.scss';
 import { GiFeather } from 'react-icons/gi';
 import { CgMoreO } from 'react-icons/cg';
 import { BiHomeCircle } from 'react-icons/bi';
@@ -40,10 +39,10 @@ const AppTapBar: React.FC = () => {
             <span className="tap-bar-item__text">Home</span>
           </div>
         </ Link>
-        <Link to="/explore" className="tap-bar-list__link">
+        <Link to="/trends" className="tap-bar-list__link">
           <div className="tap-bar-item">
             <HiOutlineHashtag className="tap-bar-item__icon" />
-            <span className="tap-bar-item__text">Explore</span>
+            <span className="tap-bar-item__text">Trends</span>
           </div>
         </ Link>
         <Link to="/notifications" className="tap-bar-list__link">
