@@ -12,7 +12,7 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({
   children,
   ...rest
 }: IPrivateRouteProps) => {
-  const isAuthed = useAuth()?.isAuthenticated();
+  const isAuthed = useAuth().isAuthenticated();
 
   return (
     <Route {...rest} render={({ location }) => isAuthed === true

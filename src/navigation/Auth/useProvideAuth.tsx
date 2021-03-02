@@ -1,10 +1,11 @@
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { signOut } from '../../store/ducks/user/actionCreators';
+import { fetchDataOfUser, signOut } from '../../store/ducks/user/actionCreators';
 
 export interface IUseProvideAuth {
   isAuthenticated: () => void | boolean;
   logOut: () => void;
+  updateCurrentUserState: () => void;
 }
 
 export function useProvideAuth(): IUseProvideAuth {
@@ -14,7 +15,7 @@ export function useProvideAuth(): IUseProvideAuth {
   const isAuthenticated = () => {
     let isAuthed = false;
     const currentUser = localStorage.getItem('currentUser');
-    if (currentUser) {
+    if (currentUser && currentUser !== 'undefined') {
       isAuthed = !!JSON.parse(currentUser);
       if (isAuthed && history.location.pathname === '/login') {
         history.push('/home');
@@ -28,10 +29,16 @@ export function useProvideAuth(): IUseProvideAuth {
     window.localStorage.removeItem('token');
     window.localStorage.removeItem('currentUser');
     dispatch(signOut());
+    history.push('/login');
+  };
+
+  const updateCurrentUserState = () => {
+    dispatch(fetchDataOfUser());
   };
 
   return ({
     isAuthenticated,
     logOut,
+    updateCurrentUserState,
   });
 }

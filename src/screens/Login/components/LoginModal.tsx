@@ -1,5 +1,8 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
+import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
+import { LoadingStatus } from '../../../store/types';
 import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
@@ -7,11 +10,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
-
-import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
-import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
-import { LoadingStatus } from '../../../store/types';
-
 
 interface ILoginModalProps {
   open: boolean;

@@ -41,7 +41,6 @@ const Tweet: React.FC<ITweetProps> = ({
   };
 
   const handleOpenTweetMenu = (event: any) => {
-    console.log(_id);
     event.stopPropagation();
     event.preventDefault();
     setAnchorEl(event.currentTarget);

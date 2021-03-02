@@ -1,6 +1,8 @@
 import React from 'react';
 import './index.scss';
 
+import { useAuth } from '../../navigation/Auth/ProvideAuth';
+
 import { Button } from '@material-ui/core';
 import { FiSearch, FiMessageSquare } from 'react-icons/fi';
 import { IoLogoTwitter } from 'react-icons/io';
@@ -8,13 +10,11 @@ import { BsPeople } from 'react-icons/bs';
 import ServiceUsage from '../../components/common/ServiceUsage/ServiceUsage';
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
-import { useAuth } from '../../navigation/Auth/ProvideAuth';
-
 
 const Login: React.FC = () => {
   const [visibleModal, setVisibleModal] = React.useState<'signUp' | 'signIn'>();
 
-  useAuth()?.isAuthenticated();
+  useAuth().isAuthenticated();
 
   const handleClickOpenSignUp = (): void => {
     setVisibleModal('signUp');

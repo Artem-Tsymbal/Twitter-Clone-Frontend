@@ -39,7 +39,6 @@ const FullTweet: React.FC = () => {
 
 
   const handleOpenTweetMenu = (event: any) => {
-    console.log(id);
     event.stopPropagation();
     event.preventDefault();
     setAnchorEl(event.currentTarget);

@@ -4,7 +4,6 @@ import { setLoadingStatusOfUser, setDataOfUser } from './actionCreators';
 import { IFetchSignInAction, IFetchSignUpAction, UserActionsType } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
 import { AuthApi } from '../../../services/api/authApi';
-import { useHistory } from 'react-router-dom';
 
 export function* fetchSignUpRequest({ payload }: IFetchSignUpAction): SagaIterator {
   try {
@@ -32,6 +31,7 @@ export function* fetchDataOfUserRequest(): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
     const { data } = yield call(AuthApi.getMe);
+    //window.localStorage.setItem('currentUser', data.user);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));

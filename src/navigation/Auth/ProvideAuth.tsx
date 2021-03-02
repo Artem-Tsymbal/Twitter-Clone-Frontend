@@ -1,15 +1,27 @@
 import React from 'react';
 import { IUseProvideAuth, useProvideAuth } from './useProvideAuth';
 
-interface ProvideAuthProps {
+interface IProvideAuthProps {
   children?: React.ReactNode;
 }
 
-const authContext = React.createContext<IUseProvideAuth | undefined>(undefined);
+interface IWarningObject extends IUseProvideAuth {
+  readonly foo: void;
+}
 
-export const ProvideAuth: React.FC<ProvideAuthProps> = ({ children }: ProvideAuthProps) => {
+const warningObject: IWarningObject = {
+  isAuthenticated: () => false,
+  logOut: () => ({}),
+  updateCurrentUserState: () => ({}),
+  get foo() {
+    throw new Error('You probably forgot to put <UseProvideAuth>.');
+  },
+};
+
+const authContext = React.createContext<IUseProvideAuth | IWarningObject>(warningObject);
+
+export const ProvideAuth: React.FC<IProvideAuthProps> = ({ children }: IProvideAuthProps) => {
   const auth = useProvideAuth();
-
   return (
     <authContext.Provider value={auth}>
       {children}
@@ -17,12 +29,7 @@ export const ProvideAuth: React.FC<ProvideAuthProps> = ({ children }: ProvideAut
   );
 };
 
-export function useAuth(): IUseProvideAuth | undefined {
+export function useAuth(): IUseProvideAuth {
   const context = React.useContext(authContext);
-
-  if (context !== undefined) {
-    return context;
-  }
-
-  return undefined;
+  return context;
 }
