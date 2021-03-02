@@ -3,16 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
-import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
-
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
 import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/types';
 
+import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
+
 interface IRegisterModalProps {
-  open: boolean;
   onClose: () => void;
 }
 
@@ -33,7 +31,6 @@ const RegisterFormSchema = yup.object().shape({
 });
 
 const RegisterModal: React.FC<IRegisterModalProps> = ({
-  open,
   onClose,
 }: IRegisterModalProps): React.ReactElement => {
   const dispatch = useDispatch();
@@ -49,7 +46,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
   };
 
   return (
-    <ModalWindow visible={open} onClose={onClose}>
+    <ModalWindow onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl className="form-control" component="fieldset" fullWidth>
           <FormGroup aria-label="position" row>

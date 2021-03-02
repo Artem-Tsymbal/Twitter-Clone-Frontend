@@ -12,23 +12,22 @@ import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
 
 const Login: React.FC = () => {
+  useAuth().isAuthenticated();
   const [visibleModal, setVisibleModal] = React.useState<'signUp' | 'signIn'>();
 
-  useAuth().isAuthenticated();
-
-  const handleClickOpenSignUp = (): void => {
+  const handleClickOpenSignUp = (event: React.MouseEvent<HTMLElement>): void => {
+    event.stopPropagation();
     setVisibleModal('signUp');
   };
 
-  const handleClickOpenSignIn = (): void => {
+  const handleClickOpenSignIn = (event: React.MouseEvent<HTMLElement>): void => {
+    event.stopPropagation();
     setVisibleModal('signIn');
   };
 
   const handleCloseModal = (): void => {
     setVisibleModal(undefined);
   };
-
-
 
   return (
     <div className="login__wrapper">
@@ -74,8 +73,12 @@ const Login: React.FC = () => {
               fullWidth>
               Log in
           </Button>
-            <RegisterModal open={visibleModal === 'signUp'} onClose={handleCloseModal} />
-            <LoginModal open={visibleModal === 'signIn'} onClose={handleCloseModal} />
+            {visibleModal === 'signUp' && (
+              <RegisterModal onClose={handleCloseModal} />
+            )}
+            {visibleModal === 'signIn' && (
+              <LoginModal onClose={handleCloseModal} />
+            )}
           </div>
         </section>
       </div>

@@ -23,7 +23,7 @@ const AppTapBar: React.FC = () => {
     setVisibleAddTweetModal(true);
   };
 
-  const onCloseAddTweetModal = () => {
+  const handleCloseAddTweetModal = () => {
     setVisibleAddTweetModal(false);
   };
   return (
@@ -92,9 +92,11 @@ const AppTapBar: React.FC = () => {
           <span className="tap-bar-button__text">Tweet</span>
         </button>
       </div>
-      <ModalWindow visible={visibleAddTweetModal} onClose={onCloseAddTweetModal}>
-        <AddTweetForm defaultDraftRowsValue={4} />
-      </ModalWindow>
+      {visibleAddTweetModal && (
+        <ModalWindow onClose={handleCloseAddTweetModal}>
+          <AddTweetForm defaultDraftRowsValue={4} />
+        </ModalWindow>
+      )}
     </>
   );
 };

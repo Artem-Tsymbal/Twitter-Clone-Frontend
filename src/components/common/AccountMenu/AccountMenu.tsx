@@ -18,6 +18,7 @@ const AccountMenu: React.FC = () => {
 
   React.useEffect(() => {
     auth.updateCurrentUserState();
+    return () => document.removeEventListener("click", handleClick);
   }, [auth]);
 
   function handleClick(event: MouseEvent) {

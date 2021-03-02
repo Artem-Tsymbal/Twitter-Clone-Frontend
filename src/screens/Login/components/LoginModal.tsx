@@ -12,7 +12,6 @@ import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
 
 interface ILoginModalProps {
-  open: boolean;
   onClose: () => void;
 }
 
@@ -27,7 +26,6 @@ const LoginFormSchema = yup.object().shape({
 });
 
 const LoginModal: React.FC<ILoginModalProps> = ({
-  open,
   onClose,
 }: ILoginModalProps) => {
   const dispatch = useDispatch();
@@ -49,7 +47,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
   };
 
   return (
-    <ModalWindow visible={open} onClose={onClose}>
+    <ModalWindow onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
         <FormControl className="form-control" component="fieldset" fullWidth>
           <FormGroup aria-label="position" row>
