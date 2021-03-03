@@ -7,6 +7,7 @@ import Home from '../screens/Home';
 import Trends from '../screens/Trends';
 import Login from '../screens/Login';
 import ConnectPeople from '../screens/ConnectPeople';
+import Profile from '../screens/Profile';
 
 export const RouterConfig: React.FC = () => (
   <Switch>
@@ -25,6 +26,13 @@ export const RouterConfig: React.FC = () => (
         IsVisibleTrendsForYou={true}
         IsVisibleWhoToFollow={false}>
         <ConnectPeople />
+      </DefaultLayout>
+    </PrivateRoute>
+    <PrivateRoute path="/user/:id">
+      <DefaultLayout
+        IsVisibleTrendsForYou={true}
+        IsVisibleWhoToFollow={true}>
+        <Profile />
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/">
