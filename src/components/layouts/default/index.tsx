@@ -7,6 +7,7 @@ import SearchBox from '../../common/SearchBox/SearchBox';
 import TrendsForYou from '../../common/TrendsForYou/TrendsForYou';
 import WhoToFollow from '../../common/WhoToFollow/WhoToFollow';
 import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
+import { RouteComponentProps } from 'react-router-dom';
 
 interface IDefaultLayout {
   children: React.ReactNode,

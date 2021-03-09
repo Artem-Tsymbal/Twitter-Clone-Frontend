@@ -7,11 +7,24 @@
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid rgb(235, 238, 240);
+  &-wrapper {
+    display: flex;
+  }
+  &-container {
+    display: flex;
+    flex-direction: column;
+  }
   &__title {
     font-size: 19px;
     font-weight: 800;
     line-height: 25px;
     color: #0f1419;
+  }
+  &__quantity {
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 20px;
+    color: #5b7083;
   }
   &__icon {
     width: 39px;
@@ -25,14 +38,44 @@
 }
 
 .user {
-  &-header {
-    height: 200px;
+  &-background {
     background-color: #c4cfd6;
     font-size: 15px;
     font-weight: 400;
     line-height: 20px;
     color: #0f1419;
     & img {
+      height: 200px;
+      width: auto;
+      background-position: center;
+      background-size: cover;
+    }
+  }
+  &-header {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-buttons {
+    align-self: center;
+    margin-top: 40px;
+    & button {
+      height: 32px;
+      margin-top: 5px;
+      padding-left: 16px;
+      padding-right: 16px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 20px;
+      color: rgb(29, 161, 242);
+      outline: none;
+      border: 1px solid rgb(29, 161, 242);
+      border-radius: 9999px;
+      background-color: inherit;
+      transition-duration: 0.2s;
+      transition-property: background-color;
+      &:hover {
+        background-color: rgba(29, 161, 242, 0.2);
+      }
     }
   }
   &-info {
@@ -91,8 +134,7 @@
 
   .MuiTab-root {
     text-transform: none !important;
-    min-width: 150px !important;
-    padding: 14px 12px !important;
+    min-width: auto !important;
   }
 
   .MuiTab-wrapper {

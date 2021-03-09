@@ -8,8 +8,9 @@ import {
   ISetDataOfUserAction,
   ISignOutAction,
   UserActionsType,
+  IUpdateDataOfUserAction,
 } from './contracts/actionTypes';
-import { IUserState } from './contracts/state';
+import { IUpdateDataOfUser, IUserState } from './contracts/state';
 
 export const setLoadingStatusOfUser = (payload: IUserState['loadingStatus']): ISetLoadingStatusOfUserAction => ({
   type: UserActionsType.SET_LOADING_STATUS_OF_USER,
@@ -34,7 +35,13 @@ export const fetchDataOfUser = (): IFetchDataOfUserAction => ({
   type: UserActionsType.FETCH_DATA_OF_USER,
 });
 
+export const updateDataOfUser = (payload: IUpdateDataOfUser): IUpdateDataOfUserAction => ({
+  type: UserActionsType.UPDATE_DATA_OF_USER,
+  payload,
+});
+
 export const setDataOfUser = (payload: IUserState['data']): ISetDataOfUserAction => ({
   type: UserActionsType.SET_DATA_OF_USER,
   payload,
 });
+

@@ -51,7 +51,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
     dispatch(setLoadingStatusOfTweet(LoadingStatus.LOADING));
     for (let i = 0; i < images.length; i += 1) {
       const { file } = images[i];
-      const { url } = await uploadImage(file);
+      const { url } = await uploadImage(file, 'tweetImage');
       result.push(url);
     }
     dispatch(fetchAddTweet({ text, images: result }));

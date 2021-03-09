@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { IUser } from './state';
+import { IUpdateDataOfUser, IUser } from './state';
 import { LoadingStatus } from '../../../types';
 import { IRegisterFormProps } from '../../../../screens/Login/components/RegisterModal';
 import { ILoginFormProps } from '../../../../screens/Login/components/LoginModal';
@@ -10,6 +10,7 @@ export enum UserActionsType {
   FETCH_SIGN_IN = 'user/FETCH_SIGN_IN',
   SIGN_OUT = 'user/SIGN_OUT',
   FETCH_DATA_OF_USER = 'user/FETCH_DATA_OF_USER',
+  UPDATE_DATA_OF_USER = 'user/UPDATE_DATA_OF_USER',
   SET_DATA_OF_USER = 'user/SET_DATA_OF_USER',
 }
 
@@ -36,15 +37,21 @@ export interface IFetchDataOfUserAction extends Action<UserActionsType> {
   type: UserActionsType.FETCH_DATA_OF_USER,
 }
 
+export interface IUpdateDataOfUserAction extends Action<UserActionsType> {
+  type: UserActionsType.UPDATE_DATA_OF_USER,
+  payload: IUpdateDataOfUser;
+}
+
 export interface ISetDataOfUserAction extends Action<UserActionsType> {
   type: UserActionsType.SET_DATA_OF_USER;
   payload: IUser | undefined;
 }
 
 export type UserActions =
-  | IFetchSignInAction
-  | IFetchSignUpAction
-  | IFetchDataOfUserAction
   | ISetLoadingStatusOfUserAction
+  | IFetchSignUpAction
+  | IFetchSignInAction
   | ISignOutAction
+  | IFetchDataOfUserAction
+  | IUpdateDataOfUserAction
   | ISetDataOfUserAction;

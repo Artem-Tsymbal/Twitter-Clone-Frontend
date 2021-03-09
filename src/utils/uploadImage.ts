@@ -7,9 +7,10 @@ interface IUploadImageReturnProps {
   width: number;
 }
 
-export const uploadImage = async (image: File): Promise<IUploadImageReturnProps> => {
+export const uploadImage = async (image: File, type: string): Promise<IUploadImageReturnProps> => {
   const formData = new FormData();
   formData.append('image', image);
+  formData.append('type', type);
 
   const { data } = await axios.post('/upload', formData, {
     headers: {

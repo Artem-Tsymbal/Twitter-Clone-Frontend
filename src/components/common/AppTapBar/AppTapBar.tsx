@@ -25,6 +25,7 @@ const AppTapBar: React.FC = () => {
   const handleCloseAddTweetModal = () => {
     setVisibleAddTweetModal(false);
   };
+
   return (
     <>
       <div className="tap-bar-list">

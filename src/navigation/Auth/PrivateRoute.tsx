@@ -1,9 +1,9 @@
 import React from 'react';
-import { Redirect, Route } from 'react-router-dom';
+import { Redirect, Route, RouteComponentProps } from 'react-router-dom';
 import { useAuth } from './ProvideAuth';
 
 interface IPrivateRouteProps {
-  children: React.ReactChild;
+  children: React.ReactNode;
   path: string;
   exact?: boolean;
 }

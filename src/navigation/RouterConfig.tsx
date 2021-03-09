@@ -42,9 +42,6 @@ export const RouterConfig: React.FC = () => (
         <Home />
       </DefaultLayout>
     </PrivateRoute>
-    <PrivateRoute exact path="/user/:id">
-      <div>USER PAGE</div>
-    </PrivateRoute>
     <Route>
       <div>Sorry, that page doesn’t exist!</div>
     </Route>

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { ILoginFormProps } from '../../screens/Login/components/LoginModal';
 import { IRegisterFormProps } from '../../screens/Login/components/RegisterModal';
+import { IUpdateDataOfUser } from '../../store/ducks/user/contracts/state';
 
 interface ResponseApi {
   status: string;
@@ -29,6 +30,11 @@ export const AuthApi = {
 
   async getMe(): Promise<ResponseApi> {
     const { data } = await axios.get<ResponseApi>('/users/me');
+    return data;
+  },
+
+  async updateMe(payload: IUpdateDataOfUser): Promise<ResponseApi> {
+    const { data } = await axios.patch('/users/me', payload);
     return data;
   },
 

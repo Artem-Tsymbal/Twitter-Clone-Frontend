@@ -1,7 +1,12 @@
 import { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { setLoadingStatusOfUser, setDataOfUser } from './actionCreators';
-import { IFetchSignInAction, IFetchSignUpAction, UserActionsType } from './contracts/actionTypes';
+import {
+  IFetchSignInAction,
+  IFetchSignUpAction,
+  IUpdateDataOfUserAction,
+  UserActionsType
+} from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
 import { AuthApi } from '../../../services/api/authApi';
 
@@ -38,8 +43,19 @@ export function* fetchDataOfUserRequest(): SagaIterator {
   }
 }
 
+export function* updateDataOfUserRequest({ payload }: IUpdateDataOfUserAction): SagaIterator {
+  try {
+    yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
+    const { data } = yield call(AuthApi.updateMe, payload);
+    yield put(setDataOfUser(data));
+  } catch (error) {
+    yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
+  }
+}
+
 export function* userSaga(): SagaIterator {
   yield takeLatest(UserActionsType.FETCH_SIGN_IN, fetchSignInRequest);
   yield takeLatest(UserActionsType.FETCH_SIGN_UP, fetchSignUpRequest);
   yield takeLatest(UserActionsType.FETCH_DATA_OF_USER, fetchDataOfUserRequest);
+  yield takeLatest(UserActionsType.UPDATE_DATA_OF_USER, updateDataOfUserRequest);
 }

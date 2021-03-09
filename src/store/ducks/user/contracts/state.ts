@@ -8,9 +8,16 @@ export interface IUser {
   password: string;
   confirmHash: string;
   confirmed?: boolean;
-  location?: string;
-  about?: string;
-  website?: string;
+  biography?: string;
+  background?: string;
+  avatar?: string;
+}
+
+export interface IUpdateDataOfUser {
+  fullName?: string;
+  biography?: string;
+  background?: File | string;
+  avatar?: File | string;
 }
 
 export interface IUserState {
