@@ -1,6 +1,6 @@
 import produce, { Draft } from 'immer';
-import { UserActions } from './contracts/actionTypes';
-import { UserActionsType } from './contracts/actionTypes';
+import { UserActions, UserActionsType } from './contracts/actionTypes';
+
 import { IUserState } from './contracts/state';
 import { LoadingStatus } from '../../types';
 

@@ -3,11 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
 import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/types';
-
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
 import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
 
 interface IRegisterModalProps {

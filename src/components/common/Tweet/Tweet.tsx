@@ -10,6 +10,7 @@ import { BiMessageRounded } from 'react-icons/bi';
 import { BsThreeDots, BsUpload } from 'react-icons/bs';
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { Menu, MenuItem } from '@material-ui/core';
+import Avatar from '../../shared/Avatar/Avatar';
 
 interface ITweetProps {
   _id: string;
@@ -19,7 +20,7 @@ interface ITweetProps {
   user: {
     fullName: string;
     username: string;
-    avatarUrl?: string;
+    avatar?: string;
   };
 }
 
@@ -64,7 +65,7 @@ const Tweet: React.FC<ITweetProps> = ({
       <a onClick={handleClickTweet} className="tweet__wrapper" href={`/home/tweet/${_id}`}>
 
         <div className="tweet__avatar-container">
-          <img src={user.avatarUrl} className="tweet__avatar" alt="Avatar"></img>
+          <Avatar size='middle' fullName={user?.fullName} avatar={user?.avatar} response={false} />
         </div>
 
         <div className="tweet__body">

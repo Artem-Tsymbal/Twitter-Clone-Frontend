@@ -10,19 +10,6 @@
     &-image {
       margin-right: 10px;
       padding-top: 5px;
-      & img {
-        display: block;
-        width: 49px;
-        height: 49px;
-        border-radius: 9999px;
-        background-color: grey;
-        box-shadow: rgb(0 0 0 / 2%) 0px 0px 2px inset;
-        transition-duration: 0.2s;
-        transition-property: background-color;
-        &:hover {
-          background-color: rgba(51, 51, 51, 0.15);
-        }
-      }
     }
     &__block-content {
       padding-top: 5px;

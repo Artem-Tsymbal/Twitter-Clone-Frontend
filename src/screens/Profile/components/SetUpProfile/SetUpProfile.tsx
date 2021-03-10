@@ -1,25 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { updateDataOfUser } from '../../../store/ducks/user/actionCreators';
-import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
-import { LoadingStatus } from '../../../store/types';
-
-import './SetUpProfile.scss';
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
-import { IUser } from '../../../store/ducks/user/contracts/state';
 import { TiCameraOutline } from 'react-icons/ti';
-import { uploadImage } from '../../../utils/uploadImage';
+import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import { updateDataOfUser } from '../../../../store/ducks/user/actionCreators';
+import './SetUpProfile.scss';
+import { IUser } from '../../../../store/ducks/user/contracts/state';
+import { uploadImage } from '../../../../utils/uploadImage';
 
 interface ISetUpProfileProps {
   userData?: IUser;
+  onClose: () => void;
 }
 
 export interface ISetUpProfileFormProps {
-  background: any;
-  avatar?: any;
+  background?: File[] | string;
+  avatar?: File[] | string;
   fullName?: string;
   biography?: string;
 }
@@ -30,10 +28,10 @@ const RegisterFormSchema = yup.object().shape({
 });
 
 const SetUpProfile: React.FC<ISetUpProfileProps> = ({
-  userData
+  userData,
+  onClose,
 }: ISetUpProfileProps): React.ReactElement => {
   const dispatch = useDispatch();
-  const loadingStatus = useSelector(selectStatusOfUser);
 
   const [avatarImage, setAvatarImage] = useState<string | undefined>(userData?.avatar);
   const [backgroundImage, setBackgroundImage] = useState<string | undefined>(userData?.background);
@@ -42,26 +40,38 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
     resolver: yupResolver(RegisterFormSchema),
   });
 
+  const imageHandler = async (image: File, type: string): Promise<string> => {
+    const { url } = await uploadImage(image, type);
+
+    return url;
+  };
+
+  const imageToUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+
+    if (file) {
+      return URL.createObjectURL(new Blob([file]));
+    }
+  };
+
   const onSubmit = async (data: ISetUpProfileFormProps) => {
-    if (data.avatar[0]) {
-      data.avatar = await imageHandler(data.avatar[0], 'avatar');
+    const avatar = data.avatar?.[0] as File;
+    if (avatar) {
+      data.avatar = await imageHandler(avatar, 'avatar');
+      console.log(typeof data.avatar);
     } else {
       delete (data.avatar);
     }
 
-    if (data.background[0]) {
-      data.background = await imageHandler(data.background[0], 'background');
+    const background = data.background?.[0] as File;
+    if (background) {
+      data.background = await imageHandler(background, 'background');
     } else {
       delete (data.background);
     }
 
     dispatch(updateDataOfUser(data));
-  };
-
-  const imageHandler = async (image: File, type: string) => {
-    const { url } = await uploadImage(image, type);
-
-    return url;
+    onClose();
   };
 
   const onChangeBackground = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -72,14 +82,6 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
   const onChangeAvatar = (event: React.ChangeEvent<HTMLInputElement>) => {
     const blobUrl = imageToUrl(event);
     setAvatarImage(blobUrl);
-  };
-
-  const imageToUrl = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-
-    if (file) {
-      return URL.createObjectURL(new Blob([file]));
-    }
   };
 
   return (
@@ -117,7 +119,6 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
             onChange={onChangeAvatar}
           />
         </div>
-
         <FormGroup aria-label="position" row>
           <Controller
             as={TextField}

@@ -1,20 +1,19 @@
 import React from 'react';
 import './AddTweetForm.scss';
-
 import { useDispatch, useSelector } from 'react-redux';
+import { HiOutlineCalendar } from 'react-icons/hi';
+import { CgPoll } from 'react-icons/cg';
+import { FiSmile } from 'react-icons/fi';
+import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
+import CircularProgress from '@material-ui/core/CircularProgress';
 import { selectAddTweetFormStatus } from '../../../store/ducks/tweets/selectors';
 import { setLoadingStatusOfTweet } from '../../../store/ducks/tweet/actionCreators';
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
 import { AddTweetFormStatus } from '../../../store/ducks/tweets/contracts/state';
 import { LoadingStatus } from '../../../store/types';
 import { uploadImage } from '../../../utils/uploadImage';
-
-import { HiOutlineCalendar } from 'react-icons/hi';
-import { CgPoll } from 'react-icons/cg';
-import { FiSmile } from 'react-icons/fi';
-import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
-import CircularProgress from '@material-ui/core/CircularProgress';
-
+import { selectDataOfUser } from '../../../store/ducks/user/selectors';
+import Avatar from '../../shared/Avatar/Avatar';
 
 interface IAddTweetFormProps {
   defaultDraftRowsValue: number;
@@ -26,20 +25,20 @@ export interface IImageObj {
 }
 
 const AddTweetForm: React.FC<IAddTweetFormProps> = ({
-  defaultDraftRowsValue
+  defaultDraftRowsValue,
 }: IAddTweetFormProps) => {
   const MAX_LENGTH = 280;
   const dispatch = useDispatch();
   const [draftRows, setDraftRows] = React.useState(defaultDraftRowsValue);
   const [text, setText] = React.useState<string>('');
   const [images, setImages] = React.useState<IImageObj[]>([]);
-
+  const currentUserData = useSelector(selectDataOfUser);
   const addFormState = useSelector(selectAddTweetFormStatus);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = MAX_LENGTH - text.length;
 
   const handleChangeTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
-    event.target['rows'] = defaultDraftRowsValue;
+    event.target.rows = defaultDraftRowsValue;
     const textareaLineHeight = 25;
     const currentRows = Math.floor(event.target.scrollHeight / textareaLineHeight);
     event.target.rows = currentRows;
@@ -67,7 +66,11 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
       <div className="add-tweet-form__container">
 
         <div className="add-tweet-form-image">
-          <img alt={"Avatar"}></img>
+          <Avatar
+            size='middle'
+            fullName={currentUserData?.fullName}
+            avatar={currentUserData?.avatar}
+            response={false} />
         </div>
 
         <div className="add-tweet-form__block-content">

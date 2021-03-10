@@ -1,6 +1,5 @@
 import produce, { Draft } from 'immer';
-import { TweetActions } from './contracts/actionTypes';
-import { TweetActionsType } from './contracts/actionTypes';
+import { TweetActions, TweetActionsType } from './contracts/actionTypes';
 import { ITweetState } from './contracts/state';
 import { LoadingStatus } from '../../types';
 

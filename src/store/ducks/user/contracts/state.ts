@@ -11,13 +11,14 @@ export interface IUser {
   biography?: string;
   background?: string;
   avatar?: string;
+  createdAt: string;
 }
 
 export interface IUpdateDataOfUser {
   fullName?: string;
   biography?: string;
-  background?: File | string;
-  avatar?: File | string;
+  background?: File[] | string;
+  avatar?: File[] | string;
 }
 
 export interface IUserState {

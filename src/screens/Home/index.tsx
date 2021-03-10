@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { CircularProgress } from '@material-ui/core';
+import { Route } from 'react-router-dom';
 import { fetchTags } from '../../store/ducks/tags/actionCreators';
 import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
@@ -9,8 +11,6 @@ import { BackButton } from '../../components/common/BackButton';
 import { WiStars } from 'react-icons/wi';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
 import Tweet from '../../components/common/Tweet/Tweet';
-import { CircularProgress } from '@material-ui/core';
-import { Route } from 'react-router-dom';
 import FullTweet from '../../components/common/FullTweet/FullTweet';
 
 const Home: React.FC = () => {

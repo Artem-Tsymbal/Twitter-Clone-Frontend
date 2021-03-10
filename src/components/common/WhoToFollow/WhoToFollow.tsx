@@ -1,6 +1,6 @@
 import React from 'react';
 import './WhoToFollow.scss';
-import ShowMoreButton from '../ShowMoreButton/ShowMoreButton';
+import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import { Link } from 'react-router-dom';
 
 const WhoToFollow: React.FC = () => (

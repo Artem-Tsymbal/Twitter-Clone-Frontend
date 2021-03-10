@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import './TrendsForYou.scss';
 import { FiSettings } from 'react-icons/fi';
-import ShowMoreButton from '../ShowMoreButton/ShowMoreButton';
+import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import Trend from '../Trend/Trend';
 
 

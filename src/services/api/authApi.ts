@@ -39,12 +39,12 @@ export const AuthApi = {
   },
 
   async getUserInfo(userId: string): Promise<ResponseApi> {
-    const { data } = await axios.get<ResponseApi>('/users/' + userId);
+    const { data } = await axios.get<ResponseApi>(`/users/${userId}`);
     return data;
   },
 
   async verify(hash: string): Promise<ResponseApi> {
-    const { data } = await axios.get('auth/verify?hash=' + hash);
+    const { data } = await axios.get(`auth/verify?hash=${hash}`);
     return data;
-  }
+  },
 };

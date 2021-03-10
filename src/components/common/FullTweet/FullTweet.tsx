@@ -16,6 +16,7 @@ import { BsThreeDots, BsUpload } from 'react-icons/bs';
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { CircularProgress } from '@material-ui/core';
 import { Menu, MenuItem } from '@material-ui/core';
+import Avatar from '../../shared/Avatar/Avatar';
 
 const FullTweet: React.FC = () => {
   const dispatch = useDispatch();
@@ -73,7 +74,15 @@ const FullTweet: React.FC = () => {
 
           <div className="full-tweet-header">
             <div className="full-tweet-header__info">
-              <img src={tweetData.user.avatarUrl} className="full-tweet-header__avatar" alt="Avatar"></img>
+              <div className="full-tweet-header__avatar">
+                <Avatar
+                  size='middle'
+                  fullName={tweetData.user.fullName}
+                  avatar={tweetData.user.avatar}
+                  id={tweetData.user._id}
+                  response={true}
+                />
+              </div>
               <div className="full-tweet-header__body">
                 <span className="full-tweet-header__fullName">{tweetData.user.fullName}</span>
                 <span className="full-tweet-header__username">@{tweetData.user.username}</span>

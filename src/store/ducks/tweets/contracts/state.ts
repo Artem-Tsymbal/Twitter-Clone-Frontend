@@ -1,4 +1,4 @@
-import { LoadingStatus } from "../../../types";
+import { LoadingStatus } from '../../../types';
 
 export enum AddTweetFormStatus {
   ADDED = 'ADDED',
@@ -13,9 +13,10 @@ export interface ITweet {
   createdAt: string;
   images?: [];
   user: {
+    _id: string;
     fullName: string;
     username: string;
-    avatarUrl: string;
+    avatar: string;
   };
 }
 

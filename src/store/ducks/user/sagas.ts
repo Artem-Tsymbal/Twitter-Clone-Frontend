@@ -5,7 +5,7 @@ import {
   IFetchSignInAction,
   IFetchSignUpAction,
   IUpdateDataOfUserAction,
-  UserActionsType
+  UserActionsType,
 } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
 import { AuthApi } from '../../../services/api/authApi';
@@ -36,7 +36,7 @@ export function* fetchDataOfUserRequest(): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
     const { data } = yield call(AuthApi.getMe);
-    //window.localStorage.setItem('currentUser', data.user);
+    // window.localStorage.setItem('currentUser', data.user);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));

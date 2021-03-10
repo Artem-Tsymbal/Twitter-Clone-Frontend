@@ -9,7 +9,7 @@ interface Response<T> {
 export const TweetsApi = {
   async fetchDataOfTweets(userId?: string): Promise<ITweet[]> {
     const { data } = await axios.get<Response<ITweet[]>>(
-      userId ? `/tweets/user/${userId}` : '/tweets/'
+      userId ? `/tweets/user/${userId}` : '/tweets/',
     );
     return data.data;
   },
@@ -24,5 +24,5 @@ export const TweetsApi = {
     return data.data;
   },
 
-  removeTweet: (id: string): Promise<void> => axios.delete('tweets/' + id),
+  removeTweet: (id: string): Promise<void> => axios.delete(`tweets/${id}`),
 };

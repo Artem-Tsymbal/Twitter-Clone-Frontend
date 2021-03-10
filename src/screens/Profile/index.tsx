@@ -2,30 +2,31 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
+import { format } from 'date-fns';
+import enLang from 'date-fns/locale/en-GB';
+import { WiStars } from 'react-icons/wi';
+import Tabs from '@material-ui/core/Tabs';
+import Tab from '@material-ui/core/Tab';
+import { Box, Typography } from '@material-ui/core';
+import { BsCalendar } from 'react-icons/bs';
+import { selectDataOfUser } from '../../store/ducks/user/selectors';
 import { AuthApi } from '../../services/api/authApi';
 import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets } from '../../store/ducks/tweets/selectors';
 import { IUser } from '../../store/ducks/user/contracts/state';
-import { format } from 'date-fns';
-import enLang from 'date-fns/locale/en-GB';
-
 import './index.scss';
-import { WiStars } from 'react-icons/wi';
 import { BackButton } from '../../components/common/BackButton';
-import Tabs from '@material-ui/core/Tabs';
-import Tab from '@material-ui/core/Tab';
 import Tweet from '../../components/common/Tweet/Tweet';
-import { Box, Typography } from '@material-ui/core';
 import ModalWindow from '../../components/common/ModalWindow/ModalWindow';
-import SetUpProfile from '../../components/common/SetUpProfile/SetUpProfile';
-import { selectDataOfUser } from '../../store/ducks/user/selectors';
+import SetUpProfile from './components/SetUpProfile/SetUpProfile';
+import Avatar from '../../components/shared/Avatar/Avatar';
 
 type TParams = { id: string };
 
 interface TabPanelProps {
   children?: React.ReactNode;
-  index: any;
-  value: any;
+  index: number;
+  value: number;
 }
 
 function TabPanel(props: TabPanelProps) {
@@ -58,15 +59,13 @@ function a11yProps(index: number) {
 const Profile: React.FC = () => {
   const { id } = useParams<TParams>();
   const dispatch = useDispatch();
-  const [userData, setUserData] = React.useState<IUser | undefined>();
-  const currentUserData = useSelector(selectDataOfUser);
+
   const [value, setValue] = React.useState(0);
-  const tweets = useSelector(selectItemsOfTweets);
+  const [userData, setUserData] = React.useState<IUser | undefined>();
   const [visibleSetUpModal, setVisibleSetUpModal] = React.useState<boolean>(false);
 
-  React.useEffect(() => {
-    dispatch(fetchDataOfTweets());
-  }, []);
+  const currentUserData = useSelector(selectDataOfUser);
+  const tweets = useSelector(selectItemsOfTweets);
 
   React.useEffect(() => {
     if (id) {
@@ -78,6 +77,8 @@ const Profile: React.FC = () => {
         });
       }
     }
+
+    dispatch(fetchDataOfTweets());
   }, [currentUserData]);
 
   const handleClickOpenSetUpModal = () => {
@@ -106,12 +107,17 @@ const Profile: React.FC = () => {
       </div>
       <div className="user">
         <div className="user-background">
-          <img src={userData?.background} alt="Header background"></img>
+          <img src={userData?.background} alt="Header background" />
         </div>
         <div className="user-info">
           <div className="user-header">
             <div className="user-avatar">
-              <img src={userData?.avatar} alt="Avatar"></img>
+              <Avatar
+                size='large'
+                fullName={userData?.fullName}
+                avatar={userData?.avatar}
+                id={userData?._id}
+                response={true} />
             </div>
             <div className="user-buttons">
               <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
@@ -121,10 +127,12 @@ const Profile: React.FC = () => {
 
           <div className="user-fullname">{userData?.fullName}</div>
           <div className="user-username">@{userData?.username}</div>
-          <div className="user-description">{userData?.biography}</div>
-          <div className="user-joined-date">
-            {/* {format(new Date(userData.), 'H:mm', { locale: enLang })} */}
-          </div>
+          <div className="user-biography">{userData?.biography}</div>
+          {
+            userData?.createdAt && <div className="user-joined-date">
+              <BsCalendar />Joined {format(new Date(userData.createdAt), 'MMMM y', { locale: enLang })}
+            </div>
+          }
           <div className="user-details">
             <div className="user-details-item">
               <span className="user-details__quantity">31.4K</span>
@@ -159,7 +167,7 @@ const Profile: React.FC = () => {
       </div>
       {visibleSetUpModal && (
         <ModalWindow onClose={handleCloseSetUpModal}>
-          <SetUpProfile userData={userData} />
+          <SetUpProfile userData={userData} onClose={handleCloseSetUpModal} />
         </ModalWindow>
       )}
     </div >

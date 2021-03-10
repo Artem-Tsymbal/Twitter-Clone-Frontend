@@ -1,11 +1,10 @@
 import React from 'react';
-import { useAuth } from '../../navigation/Auth/ProvideAuth';
-
 import './index.scss';
 import { Button } from '@material-ui/core';
 import { FiSearch, FiMessageSquare } from 'react-icons/fi';
 import { IoLogoTwitter } from 'react-icons/io';
 import { BsPeople } from 'react-icons/bs';
+import { useAuth } from '../../navigation/Auth/ProvideAuth';
 import ServiceUsage from '../../components/common/ServiceUsage/ServiceUsage';
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';

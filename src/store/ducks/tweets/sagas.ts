@@ -5,10 +5,11 @@ import { AddTweetFormStatus } from './contracts/state';
 import { addTweet, setAddTweetFormStatus, setDataOfTweets, setLoadingStatusOfTweets } from './actionCreators';
 import { IFetchAddTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
+import { setLoadingStatusOfTweet } from '../tweet/actionCreators';
 
 export function* fetchDataOfTweetsRequest(): SagaIterator {
   try {
-    const pathname = window.location.pathname;
+    const { pathname } = window.location;
     const userId = pathname.includes('/user') ? pathname.split('/').pop() : undefined;
     const items = yield call(TweetsApi.fetchDataOfTweets, userId);
     yield put(setDataOfTweets(items));
@@ -30,7 +31,7 @@ export function* fetchRemoveTweetRequest({ payload }: IRemoveTweetAction): SagaI
   try {
     yield call(TweetsApi.removeTweet, payload);
   } catch (error) {
-    alert(error);
+    yield put(setLoadingStatusOfTweet(LoadingStatus.ERROR));
   }
 }
 

@@ -3,12 +3,13 @@ import './AccountMenu.scss';
 
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectDataOfUser } from '../../../store/ducks/user/selectors';
-import { useAuth } from '../../../navigation/Auth/ProvideAuth';
 
 import { BsThreeDots } from 'react-icons/bs';
 import { HiOutlineCheck } from 'react-icons/hi';
 import { VscTriangleDown } from 'react-icons/vsc';
+import { useAuth } from '../../../navigation/Auth/ProvideAuth';
+import { selectDataOfUser } from '../../../store/ducks/user/selectors';
+import Avatar from '../../shared/Avatar/Avatar';
 
 const AccountMenu: React.FC = () => {
   const [visibleModal, setVisibleModal] = React.useState<boolean>(false);
@@ -18,27 +19,27 @@ const AccountMenu: React.FC = () => {
 
   React.useEffect(() => {
     auth.updateCurrentUserState();
-    return () => document.removeEventListener("click", handleClick);
+    return () => document.removeEventListener('click', handleClick);
   }, [auth]);
+
+  const handleOpenPopup = (event: React.MouseEvent<HTMLElement>): void => {
+    event.stopPropagation();
+    setVisibleModal(true);
+    if (!visibleModal) {
+      document.addEventListener('click', handleClick);
+    }
+  };
+
+  const handleClosePopup = (): void => {
+    document.removeEventListener('click', handleClick);
+    setVisibleModal(false);
+  };
 
   function handleClick(event: MouseEvent) {
     if (!(ref.current! as any).contains(event.target)) {
       handleClosePopup();
     }
   }
-
-  const handleOpenPopup = (event: React.MouseEvent<HTMLElement>): void => {
-    event.stopPropagation();
-    setVisibleModal(true);
-    if (!visibleModal) {
-      document.addEventListener("click", handleClick);
-    }
-  };
-
-  const handleClosePopup = (): void => {
-    document.removeEventListener("click", handleClick);
-    setVisibleModal(false);
-  };
 
   const handleSignOut = (): void => {
     auth.logOut();
@@ -53,7 +54,9 @@ const AccountMenu: React.FC = () => {
 
       <div onClick={handleOpenPopup} className="account-menu-button">
         <div className="main-info-wrapper">
-          <div className="account-menu__image"></div>
+          <div className="account-menu__image">
+            <Avatar size='small' fullName={userData?.fullName} avatar={userData?.avatar} response={false} />
+          </div>
           <div className="account-menu-content">
             <span className="account-menu-content__fullName">{userData.fullName}</span>
             <span className="account-menu-content__username">@{userData.username}</span>
@@ -66,7 +69,14 @@ const AccountMenu: React.FC = () => {
         <div ref={ref} className="account-menu-modal">
           <div className="account-menu-button account-menu-modal__item">
             <div className="main-info-wrapper">
-              <div className="account-menu__image" />
+              <div className="account-menu__image">
+                <Avatar
+                  size='small'
+                  fullName={userData?.fullName}
+                  avatar={userData?.avatar}
+                  id={userData?._id}
+                  response={true} />
+              </div>
               <div className="account-menu-content">
                 <span className="account-menu-content__fullName">{userData.fullName}</span>
                 <span className="account-menu-content__username">@{userData.username}</span>
