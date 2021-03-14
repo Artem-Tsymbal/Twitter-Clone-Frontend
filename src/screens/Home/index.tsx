@@ -20,7 +20,7 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchDataOfTweets());
-    dispatch(fetchTags());
+    // dispatch(fetchTags());
   }, [dispatch]);
 
   return (

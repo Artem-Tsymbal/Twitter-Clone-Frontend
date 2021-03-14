@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './FullTweet.scss';
 
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeTweet } from '../../../store/ducks/tweets/actionCreators';
+import { likeTweet, removeTweet } from '../../../store/ducks/tweets/actionCreators';
 import { useParams } from 'react-router-dom';
 import { fetchDataOfTweet, setDataOfTweet } from '../../../store/ducks/tweet/actionCreators';
 import { selectDataOfTweet } from '../../../store/ducks/tweet/selectors';
@@ -23,12 +23,14 @@ const FullTweet: React.FC = () => {
   const history = useHistory();
   const tweetData = useSelector(selectDataOfTweet);
   const isLoading = useSelector(selectStatusOfTweetIsLoading);
+  //const [isFavorite, setIsFavorite] = useState<boolean | undefined>(undefined);
   const params: { id?: string } = useParams();
   const { id } = params;
-  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   React.useEffect(() => {
+    console.log('2');
     if (id) {
       dispatch(fetchDataOfTweet(id));
     }
@@ -36,7 +38,7 @@ const FullTweet: React.FC = () => {
     return () => {
       dispatch(setDataOfTweet(undefined));
     };
-  }, [dispatch, id]);
+  }, [dispatch]);
 
 
   const handleOpenTweetMenu = (event: any) => {
@@ -61,6 +63,13 @@ const FullTweet: React.FC = () => {
     history.goBack();
   };
 
+  const handleClickLike = (event: React.MouseEvent<HTMLElement>): void => {
+    event.stopPropagation();
+    if (id) {
+      dispatch(likeTweet(id));
+    }
+  };
+
   if (isLoading) {
     return (
       <CircularProgress />
@@ -71,7 +80,6 @@ const FullTweet: React.FC = () => {
     return (
       <div className="full-tweet">
         <div className="full-tweet__wrapper">
-
           <div className="full-tweet-header">
             <div className="full-tweet-header__info">
               <div className="full-tweet-header__avatar">
@@ -129,7 +137,14 @@ const FullTweet: React.FC = () => {
               <div className="full-tweet-footer__actions">
                 <BiMessageRounded className="full-tweet-footer__action action--blue" />
                 <AiOutlineRetweet className="full-tweet-footer__action action--green" />
-                <AiOutlineHeart className="full-tweet-footer__action action--red" />
+                <div onClick={handleClickLike}>
+                  <AiOutlineHeart
+                    className={
+                      tweetData.favorite ?
+                        "full-tweet-footer__action action--red liked" :
+                        "full-tweet-footer__action action--red"}
+                  />
+                </div>
                 <BsUpload className="full-tweet-footer__action action--blue" />
               </div>
             </div>

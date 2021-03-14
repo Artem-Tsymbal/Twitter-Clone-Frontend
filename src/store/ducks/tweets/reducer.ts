@@ -1,4 +1,5 @@
 import produce, { Draft } from 'immer';
+import { act } from 'react-dom/test-utils';
 import { LoadingStatus } from '../../types';
 import { TweetsActions, TweetsActionsType } from './contracts/actionTypes';
 import { ITweetsState, AddTweetFormStatus } from './contracts/state';
@@ -34,6 +35,14 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
       break;
     case TweetsActionsType.REMOVE_TWEET:
       draft.items = draft.items.filter(item => item._id !== action.payload);
+      break;
+    case TweetsActionsType.UPDATE_LIKES_OF_TWEET:
+      draft.items.forEach(item => {
+        if (item._id === action.payload._id) {
+          item.likes = action.payload.likes;
+          item.favorite = action.payload.favorite;
+        }
+      });
       break;
 
     default:

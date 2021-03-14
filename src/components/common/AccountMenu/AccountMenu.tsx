@@ -75,7 +75,8 @@ const AccountMenu: React.FC = () => {
                   fullName={userData?.fullName}
                   avatar={userData?.avatar}
                   id={userData?._id}
-                  response={true} />
+                  response={true}
+                />
               </div>
               <div className="account-menu-content">
                 <span className="account-menu-content__fullName">{userData.fullName}</span>

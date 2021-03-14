@@ -25,4 +25,9 @@ export const TweetsApi = {
   },
 
   removeTweet: (id: string): Promise<void> => axios.delete(`tweets/${id}`),
+
+  async likeTweet(id: string): Promise<ITweet> {
+    const { data } = await axios.get<Response<ITweet>>(`tweets/${id}/like`);
+    return data.data;
+  }
 };

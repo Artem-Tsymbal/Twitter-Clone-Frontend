@@ -2,10 +2,16 @@ import { SagaIterator } from 'redux-saga';
 import { call, put, takeLatest } from 'redux-saga/effects';
 import { TweetsApi } from '../../../services/api/tweetsApi';
 import { AddTweetFormStatus } from './contracts/state';
-import { addTweet, setAddTweetFormStatus, setDataOfTweets, setLoadingStatusOfTweets } from './actionCreators';
-import { IFetchAddTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
+import {
+  addTweet,
+  setAddTweetFormStatus,
+  setDataOfTweets,
+  setLoadingStatusOfTweets,
+  updateLikesOfTweet
+} from './actionCreators';
+import { IFetchAddTweetAction, ILikeTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
-import { setLoadingStatusOfTweet } from '../tweet/actionCreators';
+import { setDataOfTweet, setLoadingStatusOfTweet } from '../tweet/actionCreators';
 
 export function* fetchDataOfTweetsRequest(): SagaIterator {
   try {
@@ -35,8 +41,20 @@ export function* fetchRemoveTweetRequest({ payload }: IRemoveTweetAction): SagaI
   }
 }
 
+export function* fetchLikeTweetRequest({ payload }: ILikeTweetAction): SagaIterator {
+  try {
+    //  yield put(setLoadingStatusOfTweet(LoadingStatus.LOADING));
+    const item = yield call(TweetsApi.likeTweet, payload);
+    yield put(updateLikesOfTweet(item));
+    yield put(setDataOfTweet(item));
+  } catch (error) {
+    yield put(setLoadingStatusOfTweet(LoadingStatus.ERROR));
+  }
+}
+
 export function* tweetsSaga(): SagaIterator {
   yield takeLatest(TweetsActionsType.FETCH_DATA_OF_TWEETS, fetchDataOfTweetsRequest);
   yield takeLatest(TweetsActionsType.FETCH_ADD_TWEET, fetchAddTweetRequest);
   yield takeLatest(TweetsActionsType.REMOVE_TWEET, fetchRemoveTweetRequest);
+  yield takeLatest(TweetsActionsType.LIKE_TWEET, fetchLikeTweetRequest);
 }

@@ -70,7 +70,8 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
             size='middle'
             fullName={currentUserData?.fullName}
             avatar={currentUserData?.avatar}
-            response={false} />
+            response={false}
+          />
         </div>
 
         <div className="add-tweet-form__block-content">

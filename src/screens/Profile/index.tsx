@@ -42,7 +42,7 @@ function TabPanel(props: TabPanelProps) {
     >
       {value === index && (
         <Box p={4}>
-          <Typography>{children}</Typography>
+          <Typography component={'div'}>{children}</Typography>
         </Box>
       )}
     </div>
@@ -117,7 +117,8 @@ const Profile: React.FC = () => {
                 fullName={userData?.fullName}
                 avatar={userData?.avatar}
                 id={userData?._id}
-                response={true} />
+                response={true}
+              />
             </div>
             <div className="user-buttons">
               <button onClick={handleClickOpenSetUpModal}>Set up profile</button>

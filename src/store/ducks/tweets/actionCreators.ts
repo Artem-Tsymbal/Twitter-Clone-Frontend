@@ -8,6 +8,8 @@ import {
   ISetDataOfTweetsAction,
   TweetsActionsType,
   IRemoveTweetAction,
+  ILikeTweetAction,
+  IUpdateLikesOfTweetAction,
 } from './contracts/actionTypes';
 import { ITweetsState, ITweet, AddTweetFormStatus } from './contracts/state';
 
@@ -42,5 +44,15 @@ export const addTweet = (payload: ITweet): IAddTweetAction => ({
 
 export const removeTweet = (payload: string): IRemoveTweetAction => ({
   type: TweetsActionsType.REMOVE_TWEET,
+  payload,
+});
+
+export const likeTweet = (payload: string): ILikeTweetAction => ({
+  type: TweetsActionsType.LIKE_TWEET,
+  payload,
+});
+
+export const updateLikesOfTweet = (payload: ITweet): IUpdateLikesOfTweetAction => ({
+  type: TweetsActionsType.UPDATE_LIKES_OF_TWEET,
   payload,
 });

@@ -77,6 +77,9 @@
     justify-content: space-between;
     color: rgb(91, 112, 131);
     font-weight: 400;
+    .liked {
+      color: rgb(224, 36, 94);
+    }
     &__container {
       display: flex;
       justify-content: space-between;
@@ -132,18 +135,18 @@
   }
   &--red {
     &:hover {
-      background-color: rgba(23, 191, 99, 0.1);
-    }
-    &:active {
-      background-color: rgba(23, 191, 99, 0.2);
-    }
-  }
-  &--green {
-    &:hover {
       background-color: rgba(224, 36, 94, 0.1);
     }
     &:active {
       background-color: rgba(224, 36, 94, 0.2);
+    }
+  }
+  &--green {
+    &:hover {
+      background-color: rgba(23, 191, 99, 0.1);
+    }
+    &:active {
+      background-color: rgba(23, 191, 99, 0.2);
     }
   }
 }

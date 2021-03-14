@@ -3,7 +3,7 @@ import './Tweet.scss';
 
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
-import { removeTweet } from '../../../store/ducks/tweets/actionCreators';
+import { likeTweet, removeTweet } from '../../../store/ducks/tweets/actionCreators';
 import { formatDate } from '../../../utils/formatDate';
 
 import { BiMessageRounded } from 'react-icons/bi';
@@ -17,6 +17,8 @@ interface ITweetProps {
   text: string;
   createdAt: string;
   images?: string[];
+  likes: string[];
+  favorite: boolean;
   user: {
     fullName: string;
     username: string;
@@ -28,6 +30,8 @@ const Tweet: React.FC<ITweetProps> = ({
   _id,
   text,
   user,
+  likes,
+  favorite,
   images,
   createdAt,
 }: ITweetProps) => {
@@ -58,6 +62,12 @@ const Tweet: React.FC<ITweetProps> = ({
     if (window.confirm('Вы уверены?')) {
       dispatch(removeTweet(_id));
     }
+  };
+
+  const handleClickLike = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    dispatch(likeTweet(_id));
   };
 
   return (
@@ -97,16 +107,22 @@ const Tweet: React.FC<ITweetProps> = ({
               <span className="tweet-footer__quantity">11</span>
             </div>
             <div className="tweet-footer__container container-retweet">
-              <div className="tweet-footer__action-wrapper wrapper--red">
+              <div className="tweet-footer__action-wrapper wrapper--green">
                 <AiOutlineRetweet className="tweet-footer__icon" />
               </div>
               <span className="tweet-footer__quantity">22</span>
             </div>
-            <div className="tweet-footer__container container-like">
-              <div className="tweet-footer__action-wrapper wrapper--green">
+            <div
+              className={
+                favorite ?
+                  "tweet-footer__container container-like liked" :
+                  "tweet-footer__container container-like"
+              }
+            >
+              <div onClick={handleClickLike} className="tweet-footer__action-wrapper wrapper--red">
                 <AiOutlineHeart className="tweet-footer__icon" />
               </div>
-              <span className="tweet-footer__quantity">33</span>
+              <span className="tweet-footer__quantity">{likes.length}</span>
             </div>
             <div className="tweet-footer__action-wrapper wrapper--blue">
               <BsUpload className="tweet-footer__icon" />

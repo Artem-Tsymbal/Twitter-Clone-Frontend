@@ -62,23 +62,46 @@ const Avatar: React.FC<IAvatarProps> = ({
 
   if (avatar) {
     return (
-      <a className="avatar" style={options} href={response ? `/user/${id}` : undefined}>
-        <div className="avatar__wrapper" style={{ backgroundColor: '#c4cfd6' }}>
-          <img className={response ? "response" : ""} src={avatar} alt="Avatar" />
-        </div>
-      </a>
+      <>
+        { response ? (
+          <a className="avatar" style={options} href={`/user/${id}`}>
+            <div className="avatar__wrapper" style={{ backgroundColor: '#c4cfd6' }}>
+              <img className={response ? "response" : ""} src={avatar} alt="Avatar" />
+            </div>
+          </a>
+        ) : (
+            <div className="avatar" style={options}>
+              <div className="avatar__wrapper" style={{ backgroundColor: '#c4cfd6' }}>
+                <img className={response ? "response" : ""} src={avatar} alt="Avatar" />
+              </div>
+            </div>
+          )}
+      </>
     );
   }
 
   return (
-    <a className="avatar" style={options} href={response ? `/user/${id}` : undefined}>
-      <div
-        className="avatar__wrapper" style={{ backgroundColor: generateHexColor(fullName) }}>
-        <div className={response ? "avatar__background response" : "avatar__background"}>
-          <div className="avatar__text">{getInitials(fullName)}</div>
-        </div>
-      </div>
-    </a>
+    <>
+      { response ? (
+        <a className="avatar" style={options} href={`/user/${id}`}>
+          <div
+            className="avatar__wrapper" style={{ backgroundColor: generateHexColor(fullName) }}>
+            <div className={response ? "avatar__background response" : "avatar__background"}>
+              <div className="avatar__text">{getInitials(fullName)}</div>
+            </div>
+          </div>
+        </a>
+      ) : (
+          <div className="avatar" style={options}>
+            <div
+              className="avatar__wrapper" style={{ backgroundColor: generateHexColor(fullName) }}>
+              <div className={response ? "avatar__background response" : "avatar__background"}>
+                <div className="avatar__text">{getInitials(fullName)}</div>
+              </div>
+            </div>
+          </div>
+        )}
+    </>
   );
 };
 

@@ -10,6 +10,8 @@ export enum TweetsActionsType {
   FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
   ADD_TWEET = 'tweets/ADD_TWEET',
   REMOVE_TWEET = 'tweets/REMOVE_TWEET',
+  LIKE_TWEET = 'tweets/LIKE_TWEET',
+  UPDATE_LIKES_OF_TWEET = 'tweets/UPDATE_LIKES_OF_TWEET',
 }
 
 export interface ISetLoadingStatusOfTweetsAction extends Action<TweetsActionsType> {
@@ -46,6 +48,16 @@ export interface IRemoveTweetAction extends Action<TweetsActionsType> {
   payload: string;
 }
 
+export interface ILikeTweetAction extends Action<TweetsActionsType> {
+  type: TweetsActionsType.LIKE_TWEET;
+  payload: string;
+}
+
+export interface IUpdateLikesOfTweetAction extends Action<TweetsActionsType> {
+  type: TweetsActionsType.UPDATE_LIKES_OF_TWEET;
+  payload: ITweet;
+}
+
 export type TweetsActions =
   | IFetchDataOfTweetsAction
   | ISetLoadingStatusOfTweetsAction
@@ -53,4 +65,6 @@ export type TweetsActions =
   | IFetchAddTweetAction
   | IAddTweetAction
   | IRemoveTweetAction
-  | ISetAddTweetFormStatusAction;
+  | ISetAddTweetFormStatusAction
+  | ILikeTweetAction
+  | IUpdateLikesOfTweetAction;

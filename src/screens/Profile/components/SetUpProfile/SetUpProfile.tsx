@@ -58,7 +58,6 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
     const avatar = data.avatar?.[0] as File;
     if (avatar) {
       data.avatar = await imageHandler(avatar, 'avatar');
-      console.log(typeof data.avatar);
     } else {
       delete (data.avatar);
     }
