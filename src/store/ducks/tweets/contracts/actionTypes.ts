@@ -35,7 +35,7 @@ export interface ISetAddTweetFormStatusAction extends Action<TweetsActionsType> 
 
 export interface IFetchAddTweetAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.FETCH_ADD_TWEET;
-  payload: { text: string, images: string[] };
+  payload: { text: string, images: string[], retweet?: ITweet };
 }
 
 export interface IAddTweetAction extends Action<TweetsActionsType> {

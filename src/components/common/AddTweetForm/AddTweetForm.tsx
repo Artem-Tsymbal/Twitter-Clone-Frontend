@@ -9,14 +9,17 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import { selectAddTweetFormStatus } from '../../../store/ducks/tweets/selectors';
 import { setLoadingStatusOfTweet } from '../../../store/ducks/tweet/actionCreators';
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
-import { AddTweetFormStatus } from '../../../store/ducks/tweets/contracts/state';
+import { AddTweetFormStatus, ITweet } from '../../../store/ducks/tweets/contracts/state';
 import { LoadingStatus } from '../../../store/types';
 import { uploadImage } from '../../../utils/uploadImage';
 import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 import Avatar from '../../shared/Avatar/Avatar';
+import ReTweet from '../ReTweet/ReTweet';
 
 interface IAddTweetFormProps {
   defaultDraftRowsValue: number;
+  isRetweet: boolean;
+  retweet?: ITweet;
 }
 
 export interface IImageObj {
@@ -26,6 +29,8 @@ export interface IImageObj {
 
 const AddTweetForm: React.FC<IAddTweetFormProps> = ({
   defaultDraftRowsValue,
+  isRetweet,
+  retweet,
 }: IAddTweetFormProps) => {
   const MAX_LENGTH = 280;
   const dispatch = useDispatch();
@@ -56,16 +61,16 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
       const { url } = await uploadImage(file, 'tweetImage');
       imagesList.push(url);
     }
-    dispatch(fetchAddTweet({ text, images: imagesList }));
+    dispatch(fetchAddTweet({ text, images: imagesList, retweet }));
     setText('');
     setImages([]);
   };
 
   return (
-    <div className="add-tweet-form__wrapper">
-      <div className="add-tweet-form__container">
+    <div className="add-tweet-form">
+      <div className="wrapper">
 
-        <div className="add-tweet-form-image">
+        <div className="avatar">
           <Avatar
             size='middle'
             fullName={currentUserData?.fullName}
@@ -74,37 +79,43 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
           />
         </div>
 
-        <div className="add-tweet-form__block-content">
+        <div className="content">
           <textarea
-            className="add-tweet-form__textarea"
+            className="content__textarea"
             rows={draftRows}
             id="draft-input"
-            placeholder="What's happening?"
+            placeholder={isRetweet ? "Add a comment" : "What's happening?"}
             onChange={handleChangeTextArea}
             value={text}
           ></textarea>
 
-          <div className="add-tweet-actions__wrapper">
-            <div className="add-tweet-actions__bar">
-              <div className="add-tweet-actions__icon-wrapper">
-                <ImageOutlinedIcon className="add-tweet-actions__icon" />
+          {retweet && (
+            <div className="content__retweet">
+              <ReTweet retweet={retweet} />
+            </div>
+          )}
+
+          <div className="actions">
+            <div className="actions-wrapper">
+              <div className="actions-icon">
+                <ImageOutlinedIcon />
               </div>
-              <div className="add-tweet-actions__icon-wrapper">
-                <FiSmile className="add-tweet-actions__icon" />
+              <div className="actions-icon">
+                <FiSmile />
               </div>
-              <div className="add-tweet-actions__icon-wrapper">
-                <CgPoll className="add-tweet-actions__icon" />
+              <div className="actions-icon">
+                <CgPoll />
               </div>
-              <div className="add-tweet-actions__icon-wrapper">
-                <HiOutlineCalendar className="add-tweet-actions__icon" />
+              <div className="actions-icon">
+                <HiOutlineCalendar />
               </div>
             </div>
             <div style={{ display: 'flex', alignItems: 'center' }}>
-              <div className="add-tweet-actions__bar">
+              <div className="actions-wrapper">
                 {text && (
                   <>
                     <span>{textCounter}</span>
-                    <div className="add-tweet-actions__circular-progress">
+                    <div className="actions__circular-progress">
                       <CircularProgress
                         variant="static"
                         size={20}
@@ -128,7 +139,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
               <button
                 onClick={handleClickAddTweet}
                 disabled={addFormState === AddTweetFormStatus.LOADING || !text || text.length >= MAX_LENGTH}
-                className="add-tweet-actions__button"
+                className="actions__button"
               >
                 {addFormState === AddTweetFormStatus.LOADING ? (
                   <CircularProgress color="inherit" size={16} />

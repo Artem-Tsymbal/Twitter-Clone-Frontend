@@ -2,7 +2,7 @@ import React from 'react';
 import { generateHexColor } from '../../../utils/generateHexColor';
 import './Avatar.scss';
 
-type TAvatarSizes = 'small' | 'middle' | 'large';
+type TAvatarSizes = 'retweet' | 'small' | 'middle' | 'large';
 
 interface IAvatarProps {
   size: TAvatarSizes;
@@ -49,6 +49,13 @@ const Avatar: React.FC<IAvatarProps> = ({
         width: '40px',
         height: '40px',
         fontSize: '15px',
+      };
+      break;
+    case 'retweet':
+      options = {
+        width: '20px',
+        height: '20px',
+        fontSize: '8px',
       };
       break;
     default:

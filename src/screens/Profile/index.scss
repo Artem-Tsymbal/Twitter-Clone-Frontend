@@ -1,138 +1,139 @@
-.header {
-  position: relative;
-  height: 52px;
-  padding-left: 15px;
-  padding-right: 15px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-bottom: 1px solid rgb(235, 238, 240);
-  &-wrapper {
-    display: flex;
-  }
-  &-container {
-    display: flex;
-    flex-direction: column;
-  }
-  &__title {
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 25px;
-    color: #0f1419;
-  }
-  &__quantity {
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 20px;
-    color: #5b7083;
-  }
-  &__icon {
-    width: 39px;
-    height: 39px;
-    color: rgb(29, 161, 242);
-    &:hover {
-      color: gold;
-      transform: rotate(360deg);
-    }
-  }
-}
-
-.user {
-  &-background {
-    width: 100%;
-    height: 200px;
-    background-color: rgb(196, 207, 214);
-    & img {
-      width: inherit;
-      height: inherit;
-      object-fit: cover;
-    }
-  }
+.profile {
   &-header {
+    position: relative;
+    height: 52px;
+    padding-left: 15px;
+    padding-right: 15px;
     display: flex;
     justify-content: space-between;
-  }
-  &-buttons {
-    align-self: center;
-    margin-top: 40px;
-    & button {
-      height: 32px;
-      margin-top: 5px;
-      padding-left: 16px;
-      padding-right: 16px;
-      font-size: 15px;
-      font-weight: 700;
+    align-items: center;
+    border-bottom: 1px solid rgb(235, 238, 240);
+    &-wrapper {
+      display: flex;
+    }
+    &-container {
+      display: flex;
+      flex-direction: column;
+    }
+    &__title {
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 25px;
+      color: #0f1419;
+    }
+    &__quantity {
+      font-size: 13px;
+      font-weight: 400;
       line-height: 20px;
+      color: #5b7083;
+    }
+    &__icon {
+      width: 39px;
+      height: 39px;
       color: rgb(29, 161, 242);
-      outline: none;
-      border: 1px solid rgb(29, 161, 242);
-      border-radius: 9999px;
-      background-color: inherit;
-      transition-duration: 0.2s;
-      transition-property: background-color;
       &:hover {
-        background-color: rgba(29, 161, 242, 0.2);
+        color: gold;
+        transform: rotate(360deg);
       }
     }
   }
-  &-info {
-    margin-top: -70px;
-    margin-bottom: 16px;
-    padding: 0px 16px;
-    font-size: 15px;
-    line-height: 20px;
-  }
-  &-fullname {
-    margin-top: 4px;
-    font-size: 19px;
-    font-weight: 800;
-    line-height: 25px;
-  }
-  &-username {
-    margin-bottom: 12px;
-    color: #5b7083;
-  }
-  &-biography {
-    margin-bottom: 12px;
-  }
-  &-joined-date {
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    color: #5b7083;
-    line-height: 12px;
-    & svg {
-      margin-right: 5px;
+  &-user {
+    &-background {
+      width: 100%;
+      height: 200px;
+      background-color: rgb(196, 207, 214);
+      & img {
+        width: inherit;
+        height: inherit;
+        object-fit: cover;
+      }
     }
-  }
-  &-details {
-    display: flex;
-    &-item {
-      margin-right: 20px;
+    &-header {
+      display: flex;
+      justify-content: space-between;
     }
-    &-item:last-child {
-      margin-right: 0px;
+    &-buttons {
+      align-self: center;
+      margin-top: 40px;
+      & button {
+        height: 32px;
+        margin-top: 5px;
+        padding-left: 16px;
+        padding-right: 16px;
+        font-size: 15px;
+        font-weight: 700;
+        line-height: 20px;
+        color: rgb(29, 161, 242);
+        outline: none;
+        border: 1px solid rgb(29, 161, 242);
+        border-radius: 9999px;
+        background-color: inherit;
+        transition-duration: 0.2s;
+        transition-property: background-color;
+        &:hover {
+          background-color: rgba(29, 161, 242, 0.2);
+        }
+      }
     }
-    &__quantity {
-      margin-right: 5px;
-      font-weight: 700;
+    &-info {
+      margin-top: -70px;
+      margin-bottom: 16px;
+      padding: 0px 16px;
+      font-size: 15px;
+      line-height: 20px;
     }
-    &__title {
+    &-fullname {
+      margin-top: 4px;
+      font-size: 19px;
+      font-weight: 800;
+      line-height: 25px;
+    }
+    &-username {
+      margin-bottom: 12px;
       color: #5b7083;
     }
-  }
+    &-biography {
+      margin-bottom: 12px;
+    }
+    &-joined-date {
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      color: #5b7083;
+      line-height: 12px;
+      & svg {
+        margin-right: 5px;
+      }
+    }
+    &-details {
+      display: flex;
+      &-item {
+        margin-right: 20px;
+      }
+      &-item:last-child {
+        margin-right: 0px;
+      }
+      &__quantity {
+        margin-right: 5px;
+        font-weight: 700;
+      }
+      &__title {
+        color: #5b7083;
+      }
+    }
 
-  .MuiTab-root {
-    text-transform: none !important;
-    min-width: auto !important;
-  }
+    .MuiTab-root {
+      text-transform: none !important;
+      min-width: auto !important;
+    }
 
-  .MuiTab-wrapper {
-    font-weight: 700 !important;
-    font-size: 15px;
-  }
+    .MuiTab-wrapper {
+      font-weight: 700 !important;
+      font-size: 15px;
+    }
 
-  .MuiBox-root {
-    padding: 0 !important;
+    .MuiBox-root {
+      padding: 0 !important;
+    }
   }
 }

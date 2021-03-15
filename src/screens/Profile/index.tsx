@@ -94,24 +94,24 @@ const Profile: React.FC = () => {
   };
 
   return (
-    <div className="container">
-      <div className="header">
-        <div className="header-wrapper">
+    <div className="profile">
+      <div className="profile-header">
+        <div className="profile-header-wrapper">
           <BackButton />
-          <div className="header-container">
-            <span className="header__title">{userData?.fullName}</span>
-            <span className="header__quantity">{tweets.length} Tweets</span>
+          <div className="profile-header-container">
+            <span className="profile-header__title">{userData?.fullName}</span>
+            <span className="profile-header__quantity">{tweets.length} Tweets</span>
           </div>
         </div>
-        <WiStars className="header__icon" />
+        <WiStars className="profile-header__icon" />
       </div>
-      <div className="user">
-        <div className="user-background">
+      <div className="profile-user">
+        <div className="profile-user-background">
           <img src={userData?.background} alt="Header background" />
         </div>
-        <div className="user-info">
-          <div className="user-header">
-            <div className="user-avatar">
+        <div className="profile-user-info">
+          <div className="profile-user-header">
+            <div className="profile-user-avatar">
               <Avatar
                 size='large'
                 fullName={userData?.fullName}
@@ -120,28 +120,28 @@ const Profile: React.FC = () => {
                 response={true}
               />
             </div>
-            <div className="user-buttons">
+            <div className="profile-user-buttons">
               <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
               {/* <button>Follow</button> */}
             </div>
           </div>
 
-          <div className="user-fullname">{userData?.fullName}</div>
-          <div className="user-username">@{userData?.username}</div>
-          <div className="user-biography">{userData?.biography}</div>
+          <div className="profile-user-fullname">{userData?.fullName}</div>
+          <div className="profile-user-username">@{userData?.username}</div>
+          <div className="profile-user-biography">{userData?.biography}</div>
           {
-            userData?.createdAt && <div className="user-joined-date">
+            userData?.createdAt && <div className="profile-user-joined-date">
               <BsCalendar />Joined {format(new Date(userData.createdAt), 'MMMM y', { locale: enLang })}
             </div>
           }
-          <div className="user-details">
-            <div className="user-details-item">
-              <span className="user-details__quantity">31.4K</span>
-              <span className="user-details__title">Following</span>
+          <div className="profile-user-details">
+            <div className="profile-user-details-item">
+              <span className="profile-user-details__quantity">31.4K</span>
+              <span className="profile-user-details__title">Following</span>
             </div>
-            <div className="user-details-item">
-              <span className="user-details__quantity">31.4K</span>
-              <span className="user-details__title">Folowers</span>
+            <div className="profile-user-details-item">
+              <span className="profile-user-details__quantity">31.4K</span>
+              <span className="profile-user-details__title">Folowers</span>
             </div>
           </div>
         </div>
@@ -161,7 +161,7 @@ const Profile: React.FC = () => {
         <TabPanel value={value} index={0}>
           {
             tweets.map(tweet => (
-              <Tweet key={tweet._id} images={tweet.images} {...tweet} />
+              <Tweet key={tweet._id} tweet={tweet} />
             ))
           }
         </TabPanel>

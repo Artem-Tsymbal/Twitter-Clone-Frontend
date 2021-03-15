@@ -94,7 +94,7 @@ const AppTapBar: React.FC = () => {
       </div>
       {visibleAddTweetModal && (
         <ModalWindow onClose={handleCloseAddTweetModal}>
-          <AddTweetForm defaultDraftRowsValue={4} />
+          <AddTweetForm defaultDraftRowsValue={4} isRetweet={false} />
         </ModalWindow>
       )}
     </>

@@ -1,0 +1,57 @@
+.retweet {
+  min-height: 64px;
+  display: flex;
+  flex-direction: column;
+  transition-duration: 0.2s;
+  transition-property: background-color, box-shadow;
+  border: 1px solid rgb(196, 207, 214);
+  border-radius: 16px;
+  text-decoration: none;
+  color: initial;
+  cursor: pointer;
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.07);
+  }
+  .header {
+    margin: 12px 12px 0px 12px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    color: rgb(15, 20, 25);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    &__avatar {
+      margin-right: 4px;
+    }
+    &__fullName {
+      font-weight: 700;
+    }
+    &__username {
+      margin-left: 5px;
+      color: rgb(91, 112, 131);
+    }
+    &__time {
+      color: rgb(91, 112, 131);
+    }
+    &__dot {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+  .content {
+    &__text {
+      margin: 4px 12px 12px 12px;
+      color: rgb(15, 20, 25);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .tweet-header__username {
+    display: none;
+  }
+}

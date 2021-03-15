@@ -17,20 +17,19 @@ import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { CircularProgress } from '@material-ui/core';
 import { Menu, MenuItem } from '@material-ui/core';
 import Avatar from '../../shared/Avatar/Avatar';
+import ReTweet from '../ReTweet/ReTweet';
 
 const FullTweet: React.FC = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const tweetData = useSelector(selectDataOfTweet);
   const isLoading = useSelector(selectStatusOfTweetIsLoading);
-  //const [isFavorite, setIsFavorite] = useState<boolean | undefined>(undefined);
   const params: { id?: string } = useParams();
   const { id } = params;
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
 
   React.useEffect(() => {
-    console.log('2');
     if (id) {
       dispatch(fetchDataOfTweet(id));
     }
@@ -38,7 +37,7 @@ const FullTweet: React.FC = () => {
     return () => {
       dispatch(setDataOfTweet(undefined));
     };
-  }, [dispatch]);
+  }, [dispatch, history.location]);
 
 
   const handleOpenTweetMenu = (event: any) => {
@@ -55,7 +54,7 @@ const FullTweet: React.FC = () => {
 
   const handleRemoveTweet = (event: React.MouseEvent<HTMLElement>): void => {
     handleCloseTweetMenu(event);
-    if (window.confirm('Вы уверены?')) {
+    if (window.confirm('Are you sure?')) {
       if (id) {
         dispatch(removeTweet(id));
       }
@@ -108,6 +107,9 @@ const FullTweet: React.FC = () => {
               <span className="full-tweet-content__text">
                 {tweetData.text}
               </span>
+              {tweetData.retweet && (
+                <ReTweet retweet={tweetData.retweet} />
+              )}
             </div>
             <div className="full-tweet-footer">
               <div className="full-tweet-footer__date">

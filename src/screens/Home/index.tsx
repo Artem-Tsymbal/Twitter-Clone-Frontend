@@ -35,13 +35,13 @@ const Home: React.FC = () => {
         <WiStars className="home-header__icon" />
       </div>
       <Route path="/home" exact>
-        <AddTweetForm defaultDraftRowsValue={1} />
+        <AddTweetForm defaultDraftRowsValue={1} isRetweet={false} />
         <div className="home-divider" />
         {isLoading ? (
           <CircularProgress />
         ) : (
             tweets.map(tweet => (
-              <Tweet key={tweet._id} images={tweet.images} {...tweet} />
+              <Tweet key={tweet._id} tweet={tweet} />
             ))
           )}
       </Route>

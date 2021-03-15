@@ -11,38 +11,26 @@ import { BsThreeDots, BsUpload } from 'react-icons/bs';
 import { AiOutlineRetweet, AiOutlineHeart } from 'react-icons/ai';
 import { Menu, MenuItem } from '@material-ui/core';
 import Avatar from '../../shared/Avatar/Avatar';
+import ModalWindow from '../ModalWindow/ModalWindow';
+import AddTweetForm from '../AddTweetForm/AddTweetForm';
+import { ITweet } from '../../../store/ducks/tweets/contracts/state';
+import ReTweet from '../ReTweet/ReTweet';
 
 interface ITweetProps {
-  _id: string;
-  text: string;
-  createdAt: string;
-  images?: string[];
-  likes: string[];
-  favorite: boolean;
-  user: {
-    fullName: string;
-    username: string;
-    avatar?: string;
-  };
+  tweet: ITweet
 }
 
 const Tweet: React.FC<ITweetProps> = ({
-  _id,
-  text,
-  user,
-  likes,
-  favorite,
-  images,
-  createdAt,
+  tweet,
 }: ITweetProps) => {
   const dispatch = useDispatch();
+  const [visibleAddTweetModal, setVisibleAddTweetModal] = React.useState<boolean>(false);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const history = useHistory();
 
-  const handleClickTweet = (event: React.MouseEvent<HTMLAnchorElement>): void => {
-    event.preventDefault();
-    history.push(`/home/tweet/${_id}`);
+  const handleClickTweet = (): void => {
+    history.push(`/home/tweet/${tweet._id}`);
   };
 
   const handleOpenTweetMenu = (event: any) => {
@@ -60,32 +48,42 @@ const Tweet: React.FC<ITweetProps> = ({
   const handleRemoveTweet = (event: React.MouseEvent<HTMLElement>): void => {
     handleCloseTweetMenu(event);
     if (window.confirm('Вы уверены?')) {
-      dispatch(removeTweet(_id));
+      dispatch(removeTweet(tweet._id));
     }
+  };
+
+  const handleClickOpenAddTweetModal = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    event.preventDefault();
+    setVisibleAddTweetModal(true);
+  };
+
+  const handleCloseAddTweetModal = () => {
+    setVisibleAddTweetModal(false);
   };
 
   const handleClickLike = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     event.preventDefault();
-    dispatch(likeTweet(_id));
+    dispatch(likeTweet(tweet._id));
   };
 
   return (
     <div className="tweet">
-      <a onClick={handleClickTweet} className="tweet__wrapper" href={`/home/tweet/${_id}`}>
+      <div onClick={handleClickTweet} className="tweet__wrapper">
 
         <div className="tweet__avatar-container">
-          <Avatar size='middle' fullName={user?.fullName} avatar={user?.avatar} response={false} />
+          <Avatar size='middle' fullName={tweet.user?.fullName} avatar={tweet.user?.avatar} response={false} />
         </div>
 
         <div className="tweet__body">
 
           <div className="tweet-header">
             <div className="tweet-header__info">
-              <span className="tweet-header__fullName">{user.fullName}</span>
-              <span className="tweet-header__username">@{user.username}</span>
+              <span className="tweet-header__fullName">{tweet.user.fullName}</span>
+              <span className="tweet-header__username">@{tweet.user.username}</span>
               <span className="tweet-header__time tweet-header__time-dot">·</span>
-              <span className="tweet-header__time">{formatDate(new Date(createdAt))}</span>
+              <span className="tweet-header__time">{formatDate(new Date(tweet.createdAt))}</span>
             </div>
             <BsThreeDots onClick={handleOpenTweetMenu} className="tweet-header__button" />
             <Menu id="long-menu" anchorEl={anchorEl} open={open} onClose={handleCloseTweetMenu} >
@@ -96,9 +94,14 @@ const Tweet: React.FC<ITweetProps> = ({
 
           <div className="tweet-content">
             <span className="tweet-content__text">
-              {text}
+              {tweet.text}
             </span>
           </div>
+          {tweet.retweet && (
+            <div className="tweet-content__retweet">
+              <ReTweet retweet={tweet.retweet} />
+            </div>
+          )}
           <div className="tweet-footer">
             <div className="tweet-footer__container container-reply">
               <div className="tweet-footer__action-wrapper wrapper--blue">
@@ -107,14 +110,14 @@ const Tweet: React.FC<ITweetProps> = ({
               <span className="tweet-footer__quantity">11</span>
             </div>
             <div className="tweet-footer__container container-retweet">
-              <div className="tweet-footer__action-wrapper wrapper--green">
+              <div onClick={handleClickOpenAddTweetModal} className="tweet-footer__action-wrapper wrapper--green">
                 <AiOutlineRetweet className="tweet-footer__icon" />
               </div>
               <span className="tweet-footer__quantity">22</span>
             </div>
             <div
               className={
-                favorite ?
+                tweet.favorite ?
                   "tweet-footer__container container-like liked" :
                   "tweet-footer__container container-like"
               }
@@ -122,14 +125,19 @@ const Tweet: React.FC<ITweetProps> = ({
               <div onClick={handleClickLike} className="tweet-footer__action-wrapper wrapper--red">
                 <AiOutlineHeart className="tweet-footer__icon" />
               </div>
-              <span className="tweet-footer__quantity">{likes.length}</span>
+              <span className="tweet-footer__quantity">{tweet.likes.length}</span>
             </div>
             <div className="tweet-footer__action-wrapper wrapper--blue">
               <BsUpload className="tweet-footer__icon" />
             </div>
           </div>
         </div>
-      </a>
+      </div>
+      {visibleAddTweetModal && (
+        <ModalWindow onClose={handleCloseAddTweetModal}>
+          <AddTweetForm defaultDraftRowsValue={2} isRetweet={true} retweet={tweet} />
+        </ModalWindow>
+      )}
     </div>
   );
 };

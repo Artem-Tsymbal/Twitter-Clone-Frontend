@@ -1,22 +1,21 @@
-.add-tweet {
-  &-form {
-    &__wrapper {
-      padding-bottom: 5px;
-    }
-    &__container {
-      padding: 5px 15px 5px 15px;
-      display: flex;
-    }
-    &-image {
-      margin-right: 10px;
-      padding-top: 5px;
-    }
-    &__block-content {
-      padding-top: 5px;
-      display: flex;
-      flex-grow: 1;
-      flex-direction: column;
-    }
+.add-tweet-form {
+  padding-bottom: 5px;
+
+  .wrapper {
+    padding: 5px 15px 5px 15px;
+    display: flex;
+  }
+
+  .avatar {
+    margin-right: 10px;
+    padding-top: 5px;
+  }
+
+  .content {
+    padding-top: 5px;
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
     &__textarea {
       width: 100%;
       padding-top: 10px;
@@ -35,19 +34,21 @@
         color: #5b7083;
       }
     }
-  }
-  &-actions {
-    &__wrapper {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      border-top: 1px solid rgb(235, 238, 240);
+    &__retweet {
+      margin-bottom: 12px;
     }
-    &__bar {
+  }
+
+  .actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgb(235, 238, 240);
+    &-wrapper {
       margin-top: 10px;
       display: flex;
     }
-    &__icon-wrapper {
+    &-icon {
       width: 39px;
       height: 39px;
       display: flex;
@@ -60,20 +61,20 @@
       &:hover {
         background-color: rgba(29, 161, 242, 0.2);
       }
-    }
-    &__icon {
-      width: 22.5px;
-      height: 22.5px;
-      color: #1da1f2;
-    }
-    &__circular-progress {
-      position: relative;
-      width: 20px;
-      height: 20px;
-      margin: 0 10px;
+      & svg {
+        width: 22.5px;
+        height: 22.5px;
+        color: #1da1f2;
+      }
+      &__circular-progress {
+        position: relative;
+        width: 20px;
+        height: 20px;
+        margin: 0 10px;
 
-      .MuiCircularProgress-root {
-        position: absolute !important;
+        .MuiCircularProgress-root {
+          position: absolute !important;
+        }
       }
     }
     &__button {
