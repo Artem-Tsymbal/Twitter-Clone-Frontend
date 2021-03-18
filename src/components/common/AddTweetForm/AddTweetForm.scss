@@ -1,17 +1,17 @@
 .add-tweet-form {
   padding-bottom: 5px;
 
-  .wrapper {
+  &-wrapper {
     padding: 5px 15px 5px 15px;
     display: flex;
   }
 
-  .avatar {
-    margin-right: 10px;
+  &-avatar {
+    margin-right: 12px;
     padding-top: 5px;
   }
 
-  .content {
+  &-content {
     padding-top: 5px;
     display: flex;
     flex-grow: 1;
@@ -20,6 +20,7 @@
       width: 100%;
       padding-top: 10px;
       padding-bottom: 10px;
+      padding-left: 0px;
       outline: none;
       border: none;
       font-size: 19px;

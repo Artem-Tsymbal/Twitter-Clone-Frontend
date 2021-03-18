@@ -1,11 +1,14 @@
 .full-tweet {
-  &__wrapper {
+  &-wrapper {
     padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
     display: flex;
     flex-direction: column;
     border-bottom: 1px solid rgb(235, 238, 240);
+    &__reply {
+      padding-top: 4px;
+    }
   }
   &-header {
     margin-bottom: 5px;

@@ -1,24 +1,28 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './AddTweetForm.scss';
+import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import { CgPoll } from 'react-icons/cg';
 import { FiSmile } from 'react-icons/fi';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { selectAddTweetFormStatus } from '../../../store/ducks/tweets/selectors';
-import { setLoadingStatusOfTweet } from '../../../store/ducks/tweet/actionCreators';
+import { selectAddTweetFormStatus, selectStatusOfTweetsIsLoaded } from '../../../store/ducks/tweets/selectors';
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
 import { AddTweetFormStatus, ITweet } from '../../../store/ducks/tweets/contracts/state';
-import { LoadingStatus } from '../../../store/types';
 import { uploadImage } from '../../../utils/uploadImage';
 import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 import Avatar from '../../shared/Avatar/Avatar';
 import ReTweet from '../ReTweet/ReTweet';
+import Reply from '../Reply/Reply';
+
+
+type TForm = 'reply' | 'retweet';
 
 interface IAddTweetFormProps {
   defaultDraftRowsValue: number;
-  isRetweet: boolean;
+  formType?: TForm;
+  replyingTo?: ITweet;
   retweet?: ITweet;
 }
 
@@ -29,18 +33,35 @@ export interface IImageObj {
 
 const AddTweetForm: React.FC<IAddTweetFormProps> = ({
   defaultDraftRowsValue,
-  isRetweet,
+  formType,
+  replyingTo,
   retweet,
 }: IAddTweetFormProps) => {
   const MAX_LENGTH = 280;
   const dispatch = useDispatch();
-  const [draftRows, setDraftRows] = React.useState(defaultDraftRowsValue);
-  const [text, setText] = React.useState<string>('');
-  const [images, setImages] = React.useState<IImageObj[]>([]);
+  const [draftRows, setDraftRows] = useState(defaultDraftRowsValue);
+  const [text, setText] = useState<string>('');
+  const [images, setImages] = useState<IImageObj[]>([]);
   const currentUserData = useSelector(selectDataOfUser);
   const addFormState = useSelector(selectAddTweetFormStatus);
   const textLimitPercent: number = (text.length / MAX_LENGTH) * 100;
   const textCounter = MAX_LENGTH - text.length;
+  let placeholder;
+  let buttonText;
+
+  switch (formType) {
+    case 'reply':
+      placeholder = 'Tweet your reply';
+      buttonText = 'Reply';
+      break;
+    case 'retweet':
+      placeholder = 'Add a comment';
+      buttonText = 'Retweet';
+      break;
+    default:
+      placeholder = "What's happening?";
+      buttonText = 'Tweet';
+  }
 
   const handleChangeTextArea = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     event.target.rows = defaultDraftRowsValue;
@@ -55,22 +76,27 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
   const handleClickAddTweet = async (): Promise<void> => {
     const imagesList = [];
-    dispatch(setLoadingStatusOfTweet(LoadingStatus.LOADING));
     for (let i = 0; i < images.length; i += 1) {
       const { file } = images[i];
       const { url } = await uploadImage(file, 'tweetImage');
       imagesList.push(url);
     }
-    dispatch(fetchAddTweet({ text, images: imagesList, retweet }));
+    dispatch(fetchAddTweet({ text, images: imagesList, replyingTo, retweet }));
     setText('');
     setImages([]);
   };
 
   return (
     <div className="add-tweet-form">
-      <div className="wrapper">
 
-        <div className="avatar">
+      {replyingTo && (
+        <div className="add-tweet-form-content__reply">
+          <Reply tweet={replyingTo} />
+        </div>
+      )}
+
+      <div className="add-tweet-form-wrapper">
+        <div className="add-tweet-form-avatar">
           <Avatar
             size='middle'
             fullName={currentUserData?.fullName}
@@ -79,19 +105,19 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
           />
         </div>
 
-        <div className="content">
+        <div className="add-tweet-form-content">
           <textarea
-            className="content__textarea"
+            className="add-tweet-form-content__textarea"
             rows={draftRows}
             id="draft-input"
-            placeholder={isRetweet ? "Add a comment" : "What's happening?"}
+            placeholder={placeholder}
             onChange={handleChangeTextArea}
             value={text}
           ></textarea>
 
           {retweet && (
-            <div className="content__retweet">
-              <ReTweet retweet={retweet} />
+            <div className="add-tweet-form-content__retweet">
+              <ReTweet retweet />
             </div>
           )}
 
@@ -117,7 +143,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                     <span>{textCounter}</span>
                     <div className="actions__circular-progress">
                       <CircularProgress
-                        variant="static"
+                        variant="determinate"
                         size={20}
                         thickness={5}
                         value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
@@ -126,7 +152,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                       {(text.length) && (
                         <CircularProgress
                           style={{ color: 'rgba(0, 0, 0, 0.1)' }}
-                          variant="static"
+                          variant="determinate"
                           size={20}
                           thickness={6}
                           value={100}
@@ -144,7 +170,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                 {addFormState === AddTweetFormStatus.LOADING ? (
                   <CircularProgress color="inherit" size={16} />
                 ) : (
-                    'Tweet'
+                    buttonText
                   )}
               </button>
             </div>

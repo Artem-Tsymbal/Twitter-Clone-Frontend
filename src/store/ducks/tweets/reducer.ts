@@ -1,5 +1,4 @@
 import produce, { Draft } from 'immer';
-import { act } from 'react-dom/test-utils';
 import { LoadingStatus } from '../../types';
 import { TweetsActions, TweetsActionsType } from './contracts/actionTypes';
 import { ITweetsState, AddTweetFormStatus } from './contracts/state';

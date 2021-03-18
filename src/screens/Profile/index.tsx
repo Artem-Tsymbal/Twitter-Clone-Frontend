@@ -160,9 +160,32 @@ const Profile: React.FC = () => {
         </Tabs>
         <TabPanel value={value} index={0}>
           {
-            tweets.map(tweet => (
-              <Tweet key={tweet._id} tweet={tweet} />
-            ))
+            tweets
+              .filter(tweet => !tweet.replyingTo)
+              .map(tweet => (
+                <Tweet key={tweet._id} tweet={tweet} />
+              ))
+          }
+        </TabPanel>
+        <TabPanel value={value} index={1}>
+          {
+            tweets
+              .filter(tweet => tweet.replyingTo)
+              .map(tweet => (
+                <>
+                  {tweet.replyingTo && <Tweet key={tweet.replyingTo._id} tweet={tweet.replyingTo} isReply={true} />}
+                  <Tweet key={tweet._id} tweet={tweet} />
+                </>
+              ))
+          }
+        </TabPanel>
+        <TabPanel value={value} index={2}>
+          {
+            tweets
+              .filter(tweet => tweet.images?.length)
+              .map(tweet => (
+                <Tweet key={tweet._id} tweet={tweet} />
+              ))
           }
         </TabPanel>
       </div>

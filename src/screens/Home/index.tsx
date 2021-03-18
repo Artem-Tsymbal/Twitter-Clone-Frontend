@@ -7,8 +7,8 @@ import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
 
 import './index.scss';
-import { BackButton } from '../../components/common/BackButton';
 import { WiStars } from 'react-icons/wi';
+import { BackButton } from '../../components/common/BackButton';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
 import Tweet from '../../components/common/Tweet/Tweet';
 import FullTweet from '../../components/common/FullTweet/FullTweet';
@@ -35,7 +35,7 @@ const Home: React.FC = () => {
         <WiStars className="home-header__icon" />
       </div>
       <Route path="/home" exact>
-        <AddTweetForm defaultDraftRowsValue={1} isRetweet={false} />
+        <AddTweetForm defaultDraftRowsValue={1} />
         <div className="home-divider" />
         {isLoading ? (
           <CircularProgress />

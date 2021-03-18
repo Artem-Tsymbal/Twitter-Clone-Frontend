@@ -7,7 +7,7 @@ import {
   setAddTweetFormStatus,
   setDataOfTweets,
   setLoadingStatusOfTweets,
-  updateLikesOfTweet
+  updateLikesOfTweet,
 } from './actionCreators';
 import { IFetchAddTweetAction, ILikeTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';

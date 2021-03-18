@@ -4,17 +4,13 @@ import classNames from 'classnames';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import IconButton from '@material-ui/core/IconButton';
 import TextareaAutosize from '@material-ui/core/TextareaAutosize';
-import EmojiIcon from '@material-ui/icons/SentimentSatisfiedOutlined';
 import Alert from '@material-ui/lab/Alert';
 import { fetchAddTweet } from '../../store/ducks/tweets/actionCreators';
 import { selectAddTweetFormStatus } from '../../store/ducks/tweets/selectors';
 import { AddTweetFormStatus } from '../../store/ducks/tweets/contracts/state';
 import { UploadImages } from './UploadImages';
 import { uploadImage } from '../../utils/uploadImage';
-import { setLoadingStatusOfTweet } from '../../store/ducks/tweet/actionCreators';
-import { LoadingStatus } from '../../store/types';
 
 interface IAddTweetFormProps {
   classes: any;
@@ -48,7 +44,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
   const handleClickAddTweet = async (): Promise<void> => {
     const result = [];
-    dispatch(setLoadingStatusOfTweet(LoadingStatus.LOADING));
+
     for (let i = 0; i < images.length; i += 1) {
       const { file } = images[i];
       const { url } = await uploadImage(file, 'tweetImage');
@@ -81,7 +77,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
               <span>{textCounter}</span>
               <div className={classes.addFormCircleProgress}>
                 <CircularProgress
-                  variant="static"
+                  variant="determinate"
                   size={20}
                   thickness={5}
                   value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
@@ -90,7 +86,7 @@ export const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                 {(text.length) && (
                   <CircularProgress
                     style={{ color: 'rgba(0, 0, 0, 0.1)' }}
-                    variant="static"
+                    variant="determinate"
                     size={20}
                     thickness={6}
                     value={100}

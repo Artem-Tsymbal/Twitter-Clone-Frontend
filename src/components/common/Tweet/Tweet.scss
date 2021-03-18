@@ -1,5 +1,5 @@
 .tweet {
-  &__wrapper {
+  &-wrapper {
     padding-top: 10px;
     padding-left: 15px;
     padding-right: 15px;
@@ -14,18 +14,30 @@
       background-color: rgba(0, 0, 0, 0.07);
       box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
     }
+    &__reply {
+      border-bottom: none;
+    }
   }
-  &__avatar-container {
-    margin-right: 10px;
+  &-avatar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 12px;
     padding-top: 10px;
   }
-  &__body {
+  &__line {
+    width: 2px;
+    height: 100%;
+    margin-top: 4px;
+    background-color: rgb(196, 207, 214);
+  }
+  &-content {
     display: flex;
     flex-direction: column;
     flex-grow: 1;
     padding-bottom: 8px;
   }
-  &-header {
+  &-desc {
     margin-bottom: 2px;
     display: flex;
     justify-content: space-between;
@@ -48,7 +60,7 @@
         padding-right: 3px;
       }
     }
-    &__button {
+    & svg {
       width: 18.75px;
       height: 18.75px;
       padding: 10px;
@@ -62,9 +74,25 @@
       }
     }
   }
-  &-content {
+  &-body {
+    &__replyingTo {
+      padding-top: 4px;
+      padding-bottom: 16px;
+      color: rgb(91, 112, 131);
+      & a {
+        color: rgb(27, 149, 224);
+        text-decoration: none;
+      }
+    }
     &__text {
       color: rgb(15, 20, 25);
+      font-size: 15px;
+      font-weight: 400;
+      line-height: 20px;
+    }
+    &__reply {
+      display: flex;
+      flex-direction: column;
       font-size: 15px;
       font-weight: 400;
       line-height: 20px;
@@ -73,89 +101,10 @@
       margin-top: 12px;
     }
   }
-  &-footer {
-    max-width: 425px;
-    margin-top: 10px;
-    display: flex;
-    justify-content: space-between;
-    color: rgb(91, 112, 131);
-    font-weight: 400;
-    .liked {
-      color: rgb(224, 36, 94);
-    }
-    &__container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    &__action-wrapper {
-      width: 35px;
-      height: 35px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      border-radius: 9999px;
-    }
-    &__icon {
-      width: 18.75px;
-      height: 18.75px;
-    }
-    &__quantity {
-      padding-right: 10px;
-      font-size: 13px;
-    }
-  }
-}
-
-.container {
-  &-reply {
-    &:hover {
-      color: rgb(29, 161, 242);
-    }
-  }
-  &-retweet {
-    &:hover {
-      color: rgb(23, 191, 99);
-    }
-  }
-  &-like {
-    &:hover {
-      color: rgb(224, 36, 94);
-    }
-  }
-}
-
-.wrapper {
-  transition-duration: 0.2s;
-  transition-property: background-color;
-  &--blue {
-    &:hover {
-      background-color: rgba(29, 161, 242, 0.1);
-    }
-    &:active {
-      background-color: rgba(29, 161, 242, 0.2);
-    }
-  }
-  &--red {
-    &:hover {
-      background-color: rgba(224, 36, 94, 0.1);
-    }
-    &:active {
-      background-color: rgba(224, 36, 94, 0.2);
-    }
-  }
-  &--green {
-    &:hover {
-      background-color: rgba(23, 191, 99, 0.1);
-    }
-    &:active {
-      background-color: rgba(23, 191, 99, 0.2);
-    }
-  }
 }
 
 @media screen and (max-width: 499px) {
-  .tweet-header__username {
+  .tweet-desc__username {
     display: none;
   }
 }

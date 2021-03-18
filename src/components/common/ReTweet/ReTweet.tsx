@@ -1,7 +1,6 @@
 import React from 'react';
 import './ReTweet.scss';
 
-import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { formatDate } from '../../../utils/formatDate';
 
@@ -13,12 +12,13 @@ interface IRetweetProps {
 }
 
 const retweet: React.FC<IRetweetProps> = ({
-  retweet
+  retweet,
 }: IRetweetProps) => {
   const history = useHistory();
 
   const handleClickReTweet = (event: React.MouseEvent<HTMLElement>): void => {
     event.stopPropagation();
+    event.preventDefault();
     history.push(`/home/tweet/${retweet._id}`);
   };
 

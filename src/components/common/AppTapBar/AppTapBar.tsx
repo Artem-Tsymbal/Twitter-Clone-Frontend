@@ -1,7 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 
 import './AppTapBar.scss';
 import { GiFeather } from 'react-icons/gi';
@@ -13,13 +12,16 @@ import { RiFileList2Line, RiUser6Line } from 'react-icons/ri';
 import { IoLogoTwitter, IoMdNotificationsOutline } from 'react-icons/io';
 import ModalWindow from '../ModalWindow/ModalWindow';
 import AddTweetForm from '../AddTweetForm/AddTweetForm';
+import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 
 const AppTapBar: React.FC = () => {
   const [visibleAddTweetModal, setVisibleAddTweetModal] = React.useState<boolean>(false);
   const userData = useSelector(selectDataOfUser);
 
-  const handleClickOpenAddTweetModal = () => {
+  const handleClickOpenAddTweetModal = (event: any) => {
+    event.stopPropagation();
     setVisibleAddTweetModal(true);
+    console.log(visibleAddTweetModal);
   };
 
   const handleCloseAddTweetModal = () => {
@@ -94,7 +96,7 @@ const AppTapBar: React.FC = () => {
       </div>
       {visibleAddTweetModal && (
         <ModalWindow onClose={handleCloseAddTweetModal}>
-          <AddTweetForm defaultDraftRowsValue={4} isRetweet={false} />
+          <AddTweetForm defaultDraftRowsValue={4} />
         </ModalWindow>
       )}
     </>

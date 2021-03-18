@@ -1,0 +1,75 @@
+.reply {
+  padding-top: 10px;
+  padding-left: 15px;
+  padding-right: 15px;
+  display: flex;
+  text-decoration: none;
+  color: initial;
+  &-avatar {
+    margin-right: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  &__line {
+    width: 2px;
+    height: 100%;
+    margin-top: 4px;
+    background-color: rgb(196, 207, 214);
+  }
+  &-content {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+  }
+  &-desc {
+    margin-bottom: 2px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: rgb(15, 20, 25);
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    &__fullName {
+      font-weight: 700;
+    }
+    &__username {
+      margin-left: 5px;
+      color: rgb(91, 112, 131);
+    }
+    &__time {
+      color: rgb(91, 112, 131);
+    }
+    &__dot {
+      padding-left: 3px;
+      padding-right: 3px;
+    }
+  }
+  &-body {
+    display: flex;
+    flex-direction: column;
+    font-size: 15px;
+    font-weight: 400;
+    line-height: 20px;
+    &__text {
+      padding-bottom: 12px;
+      color: rgb(15, 20, 25);
+    }
+    &__replyingTo {
+      padding-top: 4px;
+      padding-bottom: 16px;
+      color: rgb(91, 112, 131);
+      & a {
+        color: rgb(27, 149, 224);
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .tweet-header__username {
+    display: none;
+  }
+}

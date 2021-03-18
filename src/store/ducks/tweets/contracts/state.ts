@@ -12,7 +12,10 @@ export interface ITweet {
   text: string;
   createdAt: string;
   images?: [];
+  replyingTo?: ITweet
+  replies?: ITweet[]
   retweet?: ITweet;
+  retweets?: ITweet[];
   likes: [];
   favorite: boolean;
   user: {
