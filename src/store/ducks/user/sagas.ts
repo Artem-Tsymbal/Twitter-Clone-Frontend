@@ -4,6 +4,7 @@ import { setLoadingStatusOfUser, setDataOfUser } from './actionCreators';
 import {
   IFetchSignInAction,
   IFetchSignUpAction,
+  IFollowUserAction,
   IUpdateDataOfUserAction,
   UserActionsType,
 } from './contracts/actionTypes';
@@ -36,7 +37,6 @@ export function* fetchDataOfUserRequest(): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
     const { data } = yield call(AuthApi.getMe);
-    // window.localStorage.setItem('currentUser', data.user);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
@@ -53,9 +53,20 @@ export function* updateDataOfUserRequest({ payload }: IUpdateDataOfUserAction): 
   }
 }
 
+export function* followUserRequest({ payload }: IFollowUserAction): SagaIterator {
+  try {
+    yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
+    const { data } = yield call(AuthApi.followUser, payload);
+    yield put(setDataOfUser(data));
+  } catch (error) {
+    yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
+  }
+}
+
 export function* userSaga(): SagaIterator {
   yield takeLatest(UserActionsType.FETCH_SIGN_IN, fetchSignInRequest);
   yield takeLatest(UserActionsType.FETCH_SIGN_UP, fetchSignUpRequest);
   yield takeLatest(UserActionsType.FETCH_DATA_OF_USER, fetchDataOfUserRequest);
   yield takeLatest(UserActionsType.UPDATE_DATA_OF_USER, updateDataOfUserRequest);
+  yield takeLatest(UserActionsType.FOLLOW_USER, followUserRequest);
 }

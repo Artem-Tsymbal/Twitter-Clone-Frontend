@@ -20,16 +20,21 @@ import Tweet from '../../components/common/Tweet/Tweet';
 import ModalWindow from '../../components/common/ModalWindow/ModalWindow';
 import SetUpProfile from './components/SetUpProfile/SetUpProfile';
 import Avatar from '../../components/shared/Avatar/Avatar';
+import FollowButton from '../../components/shared/FollowButton/FollowButton';
+import { ITweet } from '../../store/ducks/tweets/contracts/state';
+import { TweetsApi } from '../../services/api/tweetsApi';
+import { selectLoadingStatusOfTweet } from '../../store/ducks/tweet/selectors';
+import { LoadingStatus } from '../../store/types';
 
 type TParams = { id: string };
 
-interface TabPanelProps {
+interface ITabPanelProps {
   children?: React.ReactNode;
   index: number;
   value: number;
 }
 
-function TabPanel(props: TabPanelProps) {
+function TabPanel(props: ITabPanelProps) {
   const { children, value, index, ...other } = props;
 
   return (
@@ -62,10 +67,12 @@ const Profile: React.FC = () => {
 
   const [value, setValue] = React.useState(0);
   const [userData, setUserData] = React.useState<IUser | undefined>();
+  const [userFavoriteTweets, setUserFavoriteTweets] = React.useState<ITweet[] | undefined>();
   const [visibleSetUpModal, setVisibleSetUpModal] = React.useState<boolean>(false);
 
   const currentUserData = useSelector(selectDataOfUser);
   const tweets = useSelector(selectItemsOfTweets);
+  const loadingStatusOfTweet = useSelector(selectLoadingStatusOfTweet);
 
   React.useEffect(() => {
     if (id) {
@@ -77,9 +84,21 @@ const Profile: React.FC = () => {
         });
       }
     }
-
-    dispatch(fetchDataOfTweets());
   }, [currentUserData]);
+
+  React.useEffect(() => {
+    console.log(loadingStatusOfTweet);
+    if (userFavoriteTweets === undefined || loadingStatusOfTweet === LoadingStatus.LOADING) {
+      TweetsApi.fetchDataOfFavoriteTweets(id).then((data) => {
+        setUserFavoriteTweets(data);
+      });
+    }
+
+  }, [loadingStatusOfTweet]);
+
+  React.useEffect(() => {
+    dispatch(fetchDataOfTweets());
+  }, []);
 
   const handleClickOpenSetUpModal = () => {
     setVisibleSetUpModal(true);
@@ -121,8 +140,11 @@ const Profile: React.FC = () => {
               />
             </div>
             <div className="profile-user-buttons">
-              <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
-              {/* <button>Follow</button> */}
+              {id === currentUserData?._id ? (
+                <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
+              ) : (
+                  <FollowButton followedByMeUserId={id} />
+                )}
             </div>
           </div>
 
@@ -186,6 +208,13 @@ const Profile: React.FC = () => {
               .map(tweet => (
                 <Tweet key={tweet._id} tweet={tweet} />
               ))
+          }
+        </TabPanel>
+        <TabPanel value={value} index={3}>
+          {
+            userFavoriteTweets?.map(tweet => (
+              <Tweet key={tweet._id} tweet={tweet} />
+            ))
           }
         </TabPanel>
       </div>

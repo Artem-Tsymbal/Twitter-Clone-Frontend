@@ -1,5 +1,5 @@
 import axios from '../../core/axios';
-import { ITweet } from '../../store/ducks/tweets/contracts/state';
+import { ITweet, TTweetsOption } from '../../store/ducks/tweets/contracts/state';
 
 interface Response<T> {
   status: string;
@@ -9,8 +9,18 @@ interface Response<T> {
 export const TweetsApi = {
   async fetchDataOfTweets(userId?: string): Promise<ITweet[]> {
     const { data } = await axios.get<Response<ITweet[]>>(
-      userId ? `/tweets/user/${userId}` : '/tweets/',
+      userId ? `/tweets/user/${userId}` : '/tweets',
     );
+    return data.data;
+  },
+
+  async fetchDataOfSpecificTweets(payload: TTweetsOption): Promise<ITweet[]> {
+    const { data } = await axios.get<Response<ITweet[]>>(`/tweets/${payload}`);
+    return data.data;
+  },
+
+  async fetchDataOfFavoriteTweets(userId: string): Promise<ITweet[]> {
+    const { data } = await axios.get<Response<ITweet[]>>(`/tweets/${userId}/favorite`);
     return data.data;
   },
 
@@ -20,7 +30,7 @@ export const TweetsApi = {
   },
 
   async addTweet(payload: { text: string, images: string[], replyingTo?: ITweet, retweet?: ITweet }): Promise<ITweet> {
-    const { data } = await axios.post<Response<ITweet>>('/tweets/', payload);
+    const { data } = await axios.post<Response<ITweet>>('/tweets', payload);
     return data.data;
   },
 

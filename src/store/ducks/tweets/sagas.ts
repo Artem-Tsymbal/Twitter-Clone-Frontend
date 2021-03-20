@@ -9,7 +9,13 @@ import {
   setLoadingStatusOfTweets,
   updateLikesOfTweet,
 } from './actionCreators';
-import { IFetchAddTweetAction, ILikeTweetAction, IRemoveTweetAction, TweetsActionsType } from './contracts/actionTypes';
+import {
+  IFetchAddTweetAction,
+  IFetchDataOfSpecificTweetsAction,
+  ILikeTweetAction,
+  IRemoveTweetAction,
+  TweetsActionsType,
+} from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
 import { setDataOfTweet, setLoadingStatusOfTweet } from '../tweet/actionCreators';
 
@@ -18,6 +24,15 @@ export function* fetchDataOfTweetsRequest(): SagaIterator {
     const { pathname } = window.location;
     const userId = pathname.includes('/user') ? pathname.split('/').pop() : undefined;
     const items = yield call(TweetsApi.fetchDataOfTweets, userId);
+    yield put(setDataOfTweets(items));
+  } catch (error) {
+    yield put(setLoadingStatusOfTweets(LoadingStatus.ERROR));
+  }
+}
+
+export function* fetchDataOfSpecificTweetsRequest({ payload }: IFetchDataOfSpecificTweetsAction): SagaIterator {
+  try {
+    const items = yield call(TweetsApi.fetchDataOfSpecificTweets, payload);
     yield put(setDataOfTweets(items));
   } catch (error) {
     yield put(setLoadingStatusOfTweets(LoadingStatus.ERROR));
@@ -43,7 +58,7 @@ export function* fetchRemoveTweetRequest({ payload }: IRemoveTweetAction): SagaI
 
 export function* fetchLikeTweetRequest({ payload }: ILikeTweetAction): SagaIterator {
   try {
-    //  yield put(setLoadingStatusOfTweet(LoadingStatus.LOADING));
+    yield put(setLoadingStatusOfTweet(LoadingStatus.LOADING));
     const item = yield call(TweetsApi.likeTweet, payload);
     yield put(updateLikesOfTweet(item));
     yield put(setDataOfTweet(item));
@@ -54,6 +69,7 @@ export function* fetchLikeTweetRequest({ payload }: ILikeTweetAction): SagaItera
 
 export function* tweetsSaga(): SagaIterator {
   yield takeLatest(TweetsActionsType.FETCH_DATA_OF_TWEETS, fetchDataOfTweetsRequest);
+  yield takeLatest(TweetsActionsType.FETCH_DATA_OF_SPECIFIC_TWEETS, fetchDataOfSpecificTweetsRequest);
   yield takeLatest(TweetsActionsType.FETCH_ADD_TWEET, fetchAddTweetRequest);
   yield takeLatest(TweetsActionsType.REMOVE_TWEET, fetchRemoveTweetRequest);
   yield takeLatest(TweetsActionsType.LIKE_TWEET, fetchLikeTweetRequest);

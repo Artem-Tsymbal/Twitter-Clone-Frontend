@@ -31,3 +31,5 @@ export interface ITweetsState {
   loadingStatus: LoadingStatus;
   addTweetFormStatus: AddTweetFormStatus;
 }
+
+export type TTweetsOption = 'following' | 'favorite';

@@ -1,10 +1,11 @@
 import { Action } from 'redux';
 import { LoadingStatus } from '../../../types';
-import { AddTweetFormStatus, ITweetsState, ITweet } from './state';
+import { AddTweetFormStatus, ITweetsState, ITweet, TTweetsOption } from './state';
 
 export enum TweetsActionsType {
   SET_LOADING_STATUS_OF_TWEETS = 'tweets/SET_LOADING_STATUS_OF_TWEETS',
   FETCH_DATA_OF_TWEETS = 'tweets/FETCH_DATA_OF_TWEETS',
+  FETCH_DATA_OF_SPECIFIC_TWEETS = 'tweets/FETCH_DATA_OF_SPECIFIC_TWEETS',
   SET_DATA_OF_TWEETS = 'tweets/SET_DATA_OF_TWEETS',
   SET_ADD_TWEET_FORM_STATUS = 'tweets/SET_ADD_TWEET_FORM_STATUS',
   FETCH_ADD_TWEET = 'tweets/FETCH_ADD_TWEET',
@@ -21,6 +22,11 @@ export interface ISetLoadingStatusOfTweetsAction extends Action<TweetsActionsTyp
 
 export interface IFetchDataOfTweetsAction extends Action<TweetsActionsType> {
   type: TweetsActionsType.FETCH_DATA_OF_TWEETS;
+}
+
+export interface IFetchDataOfSpecificTweetsAction extends Action<TweetsActionsType> {
+  type: TweetsActionsType.FETCH_DATA_OF_SPECIFIC_TWEETS;
+  payload: TTweetsOption;
 }
 
 export interface ISetDataOfTweetsAction extends Action<TweetsActionsType> {
@@ -59,8 +65,9 @@ export interface IUpdateLikesOfTweetAction extends Action<TweetsActionsType> {
 }
 
 export type TweetsActions =
-  | IFetchDataOfTweetsAction
   | ISetLoadingStatusOfTweetsAction
+  | IFetchDataOfTweetsAction
+  | IFetchDataOfSpecificTweetsAction
   | ISetDataOfTweetsAction
   | IFetchAddTweetAction
   | IAddTweetAction

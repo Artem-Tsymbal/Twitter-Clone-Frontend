@@ -24,7 +24,6 @@ export interface ISetUpProfileFormProps {
 
 const RegisterFormSchema = yup.object().shape({
   fullName: yup.string().min(2, 'Must be not less then 2 characters').max(40, 'Must be not more then 40 characters'),
-  biography: yup.string().max(280, 'Must be not more then 280 characters'),
 });
 
 const SetUpProfile: React.FC<ISetUpProfileProps> = ({
@@ -52,6 +51,8 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
     if (file) {
       return URL.createObjectURL(new Blob([file]));
     }
+
+    return undefined;
   };
 
   const onSubmit = async (data: ISetUpProfileFormProps) => {
@@ -149,8 +150,6 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
             variant="filled"
             type="text"
             defaultValue={userData?.biography}
-            helperText={errors.biography?.message}
-            error={!!errors.biography}
             multiline
             rows={4}
             fullWidth

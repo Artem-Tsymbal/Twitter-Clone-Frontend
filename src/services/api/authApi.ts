@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { ILoginFormProps } from '../../screens/Login/components/LoginModal';
 import { IRegisterFormProps } from '../../screens/Login/components/RegisterModal';
-import { IUpdateDataOfUser } from '../../store/ducks/user/contracts/state';
+import { IFollowUser, IUpdateDataOfUser } from '../../store/ducks/user/contracts/state';
 
 interface ResponseApi {
   status: string;
@@ -35,6 +35,11 @@ export const AuthApi = {
 
   async updateMe(payload: IUpdateDataOfUser): Promise<ResponseApi> {
     const { data } = await axios.patch('/users/me', payload);
+    return data;
+  },
+
+  async followUser(payload: IFollowUser): Promise<ResponseApi> {
+    const { data } = await axios.post('/users/me/follow', payload);
     return data;
   },
 

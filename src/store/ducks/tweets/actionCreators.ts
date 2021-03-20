@@ -10,8 +10,9 @@ import {
   IRemoveTweetAction,
   ILikeTweetAction,
   IUpdateLikesOfTweetAction,
+  IFetchDataOfSpecificTweetsAction,
 } from './contracts/actionTypes';
-import { ITweetsState, ITweet, AddTweetFormStatus } from './contracts/state';
+import { ITweetsState, ITweet, AddTweetFormStatus, TTweetsOption } from './contracts/state';
 
 export const setLoadingStatusOfTweets = (payload: LoadingStatus): ISetLoadingStatusOfTweetsAction => ({
   type: TweetsActionsType.SET_LOADING_STATUS_OF_TWEETS,
@@ -20,6 +21,11 @@ export const setLoadingStatusOfTweets = (payload: LoadingStatus): ISetLoadingSta
 
 export const fetchDataOfTweets = (): IFetchDataOfTweetsAction => ({
   type: TweetsActionsType.FETCH_DATA_OF_TWEETS,
+});
+
+export const fetchDataOfSpecificTweets = (payload: TTweetsOption): IFetchDataOfSpecificTweetsAction => ({
+  type: TweetsActionsType.FETCH_DATA_OF_SPECIFIC_TWEETS,
+  payload,
 });
 
 export const setDataOfTweets = (payload: ITweetsState['items']): ISetDataOfTweetsAction => ({

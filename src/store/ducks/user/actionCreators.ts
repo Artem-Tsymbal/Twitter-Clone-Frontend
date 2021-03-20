@@ -9,8 +9,9 @@ import {
   ISignOutAction,
   UserActionsType,
   IUpdateDataOfUserAction,
+  IFollowUserAction,
 } from './contracts/actionTypes';
-import { IUpdateDataOfUser, IUserState } from './contracts/state';
+import { IFollowUser, IUpdateDataOfUser, IUserState } from './contracts/state';
 
 export const setLoadingStatusOfUser = (payload: IUserState['loadingStatus']): ISetLoadingStatusOfUserAction => ({
   type: UserActionsType.SET_LOADING_STATUS_OF_USER,
@@ -45,3 +46,7 @@ export const setDataOfUser = (payload: IUserState['data']): ISetDataOfUserAction
   payload,
 });
 
+export const followUser = (payload: IFollowUser): IFollowUserAction => ({
+  type: UserActionsType.FOLLOW_USER,
+  payload,
+});

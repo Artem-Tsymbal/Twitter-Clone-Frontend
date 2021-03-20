@@ -24,8 +24,7 @@ const FullTweet: React.FC = () => {
   const [visibleModal, setVisibleModal] = React.useState<TModal>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const params: { id?: string } = useParams();
-  const { id } = params;
+  const { id } = useParams() as { id?: string };
 
   React.useEffect(() => {
     if (id) {

@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import './AddTweetForm.scss';
-import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { HiOutlineCalendar } from 'react-icons/hi';
 import { CgPoll } from 'react-icons/cg';
 import { FiSmile } from 'react-icons/fi';
 import ImageOutlinedIcon from '@material-ui/icons/ImageOutlined';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { selectAddTweetFormStatus, selectStatusOfTweetsIsLoaded } from '../../../store/ducks/tweets/selectors';
+import { selectAddTweetFormStatus } from '../../../store/ducks/tweets/selectors';
 import { fetchAddTweet } from '../../../store/ducks/tweets/actionCreators';
 import { AddTweetFormStatus, ITweet } from '../../../store/ducks/tweets/contracts/state';
 import { uploadImage } from '../../../utils/uploadImage';
@@ -117,7 +116,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
           {retweet && (
             <div className="add-tweet-form-content__retweet">
-              <ReTweet retweet />
+              <ReTweet retweet={retweet} />
             </div>
           )}
 

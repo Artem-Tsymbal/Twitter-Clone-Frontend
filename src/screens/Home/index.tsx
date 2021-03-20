@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { CircularProgress } from '@material-ui/core';
 import { Route } from 'react-router-dom';
 import { fetchTags } from '../../store/ducks/tags/actionCreators';
-import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
+import { fetchDataOfSpecificTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
 
 import './index.scss';
@@ -19,7 +19,7 @@ const Home: React.FC = () => {
   const isLoading = useSelector(selectStatusOfTweetsIsLoading);
 
   React.useEffect(() => {
-    dispatch(fetchDataOfTweets());
+    dispatch(fetchDataOfSpecificTweets('following'));
     // dispatch(fetchTags());
   }, [dispatch]);
 

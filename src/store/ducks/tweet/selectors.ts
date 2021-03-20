@@ -5,12 +5,12 @@ import { ITweetState } from './contracts/state';
 
 export const selectStateOfTweet = (state: RootState): ITweetState => state.tweet;
 
-export const selectLoadingStatus = (state: RootState): LoadingStatus => selectStateOfTweet(state).loadingStatus;
+export const selectLoadingStatusOfTweet = (state: RootState): LoadingStatus => selectStateOfTweet(state).loadingStatus;
 
 export const selectStatusOfTweetIsLoading = (state: RootState): boolean =>
-  selectLoadingStatus(state) === LoadingStatus.LOADING;
+  selectLoadingStatusOfTweet(state) === LoadingStatus.LOADING;
 
 export const selectStatusOfTweetIsLoaded = (state: RootState): boolean =>
-  selectLoadingStatus(state) === LoadingStatus.LOADED;
+  selectLoadingStatusOfTweet(state) === LoadingStatus.LOADED;
 
 export const selectDataOfTweet = (state: RootState): ITweet | undefined => selectStateOfTweet(state).data;

@@ -1,5 +1,5 @@
 import { Action } from 'redux';
-import { IUpdateDataOfUser, IUser } from './state';
+import { IFollowUser, IUpdateDataOfUser, IUser } from './state';
 import { LoadingStatus } from '../../../types';
 import { IRegisterFormProps } from '../../../../screens/Login/components/RegisterModal';
 import { ILoginFormProps } from '../../../../screens/Login/components/LoginModal';
@@ -12,6 +12,7 @@ export enum UserActionsType {
   FETCH_DATA_OF_USER = 'user/FETCH_DATA_OF_USER',
   UPDATE_DATA_OF_USER = 'user/UPDATE_DATA_OF_USER',
   SET_DATA_OF_USER = 'user/SET_DATA_OF_USER',
+  FOLLOW_USER = 'user/FOLLOW_USER',
 }
 
 export interface ISetLoadingStatusOfUserAction extends Action<UserActionsType> {
@@ -47,6 +48,11 @@ export interface ISetDataOfUserAction extends Action<UserActionsType> {
   payload: IUser | undefined;
 }
 
+export interface IFollowUserAction extends Action<UserActionsType> {
+  type: UserActionsType.FOLLOW_USER;
+  payload: IFollowUser;
+}
+
 export type UserActions =
   | ISetLoadingStatusOfUserAction
   | IFetchSignUpAction
@@ -54,4 +60,5 @@ export type UserActions =
   | ISignOutAction
   | IFetchDataOfUserAction
   | IUpdateDataOfUserAction
-  | ISetDataOfUserAction;
+  | ISetDataOfUserAction
+  | IFollowUserAction;

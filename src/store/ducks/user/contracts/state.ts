@@ -1,4 +1,5 @@
 import { LoadingStatus } from '../../../types';
+import { ITweet } from '../../tweets/contracts/state';
 
 export interface IUser {
   _id?: string;
@@ -12,6 +13,9 @@ export interface IUser {
   background?: string;
   avatar?: string;
   createdAt: string;
+  following: string[];
+  followers: string[];
+  favorites: ITweet[];
 }
 
 export interface IUpdateDataOfUser {
@@ -19,6 +23,10 @@ export interface IUpdateDataOfUser {
   biography?: string;
   background?: File[] | string;
   avatar?: File[] | string;
+}
+
+export interface IFollowUser {
+  followedByMeUserId: string;
 }
 
 export interface IUserState {
