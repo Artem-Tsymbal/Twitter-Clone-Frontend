@@ -14,7 +14,7 @@ export function useProvideAuth(): IUseProvideAuth {
 
   const isAuthenticated = () => {
     let isAuthed = false;
-    const currentUser = localStorage.getItem('currentUser');
+    const currentUser = localStorage.getItem('twitter-clone-currentUser');
     if (currentUser && currentUser !== 'undefined') {
       isAuthed = !!JSON.parse(currentUser);
       if (isAuthed && history.location.pathname === '/login') {
@@ -26,8 +26,8 @@ export function useProvideAuth(): IUseProvideAuth {
   };
 
   const logOut = () => {
-    window.localStorage.removeItem('token');
-    window.localStorage.removeItem('currentUser');
+    window.localStorage.removeItem('twitter-clone-token');
+    window.localStorage.removeItem('twitter-clone-currentUser');
     dispatch(signOut());
     history.push('/login');
   };

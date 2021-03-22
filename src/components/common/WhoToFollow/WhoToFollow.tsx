@@ -2,38 +2,43 @@ import React from 'react';
 import './WhoToFollow.scss';
 import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import { Link } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { selectItemsOfConnectPeople } from '../../../store/ducks/connectPeople/selectors';
+import { selectDataOfUser } from '../../../store/ducks/user/selectors';
+import { fetchDataOfConnectPeople } from '../../../store/ducks/connectPeople/actionCreators';
+import ConnectPerson from '../ConnectPerson/ConnectPerson';
 
-const WhoToFollow: React.FC = () => (
-  <div className="follow-block">
-    <div className="follow-block-header">
-      <span className="trends-block-header__text">Who to follow</span>
-    </div>
-    <div className="follow-block-list">
-      <div className="follow-block-item">
-        <div className="main-info-wrapper">
-          <div className="follow-block__image"></div>
-          <div className="follow-block-content">
-            <span className="follow-block-content__fullName">ArtyomTsymbal1</span>
-            <span className="follow-block-content__username">@TsymbalArtyom1</span>
-          </div>
-        </div>
-        <button className="follow-block-item__button">Follow</button>
+const WhoToFollow: React.FC = () => {
+  const dispatch = useDispatch();
+  let users = useSelector(selectItemsOfConnectPeople);
+  const currentUserData = useSelector(selectDataOfUser);
+  if (currentUserData) {
+    users = users.filter(item => item._id !== currentUserData._id);
+  }
+
+  React.useEffect(() => {
+    dispatch(fetchDataOfConnectPeople());
+  }, []);
+
+  return (
+    <div className="follow-block">
+      <div className="follow-block-header">
+        <span className="trends-block-header__text">Who to follow</span>
       </div>
-      <div className="follow-block-item">
-        <div className="main-info-wrapper">
-          <div className="follow-block__image" />
-          <div className="follow-block-content">
-            <span className="follow-block-content__fullName">ArtyomTsymbal2</span>
-            <span className="follow-block-content__username">@TsymbalArtyom2</span>
-          </div>
-        </div>
-        <button className="follow-block-item__button">Follow</button>
+      <div className="follow-block-list">
+
+        {users.map(item => {
+          return (
+            <ConnectPerson key={item._id} user={item} isWhoToFollowBlock={true} />
+          );
+        })}
+
+        <Link to="/connect_people" className="trends-block__link">
+          <ShowMoreButton />
+        </ Link>
       </div>
-      <Link to="/connect_people" className="trends-block__link">
-        <ShowMoreButton />
-      </ Link>
     </div>
-  </div>
-);
+  );
+};
 
 export default WhoToFollow;

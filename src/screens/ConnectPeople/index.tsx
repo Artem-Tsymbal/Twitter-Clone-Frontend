@@ -5,8 +5,24 @@ import './index.scss';
 import { WiStars } from 'react-icons/wi';
 import { BackButton } from '../../components/common/BackButton';
 import ConnectPerson from '../../components/common/ConnectPerson/ConnectPerson';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchDataOfConnectPeople } from '../../store/ducks/connectPeople/actionCreators';
+import { selectItemsOfConnectPeople } from '../../store/ducks/connectPeople/selectors';
+import { selectDataOfUser } from '../../store/ducks/user/selectors';
 
 const ConnectPeople: React.FC = () => {
+  const dispatch = useDispatch();
+  let users = useSelector(selectItemsOfConnectPeople);
+  const currentUserData = useSelector(selectDataOfUser);
+  if (currentUserData) {
+    users = users.filter(item => item._id !== currentUserData._id);
+  }
+
+
+  React.useEffect(() => {
+    dispatch(fetchDataOfConnectPeople());
+  }, []);
+
   return (
     <div className="connect-people-wrapper">
       <div className="connect-people-header">
@@ -18,9 +34,11 @@ const ConnectPeople: React.FC = () => {
       </div>
 
       <Route path="/connect_people" exact>
-        <ConnectPerson />
-        <ConnectPerson />
-        <ConnectPerson />
+        {users.map(item => {
+          return (
+            <ConnectPerson key={item._id} user={item} />
+          );
+        })}
       </Route>
     </div>
   );

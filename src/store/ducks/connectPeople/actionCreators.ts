@@ -1,13 +1,29 @@
+import { LoadingStatus } from '../../types';
 import { IUser } from '../user/contracts/state';
-import { ConnectPeopleActionsTypes, IFetchConnectPeopleAction, ISetConnectPeopleAction } from './contracts/actionTypes';
+import {
+  ConnectPeopleActionsType,
+  ISetLoadingStatusOfConnectPeopleAction,
+  IFetchDataOfConnectPeopleAction,
+  ISetDataOfConnectPeopleAction
+} from './contracts/actionTypes';
 
-export const fetchConnectPeople = (): IFetchConnectPeopleAction => ({
-  type: ConnectPeopleActionsTypes.FETCH_CONNECT_PEOPLE,
-});
-
-export const setConnectPeople = (payload: IUser[]): ISetConnectPeopleAction => ({
-  type: ConnectPeopleActionsTypes.SET_CONNECT_PEOPLE,
+export const setLoadingStatusOfConnectPeopleAction = (
+  payload: LoadingStatus
+): ISetLoadingStatusOfConnectPeopleAction => ({
+  type: ConnectPeopleActionsType.SET_LOADING_STATUS_OF_CONNECT_PEOPLE,
   payload,
 });
 
-export type ConnectPeopleActions = IFetchConnectPeopleAction | ISetConnectPeopleAction;
+export const fetchDataOfConnectPeople = (): IFetchDataOfConnectPeopleAction => ({
+  type: ConnectPeopleActionsType.FETCH_DATA_OF_CONNECT_PEOPLE,
+});
+
+export const setDataOfConnectPeople = (payload: IUser[]): ISetDataOfConnectPeopleAction => ({
+  type: ConnectPeopleActionsType.SET_DATA_OF_CONNECT_PEOPLE,
+  payload,
+});
+
+export type ConnectPeopleActions =
+  | ISetLoadingStatusOfConnectPeopleAction
+  | IFetchDataOfConnectPeopleAction
+  | ISetDataOfConnectPeopleAction;

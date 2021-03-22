@@ -39,7 +39,7 @@ export const tweetsReducer = produce((draft: Draft<ITweetsState>, action: Tweets
       draft.items.forEach(item => {
         if (item._id === action.payload._id) {
           item.likes = action.payload.likes;
-          item.favorite = action.payload.favorite;
+          item.isFavorite = action.payload.isFavorite;
         }
       });
       break;

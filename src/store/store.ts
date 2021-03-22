@@ -25,7 +25,7 @@ export interface RootState {
   tweet: ITweetState;
   tags: ITagsState;
   user: IUserState;
-  connectProple: IConnectPeopleState;
+  connectPeople: IConnectPeopleState;
 }
 
 export const store = createStore(rootReducer, composeEnhancers(applyMiddleware(sagaMiddleware)));

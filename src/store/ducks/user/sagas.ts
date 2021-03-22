@@ -10,6 +10,7 @@ import {
 } from './contracts/actionTypes';
 import { LoadingStatus } from '../../types';
 import { AuthApi } from '../../../services/api/authApi';
+import { UsersApi } from '../../../services/api/usersApi';
 
 export function* fetchSignUpRequest({ payload }: IFetchSignUpAction): SagaIterator {
   try {
@@ -25,8 +26,8 @@ export function* fetchSignInRequest({ payload }: IFetchSignInAction): SagaIterat
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
     const { data } = yield call(AuthApi.signIn, payload);
-    window.localStorage.setItem('token', data.token);
-    window.localStorage.setItem('currentUser', JSON.stringify(data.user));
+    window.localStorage.setItem('twitter-clone-token', data.token);
+    window.localStorage.setItem('twitter-clone-currentUser', JSON.stringify(data.user));
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
@@ -36,7 +37,7 @@ export function* fetchSignInRequest({ payload }: IFetchSignInAction): SagaIterat
 export function* fetchDataOfUserRequest(): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
-    const { data } = yield call(AuthApi.getMe);
+    const data = yield call(UsersApi.getMe);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
@@ -46,7 +47,7 @@ export function* fetchDataOfUserRequest(): SagaIterator {
 export function* updateDataOfUserRequest({ payload }: IUpdateDataOfUserAction): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
-    const { data } = yield call(AuthApi.updateMe, payload);
+    const data = yield call(UsersApi.updateMe, payload);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));
@@ -56,7 +57,7 @@ export function* updateDataOfUserRequest({ payload }: IUpdateDataOfUserAction): 
 export function* followUserRequest({ payload }: IFollowUserAction): SagaIterator {
   try {
     yield put(setLoadingStatusOfUser(LoadingStatus.LOADING));
-    const { data } = yield call(AuthApi.followUser, payload);
+    const data = yield call(UsersApi.followUser, payload);
     yield put(setDataOfUser(data));
   } catch (error) {
     yield put(setLoadingStatusOfUser(LoadingStatus.ERROR));

@@ -13,9 +13,9 @@ export interface IUser {
   background?: string;
   avatar?: string;
   createdAt: string;
-  following: string[];
+  followingUsers: string[];
   followers: string[];
-  favorites: ITweet[];
+  favoriteTweets: ITweet[];
 }
 
 export interface IUpdateDataOfUser {

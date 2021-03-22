@@ -69,7 +69,7 @@ const TweetActions: React.FC<ITweetProps> = ({
 
       <div
         onClick={handleClickLike}
-        className={tweet.favorite ? 'tweet-actions-wrapper red liked' : 'tweet-actions-wrapper red'}
+        className={tweet.isFavorite ? 'tweet-actions-wrapper red liked' : 'tweet-actions-wrapper red'}
       >
         <div className="tweet-actions__item action--red" style={itemStyle}>
           <AiOutlineHeart style={iconStyle} />

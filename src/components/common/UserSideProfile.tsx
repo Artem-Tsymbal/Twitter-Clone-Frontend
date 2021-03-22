@@ -29,7 +29,7 @@ export const UserSideProfile: React.FC<UserSideProfileProps> = ({
   };
 
   const handleSignOut = () => {
-    window.localStorage.removeItem('token');
+    window.localStorage.removeItem('twitter-clone-token');
     dispatch(signOut());
   };
 

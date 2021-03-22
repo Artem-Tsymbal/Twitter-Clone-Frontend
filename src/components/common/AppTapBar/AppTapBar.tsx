@@ -21,7 +21,6 @@ const AppTapBar: React.FC = () => {
   const handleClickOpenAddTweetModal = (event: any) => {
     event.stopPropagation();
     setVisibleAddTweetModal(true);
-    console.log(visibleAddTweetModal);
   };
 
   const handleCloseAddTweetModal = () => {

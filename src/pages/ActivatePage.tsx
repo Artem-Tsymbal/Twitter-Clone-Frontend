@@ -13,7 +13,7 @@ export const ActivatePage = () => {
     if (hash) {
       AuthApi.verify(hash)
         .then(({ data }) => {
-          window.localStorage.setItem('token', data.token);
+          window.localStorage.setItem('twitter-clone-token', data.token);
           window.location.href = '/home';
         })
         .catch(() => {

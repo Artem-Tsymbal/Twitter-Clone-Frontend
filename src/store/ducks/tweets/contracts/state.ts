@@ -17,7 +17,7 @@ export interface ITweet {
   retweet?: ITweet;
   retweets?: ITweet[];
   likes: [];
-  favorite: boolean;
+  isFavorite: boolean;
   user: {
     _id: string;
     fullName: string;

@@ -1,22 +1,42 @@
 import React from 'react';
+import FollowButton from '../../shared/FollowButton/FollowButton';
 import './ConnectPerson.scss';
+import { IUser } from '../../../store/ducks/user/contracts/state';
+import Avatar from '../../shared/Avatar/Avatar';
 
-const ConnectPerson: React.FC = () => {
+interface IConnectPersonProps {
+  isWhoToFollowBlock?: boolean;
+  user: IUser;
+}
+
+const ConnectPerson: React.FC<IConnectPersonProps> = ({
+  isWhoToFollowBlock,
+  user
+}: IConnectPersonProps) => {
+  let option;
+
+  if (isWhoToFollowBlock) {
+    option = {
+      alignItems: 'center',
+    };
+  }
+
   return (
     <div className="connect-person">
-      <div className="connect-person-image">
-        <img alt={"Avatar"} />
+      <div className="connect-person-wrapper">
+        <div className="connect-person-avatar">
+          <Avatar size='middle' fullName={user.fullName} avatar={user.avatar} id={user._id} response={true} />
+        </div>
+        <div className="connect-person-desc">
+          <span className="connect-person__fullName">{user.fullName}</span>
+          <span className="connect-person__username">@{user.username}</span>
+          {!isWhoToFollowBlock && <span className="connect-person__bio">{user.biography}</span>}
+        </div>
       </div>
-      <div className="connect-person-content">
-        <span className="connect-person-content__fullName">ArtyomTsymbal1</span>
-        <span className="connect-person-content__username">@TsymbalArtyom1</span>
-        <span className="connect-person-content__text">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit.
-          Ab atque magnam quasam?
-        </span>
+      <div className="connect-person-button" style={option}>
+        {user._id && <FollowButton size='middle' followedByMeUserId={user._id} />}
       </div>
-      <button className="connect-person-button">Follow</button>
-    </div>
+    </div >
   );
 };
 

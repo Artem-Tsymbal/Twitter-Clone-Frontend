@@ -10,7 +10,6 @@ import Tab from '@material-ui/core/Tab';
 import { Box, Typography } from '@material-ui/core';
 import { BsCalendar } from 'react-icons/bs';
 import { selectDataOfUser } from '../../store/ducks/user/selectors';
-import { AuthApi } from '../../services/api/authApi';
 import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets } from '../../store/ducks/tweets/selectors';
 import { IUser } from '../../store/ducks/user/contracts/state';
@@ -25,6 +24,7 @@ import { ITweet } from '../../store/ducks/tweets/contracts/state';
 import { TweetsApi } from '../../services/api/tweetsApi';
 import { selectLoadingStatusOfTweet } from '../../store/ducks/tweet/selectors';
 import { LoadingStatus } from '../../store/types';
+import { UsersApi } from '../../services/api/usersApi';
 
 type TParams = { id: string };
 
@@ -76,18 +76,12 @@ const Profile: React.FC = () => {
 
   React.useEffect(() => {
     if (id) {
-      if (id === currentUserData?._id) {
-        setUserData(currentUserData);
-      } else {
-        AuthApi.getUserInfo(id).then(({ data }) => {
-          setUserData(data);
-        });
-      }
+      if (id === currentUserData?._id) setUserData(currentUserData);
+      else UsersApi.getUserInfo(id).then(data => setUserData(data));
     }
   }, [currentUserData]);
 
   React.useEffect(() => {
-    console.log(loadingStatusOfTweet);
     if (userFavoriteTweets === undefined || loadingStatusOfTweet === LoadingStatus.LOADING) {
       TweetsApi.fetchDataOfFavoriteTweets(id).then((data) => {
         setUserFavoriteTweets(data);
@@ -143,7 +137,7 @@ const Profile: React.FC = () => {
               {id === currentUserData?._id ? (
                 <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
               ) : (
-                  <FollowButton followedByMeUserId={id} />
+                  <FollowButton size='large' followedByMeUserId={id} />
                 )}
             </div>
           </div>

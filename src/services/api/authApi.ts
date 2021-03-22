@@ -28,26 +28,6 @@ export const AuthApi = {
     return data;
   },
 
-  async getMe(): Promise<ResponseApi> {
-    const { data } = await axios.get<ResponseApi>('/users/me');
-    return data;
-  },
-
-  async updateMe(payload: IUpdateDataOfUser): Promise<ResponseApi> {
-    const { data } = await axios.patch('/users/me', payload);
-    return data;
-  },
-
-  async followUser(payload: IFollowUser): Promise<ResponseApi> {
-    const { data } = await axios.post('/users/me/follow', payload);
-    return data;
-  },
-
-  async getUserInfo(userId: string): Promise<ResponseApi> {
-    const { data } = await axios.get<ResponseApi>(`/users/${userId}`);
-    return data;
-  },
-
   async verify(hash: string): Promise<ResponseApi> {
     const { data } = await axios.get(`auth/verify?hash=${hash}`);
     return data;

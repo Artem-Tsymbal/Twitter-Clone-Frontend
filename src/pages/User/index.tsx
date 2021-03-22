@@ -16,6 +16,7 @@ import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
 import { IUser } from '../../store/ducks/user/contracts/state';
 import { AuthApi } from '../../services/api/authApi';
 import { RouteComponentProps } from 'react-router-dom';
+import { UsersApi } from '../../services/api/usersApi';
 
 export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match }: any) => {
   const classes = useHomeStyles();
@@ -29,7 +30,7 @@ export const UserPage: React.FC<RouteComponentProps<{ id: string }>> = ({ match 
     const userId = match.params.id;
     dispatch(fetchDataOfTweets());
     if (userId) {
-      AuthApi.getUserInfo(userId).then(({ data }) => {
+      UsersApi.getUserInfo(userId).then((data) => {
         setUserData(data);
       });
     }
