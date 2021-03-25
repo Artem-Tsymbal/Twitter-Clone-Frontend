@@ -2,7 +2,7 @@ import { LoadingStatus } from '../../../types';
 import { ITweet } from '../../tweets/contracts/state';
 
 export interface IUser {
-  _id?: string;
+  _id: string;
   email: string;
   fullName: string;
   username: string;

@@ -1,6 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import PrivateRoute from './Auth/PrivateRoute';
+import { ConversationsProvider } from '../contexts/ConversationsProvider';
+import { SocketProvider } from '../contexts/SocketProvider';
 
 import { DefaultLayout } from '../components/layouts/default';
 import Home from '../screens/Home';
@@ -16,37 +18,31 @@ export const RouterConfig: React.FC = () => (
       <Login />
     </Route>
     <PrivateRoute path="/trends">
-      <DefaultLayout
-        IsVisibleTrendsForYou={false}
-        IsVisibleWhoToFollow={true}>
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleWhoToFollow={true}>
         <Trends />
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/connect_people">
-      <DefaultLayout
-        IsVisibleTrendsForYou={true}
-        IsVisibleWhoToFollow={false}>
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true}>
         <ConnectPeople />
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/messages">
-      <DefaultLayout
-        IsVisibleTrendsForYou={true}
-        IsVisibleWhoToFollow={true}>
-        <Messages />
-      </DefaultLayout>
+      <SocketProvider>
+        <ConversationsProvider>
+          <DefaultLayout IsVisibleChats={true}>
+            <Messages />
+          </DefaultLayout>
+        </ConversationsProvider>
+      </SocketProvider>
     </PrivateRoute>
     <PrivateRoute path="/user/:id">
-      <DefaultLayout
-        IsVisibleTrendsForYou={true}
-        IsVisibleWhoToFollow={true}>
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true}>
         <Profile />
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/">
-      <DefaultLayout
-        IsVisibleTrendsForYou={true}
-        IsVisibleWhoToFollow={true}>
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true}>
         <Home />
       </DefaultLayout>
     </PrivateRoute>

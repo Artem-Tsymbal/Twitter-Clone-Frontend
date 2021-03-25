@@ -22,7 +22,7 @@
           background-color: rgba(29, 161, 242, 0.2);
           box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
           border-radius: 9999px;
-        }    
+        }
       }
     }
     &__logo {
@@ -47,7 +47,7 @@
     &__text {
       margin-left: 20px;
       margin-right: 15px;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 700;
       line-height: 25px;
     }
@@ -66,7 +66,7 @@
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
     cursor: pointer;
-    &:hover{
+    &:hover {
       background-color: rgb(23, 129, 194);
       box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
     }
@@ -78,16 +78,16 @@
     &__text {
       font-size: 15px;
       font-weight: 700;
-      line-height: 20px;
+      line-height: 16px;
     }
   }
 }
 
-@media screen and (max-width: 1264px) { 
+@media screen and (max-width: 1264px) {
   .tap-bar {
     &-list {
       width: auto;
-      &__link{
+      &__link {
         display: flex;
         justify-content: center;
       }
@@ -104,7 +104,6 @@
       align-items: center;
       &__icon {
         display: block;
-  
       }
       &__text {
         display: none;
@@ -117,44 +116,42 @@
   }
 }
 
-@media screen and (max-width: 1026px) { 
+@media screen and (max-width: 1026px) {
   .tap-bar-list {
     padding-left: 5px;
     padding-right: 5px;
   }
 }
 
-@media screen and (max-width: 1007px) { 
+@media screen and (max-width: 1007px) {
   .tap-bar-list {
     padding-left: 10px;
     padding-right: 10px;
   }
 }
 
-@media screen and (max-width: 599px) { 
+@media screen and (max-width: 599px) {
   .tap-bar-list {
     padding-left: 5px;
     padding-right: 5px;
   }
 }
 
-@media screen and (max-height: 794px) { 
+@media screen and (max-height: 794px) {
   .tap-bar-list__link {
     padding-top: 4px;
     padding-bottom: 4px;
   }
-
 }
 
-@media screen and (max-height: 704px) { 
+@media screen and (max-height: 704px) {
   .tap-bar-list__link {
     padding-top: 0px;
     padding-bottom: 0px;
   }
-
 }
 
-@media screen and (max-height: 615px) { 
+@media screen and (max-height: 615px) {
   .bookmark {
     display: none;
   }

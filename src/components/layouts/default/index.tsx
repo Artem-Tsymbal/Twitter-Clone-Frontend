@@ -9,14 +9,20 @@ import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
 
 interface IDefaultLayout {
   children: React.ReactNode,
-  IsVisibleTrendsForYou: boolean,
-  IsVisibleWhoToFollow: boolean,
+  IsVisibleSearchBox?: boolean,
+  IsVisibleTrendsForYou?: boolean,
+  IsVisibleWhoToFollow?: boolean,
+  IsVisibleServiceUsage?: boolean,
+  IsVisibleChats?: boolean,
 }
 
 export const DefaultLayout: React.FC<IDefaultLayout> = ({
   children,
-  IsVisibleTrendsForYou,
-  IsVisibleWhoToFollow,
+  IsVisibleSearchBox = false,
+  IsVisibleTrendsForYou = false,
+  IsVisibleWhoToFollow = false,
+  IsVisibleServiceUsage = false,
+  IsVisibleChats = false,
 }: IDefaultLayout) => (
   <div className="wrapper">
     <header className="left-side">
@@ -29,15 +35,23 @@ export const DefaultLayout: React.FC<IDefaultLayout> = ({
     </header>
     <main className="main-side">
       <div className="content-container">
-        <div className="primary-column">
-          {children}
-        </div>
-        <div className="sidebar-column">
-          <SearchBox />
-          {IsVisibleTrendsForYou && <TrendsForYou />}
-          {IsVisibleWhoToFollow && <WhoToFollow />}
-          <ServiceUsage isFullContent={false} />
-        </div>
+        {IsVisibleChats ? (
+          <>
+            {children}
+          </>
+        ) : (
+            <>
+              <div className="primary-column">
+                {children}
+              </div>
+              <div className="sidebar-column">
+                {IsVisibleSearchBox && <SearchBox />}
+                {IsVisibleTrendsForYou && <TrendsForYou />}
+                {IsVisibleWhoToFollow && <WhoToFollow />}
+                {IsVisibleServiceUsage && <ServiceUsage isFullContent={false} />}
+              </div>
+            </>
+          )}
       </div>
     </main >
     <nav className="bottom-bar">

@@ -187,12 +187,14 @@ const Profile: React.FC = () => {
           {
             tweets
               .filter(tweet => tweet.replyingTo)
-              .map(tweet => (
-                <>
-                  {tweet.replyingTo && <Tweet key={tweet.replyingTo._id} tweet={tweet.replyingTo} isReply={true} />}
-                  <Tweet key={tweet._id} tweet={tweet} />
-                </>
-              ))
+              .map(tweet => {
+                if (tweet.replyingTo) return (
+                  <React.Fragment key={tweet.replyingTo._id}>
+                    <Tweet tweet={tweet.replyingTo} isReply={true} />
+                    <Tweet key={tweet._id} tweet={tweet} />
+                  </React.Fragment>
+                );
+              })
           }
         </TabPanel>
         <TabPanel value={value} index={2}>

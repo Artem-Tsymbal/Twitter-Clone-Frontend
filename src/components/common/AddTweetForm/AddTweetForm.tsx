@@ -15,7 +15,6 @@ import Avatar from '../../shared/Avatar/Avatar';
 import ReTweet from '../ReTweet/ReTweet';
 import Reply from '../Reply/Reply';
 
-
 type TForm = 'reply' | 'retweet';
 
 interface IAddTweetFormProps {

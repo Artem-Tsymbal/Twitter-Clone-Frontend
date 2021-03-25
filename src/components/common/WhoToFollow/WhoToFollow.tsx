@@ -1,8 +1,8 @@
 import React from 'react';
 import './WhoToFollow.scss';
-import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import { selectItemsOfConnectPeople } from '../../../store/ducks/connectPeople/selectors';
 import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 import { fetchDataOfConnectPeople } from '../../../store/ducks/connectPeople/actionCreators';
@@ -12,6 +12,7 @@ const WhoToFollow: React.FC = () => {
   const dispatch = useDispatch();
   let users = useSelector(selectItemsOfConnectPeople);
   const currentUserData = useSelector(selectDataOfUser);
+
   if (currentUserData) {
     users = users.filter(item => item._id !== currentUserData._id);
   }
@@ -27,11 +28,9 @@ const WhoToFollow: React.FC = () => {
       </div>
       <div className="follow-block-list">
 
-        {users.map(item => {
-          return (
-            <ConnectPerson key={item._id} user={item} isWhoToFollowBlock={true} />
-          );
-        })}
+        {users.map(item => (
+          <ConnectPerson key={item._id} user={item} isWhoToFollowBlock={true} />
+        ))}
 
         <Link to="/connect_people" className="trends-block__link">
           <ShowMoreButton />

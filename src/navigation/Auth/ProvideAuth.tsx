@@ -18,18 +18,17 @@ const warningObject: IWarningObject = {
   },
 };
 
-const authContext = React.createContext<IUseProvideAuth | IWarningObject>(warningObject);
+const AuthContext = React.createContext<IUseProvideAuth | IWarningObject>(warningObject);
 
 export const ProvideAuth: React.FC<IProvideAuthProps> = ({ children }: IProvideAuthProps) => {
   const auth = useProvideAuth();
   return (
-    <authContext.Provider value={auth}>
+    <AuthContext.Provider value={auth}>
       {children}
-    </authContext.Provider>
+    </AuthContext.Provider>
   );
 };
 
 export function useAuth(): IUseProvideAuth {
-  const context = React.useContext(authContext);
-  return context;
+  return React.useContext(AuthContext);
 }
