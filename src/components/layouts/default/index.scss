@@ -1,5 +1,5 @@
 .wrapper {
-  min-width: 320px;
+  min-width: 380px;
   display: flex;
   background-color: var(--primaryBg);
 }
@@ -45,12 +45,8 @@
   box-sizing: border-box;
   margin-right: 10px;
 }
-.bottom-bar {
+.bottom-bar-wrapper {
   display: none;
-}
-
-.aaa {
-  height: 2000px;
 }
 
 @media screen and (max-width: 1264px) {
@@ -109,12 +105,11 @@
   .left-side {
     display: none;
   }
-  .bottom-bar {
+  .bottom-bar-wrapper {
+    display: block;
     position: fixed;
     left: 0px;
     bottom: 0px;
     width: 100%;
-    background-color: orangered;
-    display: flex;
   }
 }

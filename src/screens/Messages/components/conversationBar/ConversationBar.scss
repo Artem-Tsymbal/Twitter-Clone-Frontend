@@ -4,6 +4,9 @@
   display: flex;
   justify-content: space-evenly;
   align-items: center;
+  padding-left: 8px;
+  padding-right: 8px;
+  box-sizing: border-box;
   border-top: 1px solid var(--border);
   & textarea {
     width: 100%;

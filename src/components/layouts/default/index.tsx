@@ -6,6 +6,7 @@ import SearchBox from '../../common/SearchBox/SearchBox';
 import TrendsForYou from '../../common/TrendsForYou/TrendsForYou';
 import WhoToFollow from '../../common/WhoToFollow/WhoToFollow';
 import ServiceUsage from '../../common/ServiceUsage/ServiceUsage';
+import BottomBar from '../../common/BottomBar/BottomBar';
 
 interface IDefaultLayout {
   children: React.ReactNode,
@@ -54,8 +55,8 @@ export const DefaultLayout: React.FC<IDefaultLayout> = ({
         )}
       </div>
     </main >
-    <nav className="bottom-bar">
-      bottom-bar
-      </nav>
+    <nav className="bottom-bar-wrapper">
+      <BottomBar />
+    </nav>
   </div>
 );
