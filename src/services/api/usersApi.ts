@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ISearchUsers } from "../../store/ducks/search/contracts/state";
 import { IFollowUser, IUpdateDataOfUser, IUser } from "../../store/ducks/user/contracts/state";
 
 interface Response<T> {
@@ -9,6 +10,11 @@ interface Response<T> {
 export const UsersApi = {
   async getPeople(): Promise<IUser[]> {
     const { data } = await axios.get<Response<IUser[]>>('/users');
+    return data.data;
+  },
+
+  async searchUsers(payload: ISearchUsers): Promise<IUser[]> {
+    const { data } = await axios.post<Response<IUser[]>>('/users/search', payload);
     return data.data;
   },
 

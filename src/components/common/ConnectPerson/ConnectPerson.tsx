@@ -4,6 +4,7 @@ import './ConnectPerson.scss';
 import { IUser } from '../../../store/ducks/user/contracts/state';
 import Avatar from '../../shared/Avatar/Avatar';
 
+
 interface IConnectPersonProps {
   isWhoToFollowBlock?: boolean;
   user: IUser;
@@ -11,7 +12,7 @@ interface IConnectPersonProps {
 
 const ConnectPerson: React.FC<IConnectPersonProps> = ({
   isWhoToFollowBlock,
-  user
+  user,
 }: IConnectPersonProps) => {
   let option;
 

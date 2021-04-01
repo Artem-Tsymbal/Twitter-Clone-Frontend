@@ -42,7 +42,6 @@ export function* fetchDataOfSpecificTweetsRequest({ payload }: IFetchDataOfSpeci
 
 export function* fetchAddTweetRequest({ payload }: IFetchAddTweetAction): SagaIterator {
   try {
-    console.log(payload);
     const item = yield call(TweetsApi.addTweet, payload);
     yield put(addTweet(item));
   } catch (error) {

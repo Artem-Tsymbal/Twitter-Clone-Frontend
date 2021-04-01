@@ -21,3 +21,8 @@ export interface ISetDataOfConnectPeopleAction extends Action<ConnectPeopleActio
   type: ConnectPeopleActionsType.SET_DATA_OF_CONNECT_PEOPLE;
   payload: IUser[];
 }
+
+export type ConnectPeopleActions =
+  | ISetLoadingStatusOfConnectPeopleAction
+  | IFetchDataOfConnectPeopleAction
+  | ISetDataOfConnectPeopleAction;

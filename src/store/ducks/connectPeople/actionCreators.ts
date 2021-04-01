@@ -4,7 +4,7 @@ import {
   ConnectPeopleActionsType,
   ISetLoadingStatusOfConnectPeopleAction,
   IFetchDataOfConnectPeopleAction,
-  ISetDataOfConnectPeopleAction
+  ISetDataOfConnectPeopleAction,
 } from './contracts/actionTypes';
 
 export const setLoadingStatusOfConnectPeopleAction = (
@@ -22,8 +22,3 @@ export const setDataOfConnectPeople = (payload: IUser[]): ISetDataOfConnectPeopl
   type: ConnectPeopleActionsType.SET_DATA_OF_CONNECT_PEOPLE,
   payload,
 });
-
-export type ConnectPeopleActions =
-  | ISetLoadingStatusOfConnectPeopleAction
-  | IFetchDataOfConnectPeopleAction
-  | ISetDataOfConnectPeopleAction;

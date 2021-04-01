@@ -1,7 +1,6 @@
 import produce, { Draft } from "immer";
 import { LoadingStatus } from "../../types";
-import { ConnectPeopleActions } from "./actionCreators";
-import { ConnectPeopleActionsType } from "./contracts/actionTypes";
+import { ConnectPeopleActions, ConnectPeopleActionsType } from "./contracts/actionTypes";
 import { IConnectPeopleState } from "./contracts/state";
 
 const initialConnectPeopleState: IConnectPeopleState = {
