@@ -6,7 +6,7 @@
     display: flex;
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
-    border-bottom: 1px solid rgb(235, 238, 240);
+    border-bottom: 1px solid var(--border);
     text-decoration: none;
     color: initial;
     cursor: pointer;
@@ -29,7 +29,7 @@
     width: 2px;
     height: 100%;
     margin-top: 4px;
-    background-color: rgb(196, 207, 214);
+    background-color: var(--strongBorder);
   }
   &-content {
     display: flex;
@@ -42,35 +42,42 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: rgb(15, 20, 25);
+    color: var(--primaryText);
     font-size: 15px;
     font-weight: 400;
     line-height: 16px;
     &__fullName {
       font-weight: 700;
+      & a {
+        color: var(--primaryText);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     &__username {
       margin-left: 5px;
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
     }
     &__time {
-      color: rgb(91, 112, 131);
-      &-dot {
-        padding-left: 3px;
-        padding-right: 3px;
-      }
+      color: var(--secondaryText);
+    }
+    &__dot {
+      padding-left: 3px;
+      padding-right: 3px;
     }
     & svg {
       width: 18.75px;
       height: 18.75px;
       padding: 10px;
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
       border-radius: 9999px;
       transition-duration: 0.2s;
       transition-property: background-color;
       &:hover {
-        color: rgb(29, 161, 242);
-        background-color: rgba(29, 161, 242, 0.2);
+        color: var(--primaryTheme);
+        background-color: var(--primaryThemeBgActive);
       }
     }
   }
@@ -78,14 +85,14 @@
     &__replyingTo {
       padding-top: 4px;
       padding-bottom: 16px;
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
       & a {
-        color: rgb(27, 149, 224);
+        color: var(--primaryTheme);
         text-decoration: none;
       }
     }
     &__text {
-      color: rgb(15, 20, 25);
+      color: var(--primaryText);
       font-size: 15px;
       font-weight: 400;
       line-height: 16px;

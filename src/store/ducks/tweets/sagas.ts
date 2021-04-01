@@ -32,6 +32,7 @@ export function* fetchDataOfTweetsRequest(): SagaIterator {
 
 export function* fetchDataOfSpecificTweetsRequest({ payload }: IFetchDataOfSpecificTweetsAction): SagaIterator {
   try {
+    yield put(setLoadingStatusOfTweets(LoadingStatus.LOADING));
     const items = yield call(TweetsApi.fetchDataOfSpecificTweets, payload);
     yield put(setDataOfTweets(items));
   } catch (error) {
@@ -41,6 +42,7 @@ export function* fetchDataOfSpecificTweetsRequest({ payload }: IFetchDataOfSpeci
 
 export function* fetchAddTweetRequest({ payload }: IFetchAddTweetAction): SagaIterator {
   try {
+    console.log(payload);
     const item = yield call(TweetsApi.addTweet, payload);
     yield put(addTweet(item));
   } catch (error) {

@@ -11,36 +11,35 @@ interface ITweetProps {
 
 const Reply: React.FC<ITweetProps> = ({
   tweet,
-}: ITweetProps) => {
+}: ITweetProps) => (
+  <div className="reply">
+    <div className="reply-avatar">
+      <Avatar size='middle' fullName={tweet.user?.fullName} avatar={tweet.user?.avatar} response={false} />
+      <div className="reply__line" />
+    </div>
 
-  return (
-    <div className="reply">
-      <div className="reply-avatar">
-        <Avatar size='middle' fullName={tweet.user?.fullName} avatar={tweet.user?.avatar} response={false} />
-        <div className="reply__line" />
+    <div className="reply-content">
+      <div className="reply-desc">
+        <div>
+          <span className="reply-desc__fullName">
+            <a href={`/user/${tweet.user._id}`}>{tweet.user.fullName}</a>
+          </span>
+          <span className="reply-desc__username">@{tweet.user.username}</span>
+          <span className="reply-desc__time reply-desc__dot">·</span>
+          <span className="reply-desc__time">{formatDate(new Date(tweet.createdAt))}</span>
+        </div>
       </div>
 
-      <div className="reply-content">
-        <div className="reply-desc">
-          <div>
-            <span className="reply-desc__fullName">{tweet.user.fullName}</span>
-            <span className="reply-desc__username">@{tweet.user.username}</span>
-            <span className="reply-desc__time reply-desc__dot">·</span>
-            <span className="reply-desc__time">{formatDate(new Date(tweet.createdAt))}</span>
-          </div>
-        </div>
-
-        <div className="reply-body">
-          <span className="reply-body__text">
-            {tweet.text}
-          </span>
-          <span className="reply-body__replyingTo">
-            Replying to <a href={`/user/${tweet.user._id}`}>@{tweet.user.username}</a>
-          </span>
-        </div>
+      <div className="reply-body">
+        <span className="reply-body__text">
+          {tweet.text}
+        </span>
+        <span className="reply-body__replyingTo">
+          Replying to <a href={`/user/${tweet.user._id}`}>@{tweet.user.username}</a>
+        </span>
       </div>
     </div>
-  );
-};
+  </div>
+);
 
 export default Reply;

@@ -2,7 +2,7 @@
   max-width: 600px;
   margin: 5% 10px 0 10px;
   flex-grow: 1;
-  background-color: rgb(255, 255, 255);
+  background-color: var(--primaryBg);
   border-radius: 16px;
   &__wrapper {
     position: fixed;
@@ -22,7 +22,7 @@
     padding-right: 15px;
     display: flex;
     align-items: center;
-    border-bottom: 1px solid rgb(235, 238, 240);
+    border-bottom: 1px solid var(--border);
   }
   &__close {
     &-wrapper {
@@ -36,13 +36,13 @@
       transition-property: background-color;
       cursor: pointer;
       &:hover {
-        background-color: rgba(29, 161, 242, 0.2);
+        background-color: var(--primaryThemeBgActive);
       }
     }
     &-icon {
       width: 22.5px;
       height: 22.5px;
-      color: #1da1f2;
+      color: var(--primaryTheme);
     }
   }
 }

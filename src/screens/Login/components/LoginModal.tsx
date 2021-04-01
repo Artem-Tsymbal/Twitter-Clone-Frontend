@@ -4,12 +4,11 @@ import { useForm, Controller } from 'react-hook-form';
 import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import { FormControl, FormGroup, TextField } from '@material-ui/core';
 import { LoadingStatus } from '../../../store/types';
 import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
 import { fetchSignIn } from '../../../store/ducks/user/actionCreators';
-import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
+import ModalWindow from '../../../components/shared/ModalWindow/ModalWindow';
 
 interface ILoginModalProps {
   onClose: () => void;
@@ -49,13 +48,13 @@ const LoginModal: React.FC<ILoginModalProps> = ({
   return (
     <ModalWindow onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl className="form-control" component="fieldset" fullWidth>
+        <FormControl className="login-form-control" component="fieldset" fullWidth>
           <FormGroup aria-label="position" row>
             <Controller
               as={TextField}
               control={control}
               name="email"
-              className="form__field"
+              className="login-form__field"
               id="email"
               label="E-Mail"
               InputLabelProps={{
@@ -73,7 +72,7 @@ const LoginModal: React.FC<ILoginModalProps> = ({
               as={TextField}
               control={control}
               name="password"
-              className="form__field"
+              className="login-form__field"
               id="password"
               label="Пароль"
               InputLabelProps={{
@@ -86,16 +85,10 @@ const LoginModal: React.FC<ILoginModalProps> = ({
               error={!!errors.password}
               fullWidth
             />
-            <div className="form__button-wrapper">
-              <Button
-                className="form__button"
-                disabled={loadingStatus === LoadingStatus.LOADING}
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth>
+            <div className="login-form__button-wrapper">
+              <button className="login-side__button" disabled={loadingStatus === LoadingStatus.LOADING}>
                 Войти
-            </Button>
+              </button>
             </div>
           </FormGroup>
         </FormControl>

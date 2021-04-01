@@ -1,16 +1,13 @@
 .add-tweet-form {
   padding-bottom: 5px;
-
   &-wrapper {
     padding: 5px 15px 5px 15px;
     display: flex;
   }
-
   &-avatar {
     margin-right: 12px;
     padding-top: 5px;
   }
-
   &-content {
     padding-top: 5px;
     display: flex;
@@ -23,28 +20,28 @@
       padding-left: 0px;
       outline: none;
       border: none;
+      background-color: var(--primaryBg);
       font-size: 20px;
       font-weight: 400;
       line-height: 25px;
       font-family: inherit;
-      color: #0f1419;
+      color: var(--primaryText);
       white-space: pre-wrap;
       overflow-wrap: break-word;
       resize: none;
       &::placeholder {
-        color: #5b7083;
+        color: var(--secondaryText);
       }
     }
     &__retweet {
       margin-bottom: 12px;
     }
   }
-
   .actions {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid rgb(235, 238, 240);
+    border-top: 1px solid var(--border);
     &-wrapper {
       margin-top: 10px;
       display: flex;
@@ -59,23 +56,29 @@
       transition-duration: 0.2s;
       transition-property: background-color;
       cursor: pointer;
-      &:hover {
-        background-color: rgba(29, 161, 242, 0.2);
+      &:first-of-type {
+        &:hover {
+          background-color: var(--primaryThemeBgActive);
+        }
       }
       & svg {
         width: 22.5px;
         height: 22.5px;
-        color: #1da1f2;
+        color: var(--primaryTheme);
       }
-      &__circular-progress {
-        position: relative;
-        width: 20px;
-        height: 20px;
-        margin: 0 10px;
-
-        .MuiCircularProgress-root {
-          position: absolute !important;
+      &__image {
+        & svg {
+          color: var(--primaryThemeBgActive);
         }
+      }
+    }
+    &__circular-progress {
+      position: relative;
+      width: 20px;
+      height: 20px;
+      margin: 0 10px;
+      .MuiCircularProgress-root {
+        position: absolute !important;
       }
     }
     &__button {
@@ -86,8 +89,8 @@
       font-size: 15px;
       font-weight: 700;
       line-height: 20px;
-      color: rgb(255, 255, 255);
-      background-color: #1da1f2;
+      color: var(--filledBtText);
+      background-color: var(--primaryTheme);
       outline: none;
       border-style: none;
       border-radius: 9999px;
@@ -95,11 +98,11 @@
       transition-property: background-color, box-shadow;
       cursor: pointer;
       &:hover {
-        background-color: rgb(26, 145, 218);
+        background-color: var(--primaryThemeBtHover);
         box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
       }
       &:active {
-        background-color: rgb(23, 129, 194);
+        background-color: var(--primaryThemeBtActive);
         box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
       }
       &:disabled {

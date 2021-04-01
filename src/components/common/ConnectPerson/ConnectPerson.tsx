@@ -28,7 +28,9 @@ const ConnectPerson: React.FC<IConnectPersonProps> = ({
           <Avatar size='middle' fullName={user.fullName} avatar={user.avatar} id={user._id} response={true} />
         </div>
         <div className="connect-person-desc">
-          <span className="connect-person__fullName">{user.fullName}</span>
+          <span className="connect-person__fullName">
+            <a href={`/user/${user._id}`}>{user.fullName}</a>
+          </span>
           <span className="connect-person__username">@{user.username}</span>
           {!isWhoToFollowBlock && <span className="connect-person__bio">{user.biography}</span>}
         </div>

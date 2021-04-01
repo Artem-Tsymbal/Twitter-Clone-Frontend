@@ -50,7 +50,9 @@ const Conversation: React.FC<IConversationProps> = ({
               />
             </div>
             <div className="conversation-desc">
-              <div className="conversation__fullName">{recipient.fullName}</div>
+              <div className="conversation__fullName">
+                <a href={`/user/${recipient._id}`}>{recipient.fullName}</a>
+              </div>
               <div className="conversation__username">@{recipient.username}</div>
             </div>
           </div>

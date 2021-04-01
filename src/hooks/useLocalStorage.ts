@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 
 const PREFIX = 'twitter-clone-';
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
 const useLocalStorage = <T>(key: string, defaultValue: T): any => {
   const prefixedKey = PREFIX + key;
   const [value, setValue] = useState<T>(() => {

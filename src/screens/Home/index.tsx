@@ -1,17 +1,16 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { CircularProgress } from '@material-ui/core';
 import { Route } from 'react-router-dom';
-import { fetchTags } from '../../store/ducks/tags/actionCreators';
 import { fetchDataOfSpecificTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
 
 import './index.scss';
-import { WiStars } from 'react-icons/wi';
-import { BackButton } from '../../components/common/BackButton';
+import { BackButton } from '../../components/shared/BackButton/BackButton';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
 import Tweet from '../../components/common/Tweet/Tweet';
 import FullTweet from '../../components/common/FullTweet/FullTweet';
+import ThemeToggle from '../../components/shared/ThemeToggle/ThemeToggle';
+import CircularProgress from '../../components/shared/CircularProgress/CircularProgress';
 
 const Home: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,7 +19,6 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchDataOfSpecificTweets('following'));
-    // dispatch(fetchTags());
   }, [dispatch]);
 
   return (
@@ -32,7 +30,7 @@ const Home: React.FC = () => {
         <Route path="/home/:any">
           <span className="home-header__title"><BackButton />Tweet</span>
         </Route>
-        <WiStars className="home-header__icon" />
+        <ThemeToggle />
       </div>
       <Route path="/home" exact>
         <AddTweetForm defaultDraftRowsValue={1} />
@@ -40,10 +38,10 @@ const Home: React.FC = () => {
         {isLoading ? (
           <CircularProgress />
         ) : (
-            tweets.map(tweet => (
-              <Tweet key={tweet._id} tweet={tweet} />
-            ))
-          )}
+          tweets.map(tweet => (
+            <Tweet key={tweet._id} tweet={tweet} />
+          ))
+        )}
       </Route>
       <Route path="/home/tweet/:id" exact>
         <FullTweet></FullTweet>

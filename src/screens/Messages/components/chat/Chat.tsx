@@ -23,7 +23,9 @@ const Chat: React.FC<IChatProps> = ({
         <Avatar size='middle' fullName={user.fullName} avatar={user.avatar} id={user._id} response={true} />
       </div>
       <div className="chat-desc">
-        <span className="chat__fullName">{user.fullName}</span>
+        <span className="chat__fullName">
+          <a href={`/user/${user._id}`}>{user.fullName}</a>
+        </span>
         <span className="chat__username">@{user.username}</span>
       </div>
     </div>

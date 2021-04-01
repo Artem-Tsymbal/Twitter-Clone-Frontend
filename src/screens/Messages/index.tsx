@@ -6,7 +6,7 @@ import './index.scss';
 import { fetchDataOfConnectPeople } from '../../store/ducks/connectPeople/actionCreators';
 import { selectItemsOfConnectPeople } from '../../store/ducks/connectPeople/selectors';
 import { selectDataOfUser } from '../../store/ducks/user/selectors';
-import ModalWindow from '../../components/common/ModalWindow/ModalWindow';
+import ModalWindow from '../../components/shared/ModalWindow/ModalWindow';
 import NewChatModal from './components/newChatModal/NewChatModal';
 import { IRecipient, useConversations } from '../../contexts/ConversationsProvider';
 

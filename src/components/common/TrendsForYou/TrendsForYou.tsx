@@ -7,27 +7,23 @@ import ShowMoreButton from '../../shared/ShowMoreButton/ShowMoreButton';
 import Trend from '../Trend/Trend';
 
 
-const TrendsForYou: React.FC = () => {
-  return (
-    <div className="trends-block">
-      <div className="trends-block-header">
-        <span className="trends-block-header__text">Trends for you</span>
-        <div className="trends-block-settings">
-          <FiSettings className="trends-block-settings__icon" />
-        </div>
-      </div>
-      <div className="trends-block-list">
-        <Trend />
-        <Trend />
-        <Trend />
-        <Trend />
-        <Trend />
-        <Link to="/trends" className="trends-block__link">
-          <ShowMoreButton />
-        </ Link>
+const TrendsForYou: React.FC = () => (
+  <div className="trends-block">
+    <div className="trends-block-header">
+      <span className="trends-block-header__text">Trends for you</span>
+      <div className="trends-block-settings">
+        <FiSettings className="trends-block-settings__icon" />
       </div>
     </div>
-  );
-};
+    <div className="trends-block-list">
+      <Trend />
+      <Trend />
+      <Trend />
+      <Link to="/trends" className="trends-block__link">
+        <ShowMoreButton />
+      </ Link>
+    </div>
+  </div>
+);
 
 export default TrendsForYou;

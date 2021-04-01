@@ -57,14 +57,14 @@ const TweetActions: React.FC<ITweetProps> = ({
         <div className="tweet-actions__item action--blue" style={itemStyle}>
           <BiMessageRounded style={iconStyle} />
         </div>
-        {!actionsType && <span className="tweet-actions__quantity">11</span>}
+        {!actionsType && <span className="tweet-actions__quantity">{tweet.replies?.length}</span>}
       </div>
 
       <div onClick={event => handleClickOpenModal(event, 'retweet')} className="tweet-actions-wrapper green">
         <div className="tweet-actions__item action--green" style={itemStyle}>
           <AiOutlineRetweet style={iconStyle} />
         </div>
-        {!actionsType && <span className="tweet-actions__quantity">11</span>}
+        {!actionsType && <span className="tweet-actions__quantity">{tweet.retweets?.length}</span>}
       </div>
 
       <div

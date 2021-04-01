@@ -1,6 +1,5 @@
 import React from 'react';
 import './index.scss';
-import { Button } from '@material-ui/core';
 import { FiSearch, FiMessageSquare } from 'react-icons/fi';
 import { IoLogoTwitter } from 'react-icons/io';
 import { BsPeople } from 'react-icons/bs';
@@ -50,27 +49,18 @@ const Login: React.FC = () => {
         <section className="login-side">
           <div className="login-side__wrapper">
             <IoLogoTwitter color="primary" className="login-side__twitter-icon" />
-            <p className="login-side__title--main">
+            <p className="login-side__title--primaryTheme">
               See what is happening in the world right now
           </p>
             <p className="login-side__title--secondary" >
               Join the Twitter today.
           </p>
-            <Button
-              onClick={handleClickOpenSignUp}
-              style={{ marginBottom: 15 }}
-              variant="contained"
-              color="primary"
-              fullWidth>
+            <button className="login-side__button button--signUp" onClick={handleClickOpenSignUp}>
               Sign Up
-          </Button>
-            <Button
-              onClick={handleClickOpenSignIn}
-              variant="outlined"
-              color="primary"
-              fullWidth>
+          </button>
+            <button className='login-side__button button--signIn' onClick={handleClickOpenSignIn}>
               Log in
-          </Button>
+          </button>
             {visibleModal === 'signUp' && (
               <RegisterModal onClose={handleCloseModal} />
             )}

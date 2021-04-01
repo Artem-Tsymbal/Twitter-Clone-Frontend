@@ -1,17 +1,17 @@
 import React from 'react';
 import './ReTweet.scss';
-
 import { useHistory } from 'react-router-dom';
 import { formatDate } from '../../../utils/formatDate';
-
 import Avatar from '../../shared/Avatar/Avatar';
 import { ITweet } from '../../../store/ducks/tweets/contracts/state';
+import ImagesContainer from '../../shared/ImagesContainer/ImagesContainer';
 
 interface IRetweetProps {
   retweet: ITweet;
 }
 
 const retweet: React.FC<IRetweetProps> = ({
+  // eslint-disable-next-line @typescript-eslint/no-shadow
   retweet,
 }: IRetweetProps) => {
   const history = useHistory();
@@ -38,6 +38,7 @@ const retweet: React.FC<IRetweetProps> = ({
         <div className="content__text">
           {retweet.text}
         </div>
+        {retweet.images && <ImagesContainer pictures={retweet.images} />}
       </div>
     </div>
   );

@@ -7,10 +7,10 @@ import { GiFeather } from 'react-icons/gi';
 import { CgMoreO } from 'react-icons/cg';
 import { BiHomeCircle } from 'react-icons/bi';
 import { HiOutlineHashtag } from 'react-icons/hi';
-import { MdMailOutline, MdBookmarkBorder } from 'react-icons/md';
+import { MdMailOutline } from 'react-icons/md';
 import { RiFileList2Line, RiUser6Line } from 'react-icons/ri';
 import { IoLogoTwitter, IoMdNotificationsOutline } from 'react-icons/io';
-import ModalWindow from '../ModalWindow/ModalWindow';
+import ModalWindow from '../../shared/ModalWindow/ModalWindow';
 import AddTweetForm from '../AddTweetForm/AddTweetForm';
 import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 
@@ -18,7 +18,7 @@ const AppTapBar: React.FC = () => {
   const [visibleAddTweetModal, setVisibleAddTweetModal] = React.useState<boolean>(false);
   const userData = useSelector(selectDataOfUser);
 
-  const handleClickOpenAddTweetModal = (event: any) => {
+  const handleClickOpenAddTweetModal = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setVisibleAddTweetModal(true);
   };
@@ -57,7 +57,7 @@ const AppTapBar: React.FC = () => {
           <div className="tap-bar-item">
             <IoMdNotificationsOutline
               className="tap-bar-item__icon"
-              style={{ stroke: 'rgb(15, 20, 25)', strokeWidth: 1 }}
+              style={{ stroke: 'var(--primaryText)', strokeWidth: 1 }}
             />
             <span className="tap-bar-item__text">Notifications</span>
           </div>
@@ -68,24 +68,18 @@ const AppTapBar: React.FC = () => {
             <span className="tap-bar-item__text">Messages</span>
           </div>
         </ Link >
-        <Link to="/bookmarks" className="tap-bar-list__link bookmark">
-          <div className="tap-bar-item">
-            <MdBookmarkBorder className="tap-bar-item__icon" />
-            <span className="tap-bar-item__text">Bookmarks</span>
-          </div>
-        </ Link >
         <Link to={`/user/${userData?._id}`} className="tap-bar-list__link">
           <div className="tap-bar-item">
             <RiUser6Line className="tap-bar-item__icon" />
             <span className="tap-bar-item__text">Profile</span>
           </div>
         </ Link >
-        <div className="tap-bar-list__link">
+        <Link to="/more" className="tap-bar-list__link">
           <div className="tap-bar-item">
             <CgMoreO className="tap-bar-item__icon" />
             <span className="tap-bar-item__text">More</span>
           </div>
-        </ div >
+        </ Link >
       </div >
       <div className="button-wrapper">
         <button onClick={handleClickOpenAddTweetModal} className="tap-bar-button">

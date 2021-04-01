@@ -21,7 +21,7 @@ export const DefaultLayout: React.FC<IDefaultLayout> = ({
   IsVisibleSearchBox = false,
   IsVisibleTrendsForYou = false,
   IsVisibleWhoToFollow = false,
-  IsVisibleServiceUsage = false,
+  IsVisibleServiceUsage = true,
   IsVisibleChats = false,
 }: IDefaultLayout) => (
   <div className="wrapper">
@@ -40,18 +40,18 @@ export const DefaultLayout: React.FC<IDefaultLayout> = ({
             {children}
           </>
         ) : (
-            <>
-              <div className="primary-column">
-                {children}
-              </div>
-              <div className="sidebar-column">
-                {IsVisibleSearchBox && <SearchBox />}
-                {IsVisibleTrendsForYou && <TrendsForYou />}
-                {IsVisibleWhoToFollow && <WhoToFollow />}
-                {IsVisibleServiceUsage && <ServiceUsage isFullContent={false} />}
-              </div>
-            </>
-          )}
+          <>
+            <div className="primary-column">
+              {children}
+            </div>
+            <div className="sidebar-column">
+              {IsVisibleSearchBox && <SearchBox />}
+              {IsVisibleTrendsForYou && <TrendsForYou />}
+              {IsVisibleWhoToFollow && <WhoToFollow />}
+              {IsVisibleServiceUsage && <ServiceUsage isFullContent={false} />}
+            </div>
+          </>
+        )}
       </div>
     </main >
     <nav className="bottom-bar">

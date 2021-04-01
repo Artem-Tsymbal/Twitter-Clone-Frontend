@@ -7,6 +7,7 @@ import { MdCancel } from 'react-icons/md';
 const SearchBox: React.FC = () => {
   const [visibleModal, setVisibleModal] = React.useState<boolean>(false);
   const [text, setText] = React.useState<string>('');
+  const searchBox = React.useRef<HTMLInputElement>(null);
 
   const onFocusInput = (): void => {
     setVisibleModal(true);
@@ -27,9 +28,10 @@ const SearchBox: React.FC = () => {
   };
 
   return (
-    <div className="search-box">
+    <div className="search-box" onClick={() => searchBox.current?.focus()} >
       <FiSearch className="search-box__icon" />
       <input
+        ref={searchBox}
         onFocus={onFocusInput}
         onBlur={onBlurInput}
         onChange={handleChangeInput}

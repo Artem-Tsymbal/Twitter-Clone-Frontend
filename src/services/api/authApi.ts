@@ -1,10 +1,10 @@
 import axios from 'axios';
 import { ILoginFormProps } from '../../screens/Login/components/LoginModal';
 import { IRegisterFormProps } from '../../screens/Login/components/RegisterModal';
-import { IFollowUser, IUpdateDataOfUser } from '../../store/ducks/user/contracts/state';
 
 interface ResponseApi {
   status: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   data: any;
 }
 

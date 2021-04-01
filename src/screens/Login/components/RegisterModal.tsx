@@ -3,11 +3,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import { FormControl, FormGroup, TextField } from '@material-ui/core';
 import { fetchSignUp } from '../../../store/ducks/user/actionCreators';
 import { selectStatusOfUser } from '../../../store/ducks/user/selectors';
 import { LoadingStatus } from '../../../store/types';
-import ModalWindow from '../../../components/common/ModalWindow/ModalWindow';
+import ModalWindow from '../../../components/shared/ModalWindow/ModalWindow';
 
 interface IRegisterModalProps {
   onClose: () => void;
@@ -47,13 +47,13 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
   return (
     <ModalWindow onClose={onClose}>
       <form onSubmit={handleSubmit(onSubmit)}>
-        <FormControl className="form-control" component="fieldset" fullWidth>
+        <FormControl className="login-form-control" component="fieldset" fullWidth>
           <FormGroup aria-label="position" row>
             <Controller
               as={TextField}
               control={control}
               name="email"
-              className="form__field"
+              className="login-form__field"
               id="email"
               label="E-Mail"
               InputLabelProps={{
@@ -71,7 +71,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="username"
-              className="form__field"
+              className="login-form__field"
               id="username"
               label="Логин"
               InputLabelProps={{
@@ -88,7 +88,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="fullName"
-              className="form__field"
+              className="login-form__field"
               id="fullName"
               label="Ваше имя"
               InputLabelProps={{
@@ -105,7 +105,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="password"
-              className="form__field"
+              className="login-form__field"
               id="password"
               label="Пароль"
               InputLabelProps={{
@@ -122,7 +122,7 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               as={TextField}
               control={control}
               name="password2"
-              className="form__field"
+              className="login-form__field"
               id="password2"
               label="Пароль"
               InputLabelProps={{
@@ -136,15 +136,12 @@ const RegisterModal: React.FC<IRegisterModalProps> = ({
               fullWidth
             />
             <div className="form__button-wrapper">
-              <Button
-                className="form__button"
+              <button
+                className="login-side__button"
                 disabled={loadingStatus === LoadingStatus.LOADING}
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth>
+                type="submit">
                 Регистрация
-              </Button>
+              </button>
             </div>
           </FormGroup>
         </FormControl>

@@ -31,7 +31,9 @@ const NewChatModal: React.FC<INewChatModalProps> = ({
           <Avatar size='middle' fullName={user.fullName} avatar={user.avatar} id={user._id} response={true} />
         </div>
         <div className="newChatModal-desc">
-          <span className="newChatModal__fullName">{user.fullName}</span>
+          <span className="newChatModal__fullName">
+            <a href={`/user/${user._id}`}>{user.fullName}</a>
+          </span>
           <span className="newChatModal__username">@{user.username}</span>
         </div>
       </div>

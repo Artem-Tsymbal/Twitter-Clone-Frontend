@@ -11,6 +11,8 @@ import Login from '../screens/Login';
 import ConnectPeople from '../screens/ConnectPeople';
 import Profile from '../screens/Profile';
 import Messages from '../screens/Messages';
+import Notifications from '../screens/Notifications';
+import More from '../screens/More';
 
 export const RouterConfig: React.FC = () => (
   <Switch>
@@ -27,10 +29,15 @@ export const RouterConfig: React.FC = () => (
         <ConnectPeople />
       </DefaultLayout>
     </PrivateRoute>
+    <PrivateRoute path="/notifications">
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true}>
+        <Notifications />
+      </DefaultLayout>
+    </PrivateRoute>
     <PrivateRoute path="/messages">
       <SocketProvider>
         <ConversationsProvider>
-          <DefaultLayout IsVisibleChats={true}>
+          <DefaultLayout IsVisibleChats={true} IsVisibleServiceUsage={false}>
             <Messages />
           </DefaultLayout>
         </ConversationsProvider>
@@ -41,18 +48,23 @@ export const RouterConfig: React.FC = () => (
         <Profile />
       </DefaultLayout>
     </PrivateRoute>
+    <PrivateRoute path="/more">
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} >
+        <More />
+      </DefaultLayout>
+    </PrivateRoute>
     <PrivateRoute path="/">
       <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true}>
         <Home />
       </DefaultLayout>
     </PrivateRoute>
     <Route>
-      <div>Sorry, that page doesn’t exist!</div>
+      <div className="message-empty">
+        <div className="message-empty__title"> 404 Sorry, that page doesn’t exist!</div>
+        <div className="message-empty__subtitle">We apologize for the inconvenience caused to you.</div>
+      </div>
     </Route>
   </Switch >
 );
 
-
-//           <Route path = "/home" component = { Home } />
-//           <Route path="/user/:id" component={UserPage} exact />
-//           <Route path="/user/activate/:hash" component={ActivatePage} exact />
+// <Route path="/user/activate/:hash" component={ActivatePage} exact />

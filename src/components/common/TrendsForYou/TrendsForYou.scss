@@ -1,8 +1,7 @@
 .trends-block {
   width: 348px;
   margin-bottom: 15px;
-  background-color: rgb(246, 249, 250);
-  border: 1px solid rgb(247, 249, 250);
+  background-color: var(--secondaryBg);
   border-bottom: none;
   border-radius: 16px;
   &-header {
@@ -12,12 +11,12 @@
     align-items: center;
     border-top-left-radius: 18px;
     border-top-right-radius: 18px;
-    border-bottom: 1px solid rgb(235, 238, 240);
+    border-bottom: 1px solid var(--border);
     &__text {
       font-size: 20px;
       font-weight: 800;
       line-height: 25px;
-      color: rgb(15, 20, 25);
+      color: var(--primaryText);
     }
   }
   &-settings {
@@ -32,12 +31,12 @@
     transition-property: background-color;
     cursor: pointer;
     &:hover {
-      background-color: rgba(29, 161, 242, 0.2);
+      background-color: var(--primaryThemeBgActive);
     }
     &__icon {
       width: 19.5px;
       height: 19.5px;
-      color: rgb(29, 161, 242);
+      color: var(--primaryTheme);
     }
   }
   &__link {

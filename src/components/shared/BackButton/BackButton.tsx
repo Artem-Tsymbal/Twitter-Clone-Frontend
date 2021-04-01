@@ -10,7 +10,7 @@ export const BackButton: React.FC = (): React.ReactElement => {
   };
 
   return (
-    <IconButton onClick={handleClickButton} style={{ marginRight: 15 }} color="primary">
+    <IconButton onClick={handleClickButton} style={{ marginRight: 15, color: 'var(--primaryTheme)' }}>
       <ArrowBackIcon />
     </IconButton>
   );

@@ -6,19 +6,19 @@
     font-size: 15px;
     font-weight: 700;
     line-height: 16px;
-    color: rgb(29, 161, 242);
+    color: var(--primaryTheme);
     outline: none;
-    border: 1px solid rgb(29, 161, 242);
+    border: 1px solid var(--primaryTheme);
     border-radius: 9999px;
     background-color: inherit;
     transition-duration: 0.2s;
     transition-property: background-color;
     &:hover {
-      background-color: rgba(29, 161, 242, 0.2);
+      background-color: var(--primaryThemeBgActive);
     }
   }
   .followed {
-    color: white;
-    background-color: rgb(29, 161, 242);
+    color: var(--filledBtText);
+    background-color: var(--primaryTheme);
   }
 }

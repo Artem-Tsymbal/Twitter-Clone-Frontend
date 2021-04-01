@@ -1,10 +1,10 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import { AuthApi } from '../services/api/authApi';
-import { setLoadingStatusOfUser } from '../store/ducks/user/actionCreators';
-import { LoadingStatus } from '../store/types';
+import { AuthApi } from '../../services/api/authApi';
+import { setLoadingStatusOfUser } from '../../store/ducks/user/actionCreators';
+import { LoadingStatus } from '../../store/types';
 
-export const ActivatePage = () => {
+export const ActivatePage: React.FC = () => {
   const dispatch = useDispatch();
 
   React.useEffect(() => {

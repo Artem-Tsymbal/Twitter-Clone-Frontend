@@ -15,7 +15,7 @@
     width: 2px;
     height: 100%;
     margin-top: 4px;
-    background-color: rgb(196, 207, 214);
+    background-color: var(--strongBorder);
   }
   &-content {
     display: flex;
@@ -23,23 +23,30 @@
     flex-grow: 1;
   }
   &-desc {
-    margin-bottom: 2px;
+    margin-bottom: 8px;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    color: rgb(15, 20, 25);
+    color: var(--primaryText);
     font-size: 15px;
     font-weight: 400;
     line-height: 16px;
     &__fullName {
       font-weight: 700;
+      & a {
+        color: var(--primaryText);
+        text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
     }
     &__username {
       margin-left: 5px;
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
     }
     &__time {
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
     }
     &__dot {
       padding-left: 3px;
@@ -54,15 +61,18 @@
     line-height: 16px;
     &__text {
       padding-bottom: 12px;
-      color: rgb(15, 20, 25);
+      color: var(--primaryText);
     }
     &__replyingTo {
       padding-top: 4px;
       padding-bottom: 16px;
-      color: rgb(91, 112, 131);
+      color: var(--secondaryText);
       & a {
-        color: rgb(27, 149, 224);
+        color: var(--primaryTheme);
         text-decoration: none;
+        &:hover {
+          text-decoration: underline;
+        }
       }
     }
   }

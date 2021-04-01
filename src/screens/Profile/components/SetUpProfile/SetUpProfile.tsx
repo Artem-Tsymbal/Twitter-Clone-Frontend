@@ -4,7 +4,7 @@ import { useForm, Controller } from 'react-hook-form';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { TiCameraOutline } from 'react-icons/ti';
-import { FormControl, FormGroup, TextField, Button } from '@material-ui/core';
+import { FormControl, FormGroup, TextField } from '@material-ui/core';
 import { updateDataOfUser } from '../../../../store/ducks/user/actionCreators';
 import './SetUpProfile.scss';
 import { IUser } from '../../../../store/ducks/user/contracts/state';
@@ -132,7 +132,7 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
             }}
             variant="filled"
             type="text"
-            defaultValue={userData?.fullName}
+            defaultValue={userData?.fullName || ''}
             helperText={errors.fullName?.message}
             error={!!errors.fullName}
             fullWidth
@@ -149,20 +149,17 @@ const SetUpProfile: React.FC<ISetUpProfileProps> = ({
             }}
             variant="filled"
             type="text"
-            defaultValue={userData?.biography}
+            defaultValue={userData?.biography || ''}
             multiline
             rows={4}
             fullWidth
           />
           <div className="form__button-wrapper">
-            <Button
+            <button
               className="form__button"
-              type="submit"
-              variant="contained"
-              color="primary"
-              fullWidth>
+              type="submit">
               Save
-            </Button>
+            </button>
           </div>
         </FormGroup>
       </FormControl>

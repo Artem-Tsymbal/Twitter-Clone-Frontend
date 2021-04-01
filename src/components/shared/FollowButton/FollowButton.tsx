@@ -34,6 +34,8 @@ const FollowButton: React.FC<IFollowButtonProps> = ({
         height: '28px',
       };
       break;
+    default:
+      break;
   }
 
   if (currentUserData) {
@@ -49,8 +51,8 @@ const FollowButton: React.FC<IFollowButtonProps> = ({
       {isFollowed ? (
         <button onClick={handleClickFollow} className='followed' style={options}>Following</button>
       ) : (
-          <button onClick={handleClickFollow} style={options}>Follow</button>
-        )}
+        <button onClick={handleClickFollow} style={options}>Follow</button>
+      )}
     </div>
   );
 };

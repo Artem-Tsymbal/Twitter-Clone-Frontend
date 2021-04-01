@@ -1,6 +1,7 @@
 .wrapper {
   min-width: 320px;
   display: flex;
+  background-color: var(--primaryBg);
 }
 .left-side {
   display: flex;
@@ -32,8 +33,8 @@
   width: 100%;
   min-height: 100vh;
   box-sizing: border-box;
-  border-left: 1px solid rgb(235, 238, 240);
-  border-right: 1px solid rgb(235, 238, 240);
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
 }
 .sidebar-column {
   position: sticky;

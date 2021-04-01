@@ -40,7 +40,7 @@ const Avatar: React.FC<IAvatarProps> = ({
       options = {
         width: '142px',
         height: '142px',
-        border: '4px solid white',
+        border: '4px solid var(--avatarBorder)',
         fontSize: '64px',
       };
       break;

@@ -14,6 +14,7 @@ import { selectDataOfUser } from '../../../store/ducks/user/selectors';
 import Avatar from '../../shared/Avatar/Avatar';
 import ReTweet from '../ReTweet/ReTweet';
 import Reply from '../Reply/Reply';
+import ImagesContainer from '../../shared/ImagesContainer/ImagesContainer';
 
 type TForm = 'reply' | 'retweet';
 
@@ -37,6 +38,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 }: IAddTweetFormProps) => {
   const MAX_LENGTH = 280;
   const dispatch = useDispatch();
+  const inputRef = React.useRef<HTMLInputElement>(null);
   const [draftRows, setDraftRows] = useState(defaultDraftRowsValue);
   const [text, setText] = useState<string>('');
   const [images, setImages] = useState<IImageObj[]>([]);
@@ -72,13 +74,55 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
     }
   };
 
+  const handleClickImageIcon = () => {
+    if (inputRef.current && images.length < 2) {
+      inputRef.current.click();
+    }
+  };
+
+  const handleChangeFileInput = React.useCallback((event: Event) => {
+    if (event.target) {
+      const target = event.target as HTMLInputElement;
+      const file = target.files?.[0];
+
+      if (file) {
+        const fileObj = new Blob([file]);
+        setImages((prev) => [
+          ...prev,
+          {
+            blobUrl: URL.createObjectURL(fileObj),
+            file,
+          },
+        ]);
+      }
+    }
+  }, []);
+
+  const removeImage = (url: string) => {
+    setImages((prev) => prev.filter((obj) => obj.blobUrl !== url));
+  };
+
+  React.useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.addEventListener('change', handleChangeFileInput);
+    }
+
+    return () => {
+      if (inputRef.current) {
+        inputRef.current.removeEventListener('change', handleChangeFileInput);
+      }
+    };
+  }, []);
+
   const handleClickAddTweet = async (): Promise<void> => {
-    const imagesList = [];
-    for (let i = 0; i < images.length; i += 1) {
-      const { file } = images[i];
+    const imagesList = [] as string[];
+
+    await Promise.all(images.map(async (item) => {
+      const { file } = item;
       const { url } = await uploadImage(file, 'tweetImage');
       imagesList.push(url);
-    }
+    }));
+
     dispatch(fetchAddTweet({ text, images: imagesList, replyingTo, retweet }));
     setText('');
     setImages([]);
@@ -86,7 +130,6 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
   return (
     <div className="add-tweet-form">
-
       {replyingTo && (
         <div className="add-tweet-form-content__reply">
           <Reply tweet={replyingTo} />
@@ -99,7 +142,8 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
             size='middle'
             fullName={currentUserData?.fullName}
             avatar={currentUserData?.avatar}
-            response={false}
+            id={currentUserData?._id}
+            response={true}
           />
         </div>
 
@@ -113,6 +157,8 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
             value={text}
           ></textarea>
 
+          <ImagesContainer imagesPreview={images} removeImage={removeImage} />
+
           {retweet && (
             <div className="add-tweet-form-content__retweet">
               <ReTweet retweet={retweet} />
@@ -121,7 +167,10 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
 
           <div className="actions">
             <div className="actions-wrapper">
-              <div className="actions-icon">
+              <div
+                className={images.length > 1 ? "actions-icon actions-icon__image" : "actions-icon"}
+                onClick={handleClickImageIcon}>
+                <input ref={inputRef} type="file" id="upload-input" style={{ display: 'none' }} />
                 <ImageOutlinedIcon />
               </div>
               <div className="actions-icon">
@@ -145,7 +194,9 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                         size={20}
                         thickness={5}
                         value={text.length >= MAX_LENGTH ? 100 : textLimitPercent}
-                        style={text.length >= MAX_LENGTH ? { color: 'rgb(178,34,34)' } : undefined}
+                        style={text.length >= MAX_LENGTH ?
+                          { color: 'rgb(178,34,34)' } :
+                          { color: 'var(--primaryTheme)' }}
                       />
                       {(text.length) && (
                         <CircularProgress
@@ -168,8 +219,8 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
                 {addFormState === AddTweetFormStatus.LOADING ? (
                   <CircularProgress color="inherit" size={16} />
                 ) : (
-                    buttonText
-                  )}
+                  buttonText
+                )}
               </button>
             </div>
           </div>

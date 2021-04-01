@@ -5,16 +5,20 @@ import { useHistory, useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import enLang from 'date-fns/locale/en-GB';
 import { BsThreeDots } from 'react-icons/bs';
-import { CircularProgress, Menu, MenuItem } from '@material-ui/core';
+import { Menu, MenuItem } from '@material-ui/core';
 import { selectStatusOfTweetIsLoading, selectDataOfTweet } from '../../../store/ducks/tweet/selectors';
 import { removeTweet } from '../../../store/ducks/tweets/actionCreators';
 import { fetchDataOfTweet, setDataOfTweet } from '../../../store/ducks/tweet/actionCreators';
 import Avatar from '../../shared/Avatar/Avatar';
 import ReTweet from '../ReTweet/ReTweet';
 import TweetActions, { TModal } from '../../shared/TweetActions/TweetActions';
-import ModalWindow from '../ModalWindow/ModalWindow';
+import ModalWindow from '../../shared/ModalWindow/ModalWindow';
 import AddTweetForm from '../AddTweetForm/AddTweetForm';
 import Tweet from '../Tweet/Tweet';
+import useLocalStorage from '../../../hooks/useLocalStorage';
+import { IUser } from '../../../store/ducks/user/contracts/state';
+import CircularProgress from '../../shared/CircularProgress/CircularProgress';
+import ImagesContainer from '../../shared/ImagesContainer/ImagesContainer';
 
 const FullTweet: React.FC = () => {
   const history = useHistory();
@@ -23,6 +27,7 @@ const FullTweet: React.FC = () => {
   const isLoading = useSelector(selectStatusOfTweetIsLoading);
   const [visibleModal, setVisibleModal] = React.useState<TModal>();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const [currentUser] = useLocalStorage('currentUser', []) as [IUser];
   const open = Boolean(anchorEl);
   const { id } = useParams() as { id?: string };
 
@@ -36,6 +41,7 @@ const FullTweet: React.FC = () => {
     };
   }, [dispatch, history.location]);
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const handleOpenTweetMenu = (event: any) => {
     event.stopPropagation();
     event.preventDefault();
@@ -94,14 +100,21 @@ const FullTweet: React.FC = () => {
                   />
                 </div>
                 <div className="full-tweet-header__body">
-                  <span className="full-tweet-header__fullName">{tweetData.user.fullName}</span>
+                  <span className="full-tweet-header__fullName">
+                    <a href={`/user/${tweetData.user._id}`}>{tweetData.user.fullName}</a>
+                  </span>
                   <span className="full-tweet-header__username">@{tweetData.user.username}</span>
                 </div>
               </div>
               <BsThreeDots onClick={handleOpenTweetMenu} className="full-tweet-header__button" />
               <Menu id="long-menu" anchorEl={anchorEl} open={open} onClose={handleCloseTweetMenu} >
-                <MenuItem onClick={handleCloseTweetMenu}>Edit</MenuItem>
-                <MenuItem onClick={handleRemoveTweet}>Remove tweet</MenuItem>
+                {currentUser._id === tweetData.user._id ? (
+                  <MenuItem onClick={handleRemoveTweet}>Remove tweet</MenuItem>
+                ) : (
+                  <MenuItem onClick={event => event.stopPropagation()}>
+                    Action is available only with your tweet
+                  </MenuItem>
+                )}
               </Menu>
             </div>
 
@@ -110,6 +123,7 @@ const FullTweet: React.FC = () => {
                 <span className="full-tweet-content__text">
                   {tweetData.text}
                 </span>
+                {tweetData.images && <ImagesContainer pictures={tweetData.images} />}
                 {tweetData.retweet && (
                   <ReTweet retweet={tweetData.retweet} />
                 )}
@@ -151,8 +165,8 @@ const FullTweet: React.FC = () => {
               {visibleModal === 'retweet' ? (
                 <AddTweetForm defaultDraftRowsValue={2} formType={'retweet'} retweet={tweetData} />
               ) : (
-                  <AddTweetForm defaultDraftRowsValue={2} formType={'reply'} replyingTo={tweetData} />
-                )}
+                <AddTweetForm defaultDraftRowsValue={2} formType={'reply'} replyingTo={tweetData} />
+              )}
             </ModalWindow>
           )}
         </div>

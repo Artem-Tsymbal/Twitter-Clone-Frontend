@@ -1,6 +1,8 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { useEffect } from 'react';
 
-const useOutsideClick = (ref: any, callback: any) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const useOutsideClick = (ref: any, callback: any): void => {
   const handleClick = (event: MouseEvent) => {
     if (ref.current && !ref.current.contains(event.target)) {
       callback();

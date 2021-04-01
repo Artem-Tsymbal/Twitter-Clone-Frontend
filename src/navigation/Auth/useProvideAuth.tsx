@@ -23,6 +23,7 @@ export function useProvideAuth(): IUseProvideAuth {
         return isAuthed;
       }
     }
+    return undefined;
   };
 
   const logOut = () => {

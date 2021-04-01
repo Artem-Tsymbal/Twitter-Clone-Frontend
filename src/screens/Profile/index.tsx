@@ -4,19 +4,18 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useParams } from 'react-router-dom';
 import { format } from 'date-fns';
 import enLang from 'date-fns/locale/en-GB';
-import { WiStars } from 'react-icons/wi';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import { Box, Typography } from '@material-ui/core';
 import { BsCalendar } from 'react-icons/bs';
 import { selectDataOfUser } from '../../store/ducks/user/selectors';
 import { fetchDataOfTweets } from '../../store/ducks/tweets/actionCreators';
-import { selectItemsOfTweets } from '../../store/ducks/tweets/selectors';
+import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
 import { IUser } from '../../store/ducks/user/contracts/state';
 import './index.scss';
-import { BackButton } from '../../components/common/BackButton';
+import { BackButton } from '../../components/shared/BackButton/BackButton';
 import Tweet from '../../components/common/Tweet/Tweet';
-import ModalWindow from '../../components/common/ModalWindow/ModalWindow';
+import ModalWindow from '../../components/shared/ModalWindow/ModalWindow';
 import SetUpProfile from './components/SetUpProfile/SetUpProfile';
 import Avatar from '../../components/shared/Avatar/Avatar';
 import FollowButton from '../../components/shared/FollowButton/FollowButton';
@@ -25,6 +24,8 @@ import { TweetsApi } from '../../services/api/tweetsApi';
 import { selectLoadingStatusOfTweet } from '../../store/ducks/tweet/selectors';
 import { LoadingStatus } from '../../store/types';
 import { UsersApi } from '../../services/api/usersApi';
+import ThemeToggle from '../../components/shared/ThemeToggle/ThemeToggle';
+import CircularProgress from '../../components/shared/CircularProgress/CircularProgress';
 
 type TParams = { id: string };
 
@@ -69,7 +70,7 @@ const Profile: React.FC = () => {
   const [userData, setUserData] = React.useState<IUser | undefined>();
   const [userFavoriteTweets, setUserFavoriteTweets] = React.useState<ITweet[] | undefined>();
   const [visibleSetUpModal, setVisibleSetUpModal] = React.useState<boolean>(false);
-
+  const isLoading = useSelector(selectStatusOfTweetsIsLoading);
   const currentUserData = useSelector(selectDataOfUser);
   const tweets = useSelector(selectItemsOfTweets);
   const loadingStatusOfTweet = useSelector(selectLoadingStatusOfTweet);
@@ -116,11 +117,11 @@ const Profile: React.FC = () => {
             <span className="profile-header__quantity">{tweets.length} Tweets</span>
           </div>
         </div>
-        <WiStars className="profile-header__icon" />
+        <ThemeToggle />
       </div>
       <div className="profile-user">
         <div className="profile-user-background">
-          <img src={userData?.background} alt="Header background" />
+          {userData?.background && <img src={userData.background} alt="Header background" />}
         </div>
         <div className="profile-user-info">
           <div className="profile-user-header">
@@ -137,8 +138,8 @@ const Profile: React.FC = () => {
               {id === currentUserData?._id ? (
                 <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
               ) : (
-                  <FollowButton size='large' followedByMeUserId={id} />
-                )}
+                <FollowButton size='large' followedByMeUserId={id} />
+              )}
             </div>
           </div>
 
@@ -152,11 +153,11 @@ const Profile: React.FC = () => {
           }
           <div className="profile-user-details">
             <div className="profile-user-details-item">
-              <span className="profile-user-details__quantity">31.4K</span>
+              <span className="profile-user-details__quantity">{userData?.followingUsers.length}</span>
               <span className="profile-user-details__title">Following</span>
             </div>
             <div className="profile-user-details-item">
-              <span className="profile-user-details__quantity">31.4K</span>
+              <span className="profile-user-details__quantity">{userData?.followers.length}</span>
               <span className="profile-user-details__title">Folowers</span>
             </div>
           </div>
@@ -176,12 +177,15 @@ const Profile: React.FC = () => {
         </Tabs>
         <TabPanel value={value} index={0}>
           {
-            tweets
-              .filter(tweet => !tweet.replyingTo)
-              .map(tweet => (
-                <Tweet key={tweet._id} tweet={tweet} />
-              ))
-          }
+            isLoading ? (
+              <CircularProgress />
+            ) : (
+              tweets
+                .filter(tweet => !tweet.replyingTo)
+                .map(tweet => (
+                  <Tweet key={tweet._id} tweet={tweet} />
+                ))
+            )}
         </TabPanel>
         <TabPanel value={value} index={1}>
           {
@@ -194,6 +198,8 @@ const Profile: React.FC = () => {
                     <Tweet key={tweet._id} tweet={tweet} />
                   </React.Fragment>
                 );
+
+                return undefined;
               })
           }
         </TabPanel>
