@@ -72,6 +72,9 @@
         }
       }
     }
+    &__text-quantity {
+      color: var(--primaryText);
+    }
     &__circular-progress {
       position: relative;
       width: 20px;

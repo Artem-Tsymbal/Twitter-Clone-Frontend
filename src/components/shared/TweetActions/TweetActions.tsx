@@ -33,6 +33,18 @@ const TweetActions: React.FC<ITweetProps> = ({
     dispatch(likeTweet(tweet._id));
   };
 
+  const copyToClipboard = (event: React.MouseEvent<HTMLElement>) => {
+    event.stopPropagation();
+    const textArea = document.createElement("textarea");
+    document.body.appendChild(textArea);
+    textArea.value = `${window.location.origin}/home/tweet/${tweet._id}`;
+    textArea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textArea);
+    // eslint-disable-next-line no-alert
+    alert("URL of current post is copied to buffer.");
+  };
+
   if (actionsType) {
     actionsStyle = {
       maxWidth: 'none',
@@ -77,8 +89,10 @@ const TweetActions: React.FC<ITweetProps> = ({
         {!actionsType && <span className="tweet-actions__quantity">{tweet.likes.length}</span>}
       </div>
 
-      <div className="tweet-actions__item action--blue" style={itemStyle}>
-        <BsUpload style={iconStyle} />
+      <div className='tweet-actions-wrapper blue'>
+        <div onClick={copyToClipboard} className="tweet-actions__item action--blue" style={itemStyle}>
+          <BsUpload style={iconStyle} />
+        </div>
       </div>
     </div>
   );

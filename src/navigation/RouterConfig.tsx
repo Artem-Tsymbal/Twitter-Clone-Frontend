@@ -43,7 +43,7 @@ export const RouterConfig: React.FC = () => (
         </ConversationsProvider>
       </SocketProvider>
     </PrivateRoute>
-    <PrivateRoute path="/user/:id">
+    <PrivateRoute exact path="/user/:id">
       <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true}>
         <Profile />
       </DefaultLayout>

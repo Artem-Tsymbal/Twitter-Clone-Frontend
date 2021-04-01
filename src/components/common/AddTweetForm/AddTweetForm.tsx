@@ -187,7 +187,7 @@ const AddTweetForm: React.FC<IAddTweetFormProps> = ({
               <div className="actions-wrapper">
                 {text && (
                   <>
-                    <span>{textCounter}</span>
+                    <span className="actions__text-quantity">{textCounter}</span>
                     <div className="actions__circular-progress">
                       <CircularProgress
                         variant="determinate"

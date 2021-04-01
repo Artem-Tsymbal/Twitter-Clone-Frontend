@@ -15,12 +15,25 @@ const PrivateRoute: React.FC<IPrivateRouteProps> = ({
   const isAuthed = useAuth().isAuthenticated();
 
   return (
-    <Route {...rest} render={({ location }) => isAuthed === true
-      ? children
-      : <Redirect to={{
-        pathname: '/login',
-        state: { from: location },
-      }} />} />
+    <Route {...rest} render={({ location }) => {
+      if (isAuthed === true) {
+        if (location.pathname === '/') return (
+          <Redirect to={{
+            pathname: '/home',
+            state: { from: location },
+          }} />
+        );
+
+        return children;
+      }
+
+      return (
+        <Redirect to={{
+          pathname: '/login',
+          state: { from: location },
+        }} />
+      );
+    }} />
   );
 };
 

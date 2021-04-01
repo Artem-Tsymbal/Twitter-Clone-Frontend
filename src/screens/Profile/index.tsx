@@ -80,7 +80,7 @@ const Profile: React.FC = () => {
       if (id === currentUserData?._id) setUserData(currentUserData);
       else UsersApi.getUserInfo(id).then(data => setUserData(data));
     }
-  }, [currentUserData]);
+  }, [currentUserData, id]);
 
   React.useEffect(() => {
     if (userFavoriteTweets === undefined || loadingStatusOfTweet === LoadingStatus.LOADING) {
@@ -93,7 +93,7 @@ const Profile: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchDataOfTweets());
-  }, []);
+  }, [id]);
 
   const handleClickOpenSetUpModal = () => {
     setVisibleSetUpModal(true);
@@ -135,6 +135,7 @@ const Profile: React.FC = () => {
               />
             </div>
             <div className="profile-user-buttons">
+
               {id === currentUserData?._id ? (
                 <button onClick={handleClickOpenSetUpModal}>Set up profile</button>
               ) : (
@@ -220,11 +221,13 @@ const Profile: React.FC = () => {
           }
         </TabPanel>
       </div>
-      {visibleSetUpModal && (
-        <ModalWindow onClose={handleCloseSetUpModal}>
-          <SetUpProfile userData={userData} onClose={handleCloseSetUpModal} />
-        </ModalWindow>
-      )}
+      {
+        visibleSetUpModal && (
+          <ModalWindow onClose={handleCloseSetUpModal}>
+            <SetUpProfile userData={userData} onClose={handleCloseSetUpModal} />
+          </ModalWindow>
+        )
+      }
     </div >
   );
 };
