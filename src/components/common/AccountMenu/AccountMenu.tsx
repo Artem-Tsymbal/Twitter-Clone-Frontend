@@ -67,7 +67,7 @@ const AccountMenu: React.FC = () => {
           <div className="account-menu__image">
             <Avatar size='small' fullName={userData?.fullName} avatar={userData?.avatar} response={false} />
           </div>
-          <div className="account-menu-content">
+          <div className="account-menu-content menu-content">
             <span className="account-menu-content__fullName">{userData.fullName}</span>
             <span className="account-menu-content__username">@{userData.username}</span>
           </div>

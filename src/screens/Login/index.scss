@@ -1,5 +1,6 @@
 .login {
   &__wrapper {
+    min-width: 400px;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -9,13 +10,13 @@
     flex-grow: 1;
   }
   &__footer {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     padding: 12px 16px 12px 16px;
     background-color: var(--primaryBg);
     & nav {
-      width: auto;
+      width: 100%;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
     }
   }
 }
@@ -106,14 +107,6 @@
     transition-duration: 0.2s;
     transition-property: background-color, box-shadow;
     cursor: pointer;
-    &:hover {
-      background-color: var(--primaryThemeBtHover);
-      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
-    }
-    &:active {
-      background-color: var(--primaryThemeBtActive);
-      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
-    }
     &:disabled {
       opacity: 0.5;
     }
@@ -122,12 +115,28 @@
 .button {
   &--signUp {
     max-width: none;
+    &:hover {
+      background-color: var(--primaryThemeBtHover);
+      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    }
+    &:active {
+      background-color: var(--primaryThemeBtActive);
+      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    }
   }
   &--signIn {
     max-width: none;
     border: 1px solid var(--primaryTheme);
     color: var(--primaryTheme);
     background-color: var(--primaryBg);
+    &:hover {
+      background-color: var(--primaryThemeBgHover);
+      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    }
+    &:active {
+      background-color: var(--primaryThemeBgActive);
+      box-shadow: rgb(0 0 0 / 8%) 0px 8px 28px;
+    }
   }
 }
 .login-form {

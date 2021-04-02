@@ -38,7 +38,7 @@ const FollowButton: React.FC<IFollowButtonProps> = ({
       break;
   }
 
-  if (currentUserData) {
+  if (currentUserData?.followingUsers) {
     isFollowed = currentUserData.followingUsers.includes(followedByMeUserId.toString());
   }
 

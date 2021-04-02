@@ -15,6 +15,7 @@ const WhoToFollow: React.FC = () => {
 
   if (currentUserData) {
     users = users.filter(item => item._id !== currentUserData._id);
+    users = users.slice(0, 4);
   }
 
   React.useEffect(() => {
@@ -28,8 +29,8 @@ const WhoToFollow: React.FC = () => {
       </div>
       <div className="follow-block-list">
 
-        {users.map(item => (
-          <ConnectPerson key={item._id} user={item} isWhoToFollowBlock={true} />
+        {users.map((item, index) => (
+          <ConnectPerson key={index} user={item} isWhoToFollowBlock={true} />
         ))}
 
         <Link to="/connect_people" className="trends-block__link">

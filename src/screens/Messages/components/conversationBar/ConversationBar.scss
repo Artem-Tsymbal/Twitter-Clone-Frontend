@@ -8,6 +8,7 @@
   padding-right: 8px;
   box-sizing: border-box;
   border-top: 1px solid var(--border);
+  background-color: var(--primaryBg);
   & textarea {
     width: 100%;
     max-width: 470px;
@@ -51,5 +52,12 @@
     &:hover {
       background-color: inherit;
     }
+  }
+}
+
+@media screen and (max-width: 499px) {
+  .conversation-bar {
+    position: fixed;
+    bottom: 62px;
   }
 }

@@ -119,14 +119,14 @@
     &-button {
       width: auto;
     }
-    &-content {
-      display: none;
-    }
     &__dots {
       display: none;
     }
     &-modal__triangle {
       left: 22px;
     }
+  }
+  .menu-content {
+    display: none;
   }
 }

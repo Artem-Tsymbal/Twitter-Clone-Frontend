@@ -27,15 +27,15 @@ const ServiceUsage: React.FC<IServiceUsageProps> = ({ isFullContent }: IServiceU
         <span className="service-usage__item">Copyright (c) 2021 Twitter, Inc.</span>
       </>
     ) : (
-        <>
-          <span className="service-usage__item">Terms of Service</span>
-          <span className="service-usage__item">Privacy Policy</span>
-          <span className="service-usage__item">Cookie Policy</span>
-          <span className="service-usage__item">Ads info</span>
-          <span className="service-usage__item">More ···</span>
-          <span className="service-usage__item">© 2021 Twitter, Inc.</span>
-        </>
-      )}
+      <>
+        <span className="service-usage__item">Terms of Service</span>
+        <span className="service-usage__item">Privacy Policy</span>
+        <span className="service-usage__item">Cookie Policy</span>
+        <span className="service-usage__item">Ads info</span>
+        <span className="service-usage__item">More ···</span>
+        <span className="service-usage__item">© 2021 Twitter, Inc.</span>
+      </>
+    )}
   </nav >
 );
 

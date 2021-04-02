@@ -61,7 +61,10 @@ const Conversation: React.FC<IConversationProps> = ({
               const lastMessage = messages.length - 1 === index;
               if (item.sender._id === currentUser._id) {
                 return (
-                  <div key={index} className="conversation-dashboard-message-wrapper message--user">
+                  <div key={index}
+                    ref={lastMessage ? setRef : null}
+                    className="conversation-dashboard-message-wrapper message--user"
+                  >
                     <div className="conversation-dashboard-message">
                       <div className="conversation-dashboard-message__text">{item.text}</div>
                       <div className="conversation-dashboard-message__time">

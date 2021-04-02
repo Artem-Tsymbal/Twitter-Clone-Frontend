@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useForm, Controller } from 'react-hook-form';
-import { useHistory } from 'react-router-dom';
 import * as yup from 'yup';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { FormControl, FormGroup, TextField } from '@material-ui/core';
@@ -28,14 +27,8 @@ const LoginModal: React.FC<ILoginModalProps> = ({
   onClose,
 }: ILoginModalProps) => {
   const dispatch = useDispatch();
-  const history = useHistory();
-  const loadingStatus = useSelector(selectStatusOfUser);
 
-  React.useEffect(() => {
-    if (loadingStatus === LoadingStatus.SUCCESS) {
-      history.push('/home');
-    }
-  }, [loadingStatus]);
+  const loadingStatus = useSelector(selectStatusOfUser);
 
   const { control, handleSubmit, errors } = useForm<ILoginFormProps>({
     resolver: yupResolver(LoginFormSchema),

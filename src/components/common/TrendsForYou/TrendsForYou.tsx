@@ -18,7 +18,6 @@ const TrendsForYou: React.FC = () => (
     <div className="trends-block-list">
       <Trend />
       <Trend />
-      <Trend />
       <Link to="/trends" className="trends-block__link">
         <ShowMoreButton />
       </ Link>

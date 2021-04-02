@@ -21,7 +21,7 @@ const Messages: React.FC = () => {
 
   React.useEffect(() => {
     setSelectedContactIds(conversations.map(item => item.recipient));
-  }, conversations);
+  }, [conversations]);
 
   function handleCheckboxChange(contact: IRecipient) {
     setSelectedContactIds((prevSelectedContacts: IRecipient[]) => {

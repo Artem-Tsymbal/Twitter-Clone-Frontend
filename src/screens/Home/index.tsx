@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { fetchDataOfSpecificTweets } from '../../store/ducks/tweets/actionCreators';
 import { selectItemsOfTweets, selectStatusOfTweetsIsLoading } from '../../store/ducks/tweets/selectors';
-
 import './index.scss';
 import { BackButton } from '../../components/shared/BackButton/BackButton';
 import AddTweetForm from '../../components/common/AddTweetForm/AddTweetForm';
@@ -19,7 +18,7 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     dispatch(fetchDataOfSpecificTweets('following'));
-  }, [dispatch]);
+  }, []);
 
   return (
     <div className="home-wrapper">

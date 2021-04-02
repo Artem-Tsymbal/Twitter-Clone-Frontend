@@ -1,8 +1,5 @@
 import React from 'react';
 import { BiHomeCircle } from 'react-icons/bi';
-import { CgMoreO } from 'react-icons/cg';
-import { HiOutlineHashtag } from 'react-icons/hi';
-import { IoLogoTwitter, IoMdNotificationsOutline } from 'react-icons/io';
 import { MdMailOutline } from 'react-icons/md';
 import { RiFileList2Line, RiUser6Line } from 'react-icons/ri';
 import { useSelector } from 'react-redux';

@@ -1,4 +1,6 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import './index.scss';
 import { FiSearch, FiMessageSquare } from 'react-icons/fi';
 import { IoLogoTwitter } from 'react-icons/io';
@@ -7,23 +9,34 @@ import { useAuth } from '../../navigation/Auth/ProvideAuth';
 import ServiceUsage from '../../components/common/ServiceUsage/ServiceUsage';
 import LoginModal from './components/LoginModal';
 import RegisterModal from './components/RegisterModal';
+import { fetchSignIn } from '../../store/ducks/user/actionCreators';
 
 const Login: React.FC = () => {
+  const dispatch = useDispatch();
   useAuth().isAuthenticated();
   const [visibleModal, setVisibleModal] = React.useState<'signUp' | 'signIn'>();
+  const history = useHistory();
 
-  const handleClickOpenSignUp = (event: React.MouseEvent<HTMLElement>): void => {
+  const handleClickOpenSignUp = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setVisibleModal('signUp');
   };
 
-  const handleClickOpenSignIn = (event: React.MouseEvent<HTMLElement>): void => {
+  const handleClickOpenSignIn = (event: React.MouseEvent<HTMLElement>) => {
     event.stopPropagation();
     setVisibleModal('signIn');
   };
 
-  const handleCloseModal = (): void => {
+  const handleCloseModal = () => {
     setVisibleModal(undefined);
+  };
+
+  const handleClickSignInTest = () => {
+    dispatch(fetchSignIn({
+      email: 'oleg@gmail.com',
+      password: 'Qwerty123',
+    }));
+    history.push('/home');
   };
 
   return (
@@ -51,16 +64,19 @@ const Login: React.FC = () => {
             <IoLogoTwitter color="primary" className="login-side__twitter-icon" />
             <p className="login-side__title--primaryTheme">
               See what is happening in the world right now
-          </p>
+            </p>
             <p className="login-side__title--secondary" >
               Join the Twitter today.
-          </p>
+            </p>
             <button className="login-side__button button--signUp" onClick={handleClickOpenSignUp}>
               Sign Up
-          </button>
+            </button>
             <button className='login-side__button button--signIn' onClick={handleClickOpenSignIn}>
               Log in
-          </button>
+            </button>
+            <button className='login-side__button button--signIn' onClick={handleClickSignInTest}>
+              Log in as Test User without Sign Up
+            </button>
             {visibleModal === 'signUp' && (
               <RegisterModal onClose={handleCloseModal} />
             )}

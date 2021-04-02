@@ -30,7 +30,7 @@ export const RouterConfig: React.FC = () => (
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/notifications">
-      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true}>
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true}>
         <Notifications />
       </DefaultLayout>
     </PrivateRoute>
@@ -49,7 +49,7 @@ export const RouterConfig: React.FC = () => (
       </DefaultLayout>
     </PrivateRoute>
     <PrivateRoute path="/more">
-      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} >
+      <DefaultLayout IsVisibleSearchBox={true} IsVisibleTrendsForYou={true} IsVisibleWhoToFollow={true} >
         <More />
       </DefaultLayout>
     </PrivateRoute>

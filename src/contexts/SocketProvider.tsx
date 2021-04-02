@@ -18,8 +18,6 @@ export const SocketProvider: React.FC<ISocketProviderProps> = ({ children }: ISo
   useEffect(() => {
     const newSocket = io('http://localhost:3000', { query: { id } });
     setSocket(newSocket);
-
-    return () => { newSocket.close(); };
   }, []);
 
   return (

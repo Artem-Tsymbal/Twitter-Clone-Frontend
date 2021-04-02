@@ -19,7 +19,7 @@ const SearchBox: React.FC = () => {
   React.useEffect(() => {
     const timer = setTimeout(
       () => {
-        if (text.length < 56) {
+        if (text.length < 56 && text.length > 0) {
           dispatch(searchUsers({ criteria: text }));
         }
       }, 300);
